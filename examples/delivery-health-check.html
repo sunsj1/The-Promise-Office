@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4B2E83">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Delivery Health Check">
+<meta property="og:description" content="An 8-question interactive assessment of your program's health, from The Promise Office.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234B2E83'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='800' font-size='26' fill='white'%3EPO%3C/text%3E%3C/svg%3E">
+<title>Delivery Health Check</title>
+<meta name="description" content="An 8-question interactive assessment of your program's health, with a RAG reading and a recommended next step.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+:root{
+  --paper:#F5F4F8; --surface:#FFFFFF; --sunk:#EDEBF3;
+  --ink:#16132B; --muted:#5D5873; --line:#DDDAE6;
+  --accent:#4B2E83; --accent-ink:#FFFFFF; --accent-soft:#E9E3F5;
+  --amber:#B97F0A; --amber-soft:#FBF0D9;
+  --red:#B8402C; --red-soft:#FBE4DF;
+  --green:#2C7F54; --green-soft:#E1F1E8;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#100D1E; --surface:#1A1630; --sunk:#151128;
+    --ink:#EEEBF6; --muted:#A39DB9; --line:#2F2A48;
+    --accent:#BBA6F3; --accent-ink:#16132B; --accent-soft:#2A2250;
+    --amber:#F0B43C; --amber-soft:#2E2412;
+    --red:#EE7A63; --red-soft:#341E1B;
+    --green:#5CC98E; --green-soft:#132A20;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#100D1E; --surface:#1A1630; --sunk:#151128;
+  --ink:#EEEBF6; --muted:#A39DB9; --line:#2F2A48;
+  --accent:#BBA6F3; --accent-ink:#16132B; --accent-soft:#2A2250;
+  --amber:#F0B43C; --amber-soft:#2E2412;
+  --red:#EE7A63; --red-soft:#341E1B;
+  --green:#5CC98E; --green-soft:#132A20;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:clamp(20px,5vw,48px) 16px 64px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em;margin:0;text-wrap:balance;font-weight:800}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+header.tool{display:flex;flex-direction:column;gap:10px;text-align:center;margin-bottom:28px}
+header.tool h1{font-size:clamp(1.7rem,4vw,2.3rem)}
+header.tool p{max-width:52ch;margin-inline:auto;color:var(--muted)}
+
+.gauge-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.gauge{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--sunk);border:1px solid var(--line)}
+.gauge i{display:block;height:100%;transition:flex-basis .5s ease,background .4s ease}
+.gauge .seg{flex:1 1 0}
+.gauge-labels{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.reading{text-align:center;font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;color:var(--muted);min-height:1.4em}
+.reading b{color:var(--ink)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,4vw,32px);margin-top:22px}
+.steps{display:flex;justify-content:center;gap:6px;margin-bottom:18px}
+.steps i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block}
+.steps i.done{background:var(--accent)}
+.steps i.now{background:var(--accent);width:18px;border-radius:99px}
+
+.qcat{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block}
+.qtext{font-family:var(--display);font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:650;letter-spacing:-.01em;margin-bottom:20px}
+.answers{display:flex;flex-direction:column;gap:10px}
+.ans{text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink);display:flex;gap:12px;align-items:flex-start;transition:border-color .15s,background .15s}
+.ans:hover{border-color:var(--accent);background:var(--accent-soft)}
+.ans .dot{width:9px;height:9px;border-radius:50%;margin-top:6px;flex:none;background:var(--line)}
+.ans[data-w="0"] .dot{background:var(--green)}
+.ans[data-w="1"] .dot{background:var(--amber)}
+.ans[data-w="2"] .dot{background:var(--red)}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.back{background:none;border:none;color:var(--muted);font-size:.9rem;padding:6px 4px}
+.back:hover{color:var(--ink)}
+.back[disabled]{opacity:0;pointer-events:none}
+.skip{background:none;border:none;color:var(--muted);font-size:.85rem;text-decoration:underline;text-underline-offset:3px}
+
+/* results */
+.verdict{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding-block:6px 8px}
+.verdict .pill{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:99px}
+.verdict.red .pill{background:var(--red-soft);color:var(--red)}
+.verdict.amber .pill{background:var(--amber-soft);color:var(--amber)}
+.verdict.green .pill{background:var(--green-soft);color:var(--green)}
+.verdict h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+.verdict p.sub{color:var(--muted);max-width:52ch}
+
+.risks{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.risk{display:flex;gap:12px;background:var(--sunk);border-radius:12px;padding:14px 16px}
+.risk .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);flex:none;padding-top:2px}
+.risk b{display:block;font-family:var(--display);font-weight:650;font-size:1.02rem;margin-bottom:2px}
+.risk span{color:var(--muted);font-size:.92rem}
+
+.rec{margin-top:22px;background:var(--ink);color:var(--paper);border-radius:16px;padding:clamp(20px,4vw,28px)}
+.rec .eyebrow{color:#C9C3DC}
+.rec h3{color:var(--paper);font-size:1.4rem;margin-block:8px 6px}
+.rec p{color:#C9C3DC;margin-bottom:14px}
+.rec ul{margin:0 0 18px;padding-left:18px;color:#DAD5EA;font-size:.95rem;display:flex;flex-direction:column;gap:4px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 .93rem var(--body);text-decoration:none;padding:11px 18px;border-radius:99px;border:1.5px solid currentColor;cursor:pointer;background:none;color:inherit}
+.btn.primary{background:var(--amber);border-color:var(--amber);color:#16132B}
+.rec .btn.ghost{color:var(--paper)}
+.restart{display:block;text-align:center;margin-top:18px;color:var(--muted);background:none;border:none;font-size:.9rem;text-decoration:underline;text-underline-offset:3px}
+
+.emailbox{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.emailbox p{color:var(--muted);font-size:.92rem;margin-bottom:12px}
+.efields{display:flex;gap:10px;flex-wrap:wrap}
+.efields input{flex:1 1 180px;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.out{display:none;flex-direction:column;gap:10px;background:var(--sunk);border-radius:12px;padding:14px;margin-top:14px}
+.out.show{display:flex}
+.out pre{margin:0;white-space:pre-wrap;font-family:var(--mono);font-size:.8rem;max-height:220px;overflow:auto}
+.copybtn{font:500 .82rem var(--body);background:none;border:1px solid var(--line);border-radius:99px;padding:5px 13px;color:var(--ink);cursor:pointer;align-self:flex-start}
+
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.gauge i{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="tool">
+    <p class="eyebrow">The Promise Office · free assessment</p>
+    <h1>The Delivery Health Check</h1>
+    <p>Eight questions, two minutes. You'll get a Red/Amber/Green reading of your program and the engagement that fits where it stands today.</p>
+  </header>
+
+  <div class="gauge-wrap">
+    <div class="gauge" id="gauge"><i class="seg" style="background:var(--sunk)"></i></div>
+    <div class="gauge-labels"><span>Green</span><span>Amber</span><span>Red</span></div>
+  </div>
+  <p class="reading" id="reading">Answer the first question to see your reading build.</p>
+
+  <div class="card">
+    <div class="steps" id="steps"></div>
+    <div id="quizArea"></div>
+    <div id="resultArea" hidden></div>
+  </div>
+
+  <p style="text-align:center;margin-top:28px;color:var(--muted);font-size:.9rem">
+    A tool from <strong style="color:var(--ink)">The Promise Office</strong> — Delivery &amp; Transformation Advisory, led by Rishi Salunkhe.<br>
+    <a href="https://www.thepromiseoffice.com" style="color:var(--accent);text-decoration:none">thepromiseoffice.com</a> ·
+    <a href="https://www.linkedin.com/in/hrishikesh-v-salunkhe/" style="color:var(--accent);text-decoration:none">LinkedIn ↗</a>
+  </p>
+</div>
+
+<script>
+(function(){
+  var QUESTIONS = [
+    {cat:"Schedule & delivery control", text:"How often do delivery dates move without a documented reason?",
+     answers:[{t:"Rarely — and when they do, the reason is clear", w:0},{t:"Sometimes, and the reason is usually vague", w:1},{t:"Frequently, and nobody quite agrees why", w:2}]},
+    {cat:"Schedule & delivery control", text:"When did a customer's PM last escalate above your delivery lead?",
+     answers:[{t:"Hasn't happened — we handle it at our level", w:0},{t:"Once or twice, resolved quickly", w:1},{t:"It's becoming routine", w:2}]},
+    {cat:"Governance & reporting", text:"Can your leadership see one true status for every active program right now?",
+     answers:[{t:"Yes — one dashboard, and people trust it", w:0},{t:"Several reports that mostly agree", w:1},{t:"Reports disagree depending who you ask", w:2}]},
+    {cat:"Governance & reporting", text:"When a decision is stuck between two teams, who owns getting it unstuck?",
+     answers:[{t:"There's always a named owner", w:0},{t:"Usually, after some chasing", w:1},{t:"Often nobody does", w:2}]},
+    {cat:"Managed services & SLAs", text:"Do your SLA numbers match what the customer actually feels?",
+     answers:[{t:"Yes, SLA and experience agree", w:0},{t:"Mostly, with some gaps", w:1},{t:"SLA reads green, the customer isn't happy", w:2}]},
+    {cat:"Managed services & SLAs", text:"Does a new managed-services bid start from a repeatable model, or from a blank page?",
+     answers:[{t:"A repeatable model and pricing", w:0},{t:"Some reuse, a lot of rework", w:1},{t:"From scratch, most times", w:2}]},
+    {cat:"Commercial & margin", text:"Do you know this month's margin on each active account?",
+     answers:[{t:"Yes — reviewed monthly, by account", w:0},{t:"Roughly, not in detail", w:1},{t:"Not really — surprises turn up at quarter-end", w:2}]},
+    {cat:"AI & automation", text:"Have your AI pilots reached production, or stayed demos?",
+     answers:[{t:"In production, with real adoption", w:0},{t:"One or two are live", w:1},{t:"Impressive demos, nothing live yet", w:2}]}
+  ];
+
+  var RECS = {
+    "Schedule & delivery control": {name:"Red-to-Ready Turnaround", need:"Program recovery",
+      blurb:"An independent read of what's true, then a hand on the wheel until the program is back under control.",
+      bullets:["A RAG view across scope, schedule, commercials, people and service","A reset plan with named owners and exit criteria","An executive cadence you can trust"]},
+    "Governance & reporting": {name:"The Delivery Office", need:"PMO / PGO setup",
+      blurb:"A PMO/PGO that gives leadership one true status, with escalation paths that catch problems early.",
+      bullets:["A governance charter, RACI and stage gates","Dashboards and a reporting calendar people trust","A coached PMO lead who can run it"]},
+    "Managed services & SLAs": {name:"Managed Services Builder", need:"Managed services setup",
+      blurb:"A repeatable service catalogue, SLA model and pricing approach, so every bid isn't a blank page.",
+      bullets:["A managed services blueprint and transition toolkit","SLA/KPI design tied to what customers actually feel","Reusable pricing and proposal collateral"]},
+    "Commercial & margin": {name:"Commercial Command", need:"P&L / commercial governance",
+      blurb:"A clear commercial baseline by account, so margin stops being a quarter-end surprise.",
+      bullets:["A commercial baseline and leakage register","Pricing and staffing options, modelled","A monthly financial review rhythm"]},
+    "AI & automation": {name:"AI That Works", need:"AI delivery",
+      blurb:"Use-case discovery through to production — with the validation a demo never gets.",
+      bullets:["A ranked, feasible AI use-case portfolio","A pilot charter with real success measures","A system in production, not a slide"]}
+  };
+
+  var idx = 0, chosen = new Array(QUESTIONS.length).fill(null);
+
+  var stepsEl = document.getElementById("steps"), quizArea = document.getElementById("quizArea"),
+      resultArea = document.getElementById("resultArea"), gauge = document.getElementById("gauge"),
+      reading = document.getElementById("reading");
+
+  function renderSteps(){
+    stepsEl.innerHTML = "";
+    QUESTIONS.forEach(function(_, i){
+      var s = document.createElement("i");
+      if (i === idx) s.className = "now";
+      else if (chosen[i] !== null) s.className = "done";
+      stepsEl.appendChild(s);
+    });
+  }
+
+  function currentScore(){
+    var answered = chosen.filter(function(w){ return w !== null; });
+    if (!answered.length) return null;
+    var sum = answered.reduce(function(a,b){ return a+b; }, 0);
+    return {sum: sum, max: answered.length * 2, count: answered.length};
+  }
+
+  function verdictFor(sum, max){
+    var pct = sum / max; // 0..1
+    if (pct < 0.32) return "green";
+    if (pct < 0.62) return "amber";
+    return "red";
+  }
+
+  function updateGauge(){
+    var sc = currentScore();
+    if (!sc){
+      gauge.innerHTML = '<i class="seg" style="background:var(--sunk)"></i>';
+      reading.textContent = "Answer the first question to see your reading build.";
+      return;
+    }
+    var v = verdictFor(sc.sum, sc.max);
+    var pct = Math.round((sc.sum / sc.max) * 100);
+    var col = v === "green" ? "var(--green)" : v === "amber" ? "var(--amber)" : "var(--red)";
+    gauge.innerHTML = '<i class="seg" style="background:'+col+';flex-basis:'+pct+'%"></i><i class="seg" style="background:var(--sunk);flex-basis:'+(100-pct)+'%"></i>';
+    var label = v === "green" ? "Green" : v === "amber" ? "Amber" : "Red";
+    reading.innerHTML = "Reading so far: <b>"+label+"</b> · "+sc.count+" of "+QUESTIONS.length+" answered";
+  }
+
+  function renderQuestion(){
+    renderSteps();
+    var q = QUESTIONS[idx];
+    var html = '<span class="qcat">'+q.cat+'</span><div class="qtext">'+q.text+'</div><div class="answers">';
+    q.answers.forEach(function(a, ai){
+      html += '<button type="button" class="ans" data-w="'+a.w+'" data-ai="'+ai+'"><span class="dot" aria-hidden="true"></span><span>'+a.t+'</span></button>';
+    });
+    html += '</div><div class="nav-row"><button type="button" class="back" id="backBtn" '+(idx===0?'disabled':'')+'>&larr; Back</button></div>';
+    quizArea.innerHTML = html;
+    quizArea.querySelectorAll(".ans").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        chosen[idx] = parseInt(btn.dataset.w, 10);
+        updateGauge();
+        if (idx < QUESTIONS.length - 1){ idx++; renderQuestion(); }
+        else { showResults(); }
+      });
+    });
+    var backBtn = document.getElementById("backBtn");
+    if (backBtn) backBtn.addEventListener("click", function(){ if (idx>0){ idx--; renderQuestion(); updateGauge(); } });
+  }
+
+  function showResults(){
+    quizArea.hidden = true;
+    resultArea.hidden = false;
+    stepsEl.hidden = true;
+    var sum = chosen.reduce(function(a,b){ return a+b; }, 0);
+    var max = QUESTIONS.length * 2;
+    var v = verdictFor(sum, max);
+    var vLabel = v === "green" ? "Green — steady" : v === "amber" ? "Amber — worth a look" : "Red — act now";
+    var vSub = v === "green" ? "Nothing here looks urgent. Worth revisiting in a quarter, or before the next big commitment." :
+               v === "amber" ? "A few signs are building. Catching them now is far cheaper than catching them after an escalation." :
+               "More than one warning sign is already showing. This is exactly the situation a two-week diagnostic is built for.";
+
+    // score by category, worst two drive the recommendation
+    var byCat = {};
+    QUESTIONS.forEach(function(q, i){
+      byCat[q.cat] = byCat[q.cat] || {sum:0, n:0};
+      byCat[q.cat].sum += chosen[i];
+      byCat[q.cat].n += 1;
+    });
+    var cats = Object.keys(byCat).map(function(c){
+      return {cat:c, avg: byCat[c].sum / byCat[c].n};
+    }).sort(function(a,b){ return b.avg - a.avg; });
+
+    var top = cats.filter(function(c){ return c.avg > 0; }).slice(0, 2);
+    if (!top.length) top = [cats[0]];
+
+    var riskLines = {
+      "Schedule & delivery control": "Dates and escalations are already showing strain.",
+      "Governance & reporting": "Status and ownership aren't consistent across the portfolio.",
+      "Managed services & SLAs": "Your SLA numbers and the customer's experience are drifting apart.",
+      "Commercial & margin": "Margin visibility is thinner than it should be.",
+      "AI & automation": "AI work isn't converting from demo to production."
+    };
+
+    var risksHtml = top.map(function(c, i){
+      return '<div class="risk"><span class="n">0'+(i+1)+'</span><div><b>'+c.cat+'</b><span>'+riskLines[c.cat]+'</span></div></div>';
+    }).join("");
+
+    var rec = RECS[top[0].cat];
+
+    var html = ''
+      + '<div class="verdict '+v+'"><span class="pill">'+vLabel+'</span>'
+      + '<h2>Your program reads '+ (v==='green'?'green':v==='amber'?'amber':'red') +'.</h2>'
+      + '<p class="sub">'+vSub+'</p></div>'
+      + '<div class="risks">'+risksHtml+'</div>'
+      + '<div class="rec"><span class="eyebrow">Where I\'d start</span><h3>'+rec.name+'</h3>'
+      + '<p>'+rec.blurb+'</p><ul>'+rec.bullets.map(function(b){return '<li>'+b+'</li>';}).join('')+'</ul>'
+      + '<div class="btnrow"><a class="btn primary" href="#emailbox" data-scroll>Get my full results</a>'
+      + '<a class="btn ghost" href="mailto:hrishikesh.salunkhe@gmail.com?subject='+encodeURIComponent('Delivery Health Check — '+rec.name)+'">Talk to Rishi ↗</a></div></div>'
+      + '<button type="button" class="restart" id="restartBtn">Start over</button>'
+      + '<div class="emailbox" id="emailbox"><p class="eyebrow" style="display:block;margin-bottom:6px">Optional</p>'
+      + '<p>Add your details and I\'ll prepare an email with your full reading, ready to send or copy.</p>'
+      + '<div class="efields"><input id="rName" placeholder="Your name"><input id="rEmail" placeholder="Your email" type="email"></div>'
+      + '<div class="btnrow" style="margin-top:12px"><button type="button" class="btn primary" id="prepBtn" style="border:none">Prepare my results email</button></div>'
+      + '<div class="out" id="out"><strong>Ready to send.</strong><pre id="outText"></pre>'
+      + '<div class="btnrow"><button type="button" class="copybtn" id="copyBtn">Copy</button><a class="copybtn" id="mailBtn" href="#" style="text-decoration:none">Open in email app</a></div></div></div>';
+
+    resultArea.innerHTML = html;
+
+    document.getElementById("restartBtn").addEventListener("click", function(){
+      idx = 0; chosen = new Array(QUESTIONS.length).fill(null);
+      quizArea.hidden = false; resultArea.hidden = true; stepsEl.hidden = false;
+      renderQuestion(); updateGauge();
+      window.scrollTo({top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'});
+    });
+
+    document.getElementById("prepBtn").addEventListener("click", function(){
+      var name = document.getElementById("rName").value.trim() || "—";
+      var email = document.getElementById("rEmail").value.trim() || "—";
+      var subject = "My Delivery Health Check results — " + vLabel.split(" — ")[0];
+      var body = "Hi Rishi,\n\nI ran the Delivery Health Check.\n\nName: "+name+"\nEmail: "+email+
+        "\nOverall reading: "+vLabel+"\nTop signals: "+top.map(function(c){return c.cat;}).join(", ")+
+        "\nSuggested starting point: "+rec.name+
+        "\n\nI'd like to talk this through.\n";
+      document.getElementById("outText").textContent = "Subject: "+subject+"\n\n"+body;
+      document.getElementById("mailBtn").href = "mailto:hrishikesh.salunkhe@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+      document.getElementById("out").classList.add("show");
+    });
+    document.getElementById("copyBtn").addEventListener("click", function(){
+      var t = document.getElementById("outText").textContent, btn = this;
+      try{ navigator.clipboard.writeText(t).then(function(){ var o=btn.textContent; btn.textContent="Copied"; setTimeout(function(){btn.textContent=o;},1500); }); }
+      catch(e){ btn.textContent = "Select and copy"; }
+    });
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[data-scroll]");
+    if (a){ e.preventDefault(); var el = document.getElementById(a.getAttribute("href").slice(1)); if (el) el.scrollIntoView({block:"start", behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'}); }
+  });
+
+  renderQuestion();
+  updateGauge();
+})();
+</script>
+
+</body>
+</html>

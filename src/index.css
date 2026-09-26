@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* Brand tokens from the Threshold Seal kit. */
+@theme {
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Lato', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-plum: #4b2e83;
+  --color-plum-soft: #6d4bb0;
+  --color-amber: #f0b43c;
+  --color-amber-deep: #c98b1c;
+  --color-lavender: #c9c3dc;
+
+  --color-rag-green: #2f8f5b;
+  --color-rag-amber: #e0952a;
+  --color-rag-red: #c4432f;
+
+  --ease-seal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+  Theme surfaces are CSS variables rather than @theme colors so a single
+  [data-theme] switch repaints the whole site without duplicating utilities.
+*/
+:root {
+  --paper: #f5f4f8;
+  --surface: #ffffff;
+  --sunk: #eeecf4;
+  --ink: #16132b;
+  --muted: #5d5873;
+  --line: #dddae6;
+  --ring: rgba(75, 46, 131, 0.35);
+  --glow: rgba(75, 46, 131, 0.1);
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --paper: #100d1e;
+  --surface: #1a1630;
+  --sunk: #15122a;
+  --ink: #eeebf6;
+  --muted: #a39db9;
+  --line: #2f2a48;
+  --ring: rgba(201, 195, 220, 0.3);
+  --glow: rgba(240, 180, 60, 0.12);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.4s var(--ease-seal),
+      color 0.4s var(--ease-seal);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: #16132b;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  /* Fine dotted grid used behind bento sections. */
+  .bg-dotgrid {
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .text-gradient-seal {
+    background: linear-gradient(100deg, var(--color-plum-soft), var(--color-amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .marquee-track {
+    animation: marquee-x var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .column-track {
+    animation: marquee-y var(--marquee-duration, 20s) linear infinite;
+  }
+
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.22) 48%, transparent 66%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+
+  .btn-shine:hover::after {
+    animation: shine-sweep 0.85s var(--ease-out-soft);
+  }
+}
+
+@keyframes marquee-x {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-y {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes shine-sweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .column-track {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
