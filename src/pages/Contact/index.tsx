@@ -144,7 +144,7 @@ export function ContactPage() {
                               'rounded-full border px-3.5 py-2 text-[0.82rem] transition-colors',
                               isActive
                                 ? 'border-amber bg-amber/12 text-ink'
-                                : 'border-line text-muted hover:border-plum hover:text-ink dark:hover:border-amber',
+                                : 'border-line text-muted hover:border-amber hover:text-ink',
                             )}
                           >
                             {option}
@@ -169,7 +169,7 @@ export function ContactPage() {
                               'flex items-center gap-2.5 rounded-xl border px-4 py-3 text-left text-[0.88rem] transition-colors',
                               isActive
                                 ? 'border-amber bg-amber/8 text-ink'
-                                : 'border-line text-muted hover:border-plum hover:text-ink dark:hover:border-amber',
+                                : 'border-line text-muted hover:border-amber hover:text-ink',
                             )}
                           >
                             <span

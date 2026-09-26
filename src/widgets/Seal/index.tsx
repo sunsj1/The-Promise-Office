@@ -4,7 +4,7 @@ import { cn } from '@/lib/cn'
 
 /*
   The Threshold Seal, rebuilt from the brand kit geometry.
-  The plum arc carries 300 degrees (the promise); the amber arc closes the
+  The ink arc carries 300 degrees (the promise); the amber arc closes the
   remaining 60 (the delivery). `animate` draws the amber arc last so the mark
   performs the brand line rather than just sitting there.
 */
@@ -28,13 +28,13 @@ export function Seal({ className, animate = false, delay = 0 }: SealProps) {
   const shouldAnimate = animate && !reduceMotion
 
   return (
-    <svg viewBox="0 0 64 64" className={cn('h-8 w-8', className)} role="img" aria-label="The Promise Office">
+    <svg viewBox="0 0 64 64" className={cn('h-8 w-8 text-ink', className)} role="img" aria-label="The Promise Office">
       <motion.path
         d={PLUM_ARC}
         fill="none"
         strokeWidth={5.6}
         strokeLinecap="round"
-        className="stroke-plum dark:stroke-lavender"
+        className="stroke-current"
         variants={shouldAnimate ? arcDraw : undefined}
         initial={shouldAnimate ? 'hidden' : false}
         animate={shouldAnimate ? 'visible' : false}

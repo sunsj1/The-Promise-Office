@@ -27,12 +27,12 @@ export function OrbitalModes() {
         {modes.map((mode, index) => {
           const Icon = icons[index]
           return (
-            <li key={mode.id} className="rounded-2xl border border-white/10 bg-white/5 p-6 text-[#eeebf6]">
+            <li key={mode.id} className="rounded-2xl border border-white/10 bg-white/5 p-6 text-cream">
               <span className="grid h-10 w-10 place-items-center rounded-full border border-white/15">
                 <Icon size={17} strokeWidth={1.6} aria-hidden />
               </span>
               <h3 className="mt-4 font-display text-xl">{mode.title}</h3>
-              <p className="mt-2 text-[0.95rem] text-[#c9c3dc]">{mode.copy}</p>
+              <p className="mt-2 text-[0.95rem] text-[#a39e93]">{mode.copy}</p>
             </li>
           )
         })}
@@ -57,9 +57,9 @@ export function OrbitalModes() {
           <span
             aria-hidden
             className="absolute h-36 w-36 rounded-full blur-2xl"
-            style={{ background: 'radial-gradient(circle, rgba(109,75,176,0.55), rgba(240,180,60,0.18) 55%, transparent 72%)' }}
+            style={{ background: 'radial-gradient(circle, rgba(240,180,60,0.42), rgba(26,25,21,0.2) 55%, transparent 72%)' }}
           />
-          <div className="relative z-10 grid h-[4.6rem] w-[4.6rem] place-items-center rounded-full bg-gradient-to-br from-[#8d6fd4] via-[#6d4bb0] to-[#f0b43c] shadow-[0_0_40px_rgba(109,75,176,0.45)]">
+          <div className="relative z-10 grid h-[4.6rem] w-[4.6rem] place-items-center rounded-full bg-gradient-to-br from-[#2c2a24] via-[#1a1915] to-[#f0b43c] shadow-[0_0_40px_rgba(240,180,60,0.35)]">
             <span className="h-7 w-7 rounded-full bg-white/90" />
           </div>
         </div>
@@ -91,8 +91,8 @@ export function OrbitalModes() {
                 className={cn(
                   'grid h-12 w-12 place-items-center rounded-full border transition-all duration-300',
                   isActive
-                    ? 'border-white bg-white text-[#16132b] shadow-[0_0_24px_rgba(255,255,255,0.25)]'
-                    : 'border-white/20 bg-[#100d1e] text-white/80 hover:border-white/50',
+                    ? 'border-white bg-white text-[#1a1915] shadow-[0_0_24px_rgba(255,255,255,0.25)]'
+                    : 'border-white/20 bg-night text-white/80 hover:border-white/50',
                 )}
               >
                 <Icon size={17} strokeWidth={1.7} aria-hidden />
@@ -122,7 +122,7 @@ export function OrbitalModes() {
             <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
               {active.title}
             </p>
-            <p className="mt-3 text-[1.02rem] leading-relaxed text-[#c9c3dc]">{active.copy}</p>
+            <p className="mt-3 text-[1.02rem] leading-relaxed text-[#a39e93]">{active.copy}</p>
           </motion.div>
         </AnimatePresence>
       </div>

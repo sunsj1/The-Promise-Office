@@ -22,7 +22,7 @@ function PathSet({ invert = false }: { invert?: boolean }) {
           key={d}
           d={d}
           fill="none"
-          stroke={invert ? 'rgba(201,195,220,0.12)' : 'rgba(75,46,131,0.11)'}
+          stroke={invert ? 'rgba(243,241,234,0.12)' : 'color-mix(in srgb, var(--ink) 12%, transparent)'}
           strokeWidth={1.1}
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
@@ -43,7 +43,7 @@ export function BackgroundPaths({ className }: { className?: string }) {
           <path
             d="M-40 160 C 280 40, 520 240, 900 120 S 1300 260, 1480 140"
             fill="none"
-            stroke="rgba(75,46,131,0.1)"
+            stroke="color-mix(in srgb, var(--ink) 12%, transparent)"
             strokeWidth={1.1}
           />
         </svg>

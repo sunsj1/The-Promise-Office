@@ -31,7 +31,7 @@ export function ProcessTimeline() {
         <ol className="space-y-4">
           {framework.map((step) => (
             <motion.li key={step.title} variants={fadeUp} className="relative pl-14 lg:pl-16">
-              <span className="absolute top-6 left-0 grid h-9 w-9 place-items-center rounded-full border border-line bg-paper font-mono text-[0.7rem] text-plum dark:text-lavender">
+              <span className="absolute top-6 left-0 grid h-9 w-9 place-items-center rounded-full border border-line bg-paper font-mono text-[0.7rem] text-ink">
                 {step.index}
               </span>
               <article className="rounded-2xl border border-line bg-surface px-6 py-6 sm:px-8 sm:py-7">

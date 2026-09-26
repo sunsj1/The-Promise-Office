@@ -127,7 +127,7 @@ export function HealthCheckTool() {
                 answers[position] !== null
                   ? 'bg-amber'
                   : !finished && position === index
-                    ? 'bg-plum dark:bg-lavender'
+                    ? 'bg-ink'
                     : 'bg-line',
               )}
             />
@@ -176,7 +176,7 @@ export function HealthCheckTool() {
                         onClick={() => choose(answer.weight)}
                         className={cn(
                           'w-full rounded-xl border border-line bg-sunk px-5 py-4 text-left text-[0.97rem] transition-all duration-200',
-                          'hover:border-plum hover:bg-surface dark:hover:border-amber',
+                          'hover:border-amber hover:bg-surface',
                           answers[index] === answer.weight && 'border-amber bg-surface',
                         )}
                       >

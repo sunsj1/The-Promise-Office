@@ -34,7 +34,7 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-amber focus:px-4 focus:py-2 focus:text-sm focus:text-[#16132b]"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-amber focus:px-4 focus:py-2 focus:text-sm focus:text-[#1a1915]"
       >
         Skip to content
       </a>
@@ -91,7 +91,7 @@ export function Navbar() {
             </Link>
             <Link
               to={paths.contact}
-              className="group hidden items-center gap-1.5 rounded-full bg-plum px-4 py-2 text-[0.85rem] text-white transition-colors hover:bg-[#3c2469] sm:inline-flex dark:bg-lavender dark:text-[#16132b] dark:hover:bg-white"
+              className="group hidden items-center gap-1.5 rounded-full bg-[#1a1915] px-4 py-2 text-[0.85rem] text-[#f6f4ef] transition-colors hover:bg-[#2c2a24] sm:inline-flex dark:bg-[#f3f1ea] dark:text-[#1a1915] dark:hover:bg-white"
             >
               Request a call
               <ArrowUpRight
@@ -139,7 +139,7 @@ export function Navbar() {
             <div className="px-5 pb-10 sm:px-7">
               <Link
                 to={paths.contact}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-plum px-6 py-3.5 text-white dark:bg-lavender dark:text-[#16132b]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1a1915] px-6 py-3.5 text-[#f6f4ef] dark:bg-[#f3f1ea] dark:text-[#1a1915]"
               >
                 Request a 30-minute call
               </Link>

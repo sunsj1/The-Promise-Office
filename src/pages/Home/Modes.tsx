@@ -4,13 +4,13 @@ import { SectionHeader } from '@/widgets/SectionHeader'
 
 export function HomeModes() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#100d1e] py-20 text-[#eeebf6] lg:py-28">
+    <section className="relative isolate overflow-hidden bg-night py-20 text-cream lg:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            'radial-gradient(50% 45% at 50% 42%, rgba(109,75,176,0.22), transparent 62%)',
+            'radial-gradient(50% 45% at 50% 42%, rgba(240,180,60,0.16), transparent 62%)',
         }}
       />
       <Container size="wide">
@@ -19,7 +19,7 @@ export function HomeModes() {
           title="An independent view. Then a practical hand on the wheel."
           copy="Four modes. One practice. Select a node to see how the work enters."
           align="center"
-          className="[&_p]:text-[#c9c3dc] [&_.text-muted]:text-[#a39db9]"
+          className="[&_p]:text-[#a39e93] [&_.text-muted]:text-[#a39e93]"
         />
         <div className="mt-8">
           <OrbitalModes />

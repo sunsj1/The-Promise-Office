@@ -2,17 +2,16 @@
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
-/* Brand tokens from the Threshold Seal kit. */
+/* Warm ink + amber. Charcoal carries the mark; amber closes it. */
 @theme {
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Lato', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  --color-plum: #4b2e83;
-  --color-plum-soft: #6d4bb0;
   --color-amber: #f0b43c;
   --color-amber-deep: #c98b1c;
-  --color-lavender: #c9c3dc;
+  --color-night: #12110e;
+  --color-cream: #f3f1ea;
 
   --color-rag-green: #2f8f5b;
   --color-rag-amber: #e0952a;
@@ -27,26 +26,26 @@
   [data-theme] switch repaints the whole site without duplicating utilities.
 */
 :root {
-  --paper: #f5f4f8;
+  --paper: #f6f4ef;
   --surface: #ffffff;
-  --sunk: #eeecf4;
-  --ink: #16132b;
-  --muted: #5d5873;
-  --line: #dddae6;
-  --ring: rgba(75, 46, 131, 0.35);
-  --glow: rgba(75, 46, 131, 0.1);
+  --sunk: #ebe7de;
+  --ink: #1a1915;
+  --muted: #6b675e;
+  --line: #e4e0d6;
+  --ring: rgba(26, 25, 21, 0.22);
+  --glow: rgba(240, 180, 60, 0.14);
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --paper: #100d1e;
-  --surface: #1a1630;
-  --sunk: #15122a;
-  --ink: #eeebf6;
-  --muted: #a39db9;
-  --line: #2f2a48;
-  --ring: rgba(201, 195, 220, 0.3);
-  --glow: rgba(240, 180, 60, 0.12);
+  --paper: #12110e;
+  --surface: #1c1b18;
+  --sunk: #161512;
+  --ink: #f3f1ea;
+  --muted: #a39e93;
+  --line: #2c2a25;
+  --ring: rgba(240, 180, 60, 0.28);
+  --glow: rgba(240, 180, 60, 0.14);
   color-scheme: dark;
 }
 
@@ -112,7 +111,7 @@
 
   ::selection {
     background: var(--color-amber);
-    color: #16132b;
+    color: #1a1915;
   }
 
   :focus-visible {
@@ -130,7 +129,7 @@
   }
 
   .text-gradient-seal {
-    background: linear-gradient(100deg, var(--color-plum-soft), var(--color-amber));
+    background: linear-gradient(100deg, var(--ink), var(--color-amber));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

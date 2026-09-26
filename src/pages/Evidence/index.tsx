@@ -53,7 +53,7 @@ export function EvidencePage() {
                     'relative rounded-full border px-4 py-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase transition-colors',
                     isActive
                       ? 'border-amber text-ink'
-                      : 'border-line text-muted hover:border-plum hover:text-ink dark:hover:border-amber',
+                      : 'border-line text-muted hover:border-amber hover:text-ink',
                   )}
                 >
                   {option.label}

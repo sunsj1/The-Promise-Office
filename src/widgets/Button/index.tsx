@@ -19,9 +19,9 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    'btn-shine bg-plum text-white hover:bg-[#3c2469] hover:shadow-[0_10px_30px_-12px_rgba(75,46,131,0.6)] dark:bg-lavender dark:text-[#16132b] dark:hover:bg-white',
-  amber: 'bg-amber text-[#16132b] hover:bg-[#e0a52c] hover:shadow-[0_10px_30px_-12px_rgba(240,180,60,0.65)]',
-  outline: 'border border-line bg-surface text-ink hover:border-plum hover:text-plum dark:hover:border-amber dark:hover:text-amber',
+    'btn-shine bg-[#1a1915] text-[#f6f4ef] hover:bg-[#2c2a24] hover:shadow-[0_10px_30px_-12px_rgba(26,25,21,0.45)] dark:bg-[#f3f1ea] dark:text-[#1a1915] dark:hover:bg-white',
+  amber: 'bg-amber text-[#1a1915] hover:bg-[#e0a52c] hover:shadow-[0_10px_30px_-12px_rgba(240,180,60,0.65)]',
+  outline: 'border border-line bg-surface text-ink hover:border-amber hover:text-amber',
   ghost: 'text-ink hover:text-amber',
 }
 
