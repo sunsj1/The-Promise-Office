@@ -18,6 +18,7 @@ import { Eyebrow } from '@/widgets/Eyebrow'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
+import { Portrait } from '@/widgets/Portrait'
 import { Seo, personJsonLd } from '@/widgets/Seo'
 import { TestimonialColumn } from '@/widgets/TestimonialColumns'
 
@@ -36,6 +37,7 @@ export function PerspectivePage() {
         eyebrow={site.person}
         title="Senior judgment. Practical ownership."
         copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
+        aside={<Portrait size="page" />}
       >
         <div className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
           {perspectiveHighlights.map((item) => (

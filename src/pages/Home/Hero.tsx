@@ -8,6 +8,7 @@ import { lineRise, sealEase, stagger } from '@/animations/variants'
 import { BackgroundPaths } from '@/widgets/BackgroundPaths'
 import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
+import { Portrait } from '@/widgets/Portrait'
 import { Seal } from '@/widgets/Seal'
 
 const headline = ['Make the promise', 'deliverable.']
@@ -32,65 +33,80 @@ export function HomeHero() {
           initial={reduceMotion ? false : 'hidden'}
           animate="visible"
           variants={stagger}
+          className="grid items-center gap-8 lg:grid-cols-12 lg:gap-6"
         >
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 12 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: sealEase } },
-            }}
-            className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] tracking-[0.18em] text-muted uppercase"
-          >
-            <span aria-hidden className="h-px w-8 bg-amber" />
-            {site.discipline}
-          </motion.p>
+          <div className="lg:col-span-7">
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 12 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: sealEase } },
+              }}
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] tracking-[0.18em] text-muted uppercase"
+            >
+              <span aria-hidden className="h-px w-8 bg-amber" />
+              {site.discipline}
+            </motion.p>
 
-          <h1 className="mt-6 max-w-5xl text-[clamp(2.7rem,7.2vw,5.4rem)] leading-[0.96]">
-            {headline.map((line, index) => (
-              <span key={line} className="block overflow-hidden pb-1">
-                <motion.span variants={reduceMotion ? undefined : lineRise} className="block">
-                  {index === 1 ? <span className="text-gradient-seal">{line}</span> : line}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
+            <h1 className="mt-6 max-w-5xl text-[clamp(2.5rem,6.4vw,5rem)] leading-[0.96]">
+              {headline.map((line, index) => (
+                <span key={line} className="block overflow-hidden pb-1">
+                  <motion.span variants={reduceMotion ? undefined : lineRise} className="block">
+                    {index === 1 ? <span className="text-gradient-seal">{line}</span> : line}
+                  </motion.span>
+                </span>
+              ))}
+            </h1>
 
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 14 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: sealEase } },
-            }}
-            className="mt-6 max-w-2xl text-[1.05rem] text-muted sm:text-lg"
-          >
-            Leaders call me when the status report no longer matches the reality of delivery.
-          </motion.p>
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 14 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: sealEase } },
+              }}
+              className="mt-6 max-w-xl text-[1.05rem] text-muted sm:text-lg"
+            >
+              Leaders call me when the status report no longer matches the reality of delivery.
+            </motion.p>
+          </div>
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 14 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: sealEase } },
+              hidden: { opacity: 0, scale: 0.96 },
+              visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: sealEase } },
             }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            className="mx-auto w-[min(72%,18rem)] lg:col-span-5 lg:row-span-2 lg:mx-0 lg:w-full lg:max-w-[26rem] lg:justify-self-end"
           >
-            <LinkButton to={paths.contact} size="lg">
-              Request a 30-minute call
-            </LinkButton>
-            <LinkButton to={paths.healthCheck} variant="outline" size="lg" arrow={false}>
-              <span className="inline-flex items-center gap-2">
-                Start with a delivery health check
-                <ArrowDown size={15} aria-hidden />
-              </span>
-            </LinkButton>
+            <Portrait />
           </motion.div>
 
-          <motion.p
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { duration: 0.7, delay: 0.15 } },
-            }}
-            className="mt-10 font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase"
-          >
-            {site.shortName} · {site.base} · 21+ years
-          </motion.p>
+          <div className="lg:col-span-7">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 14 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: sealEase } },
+              }}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <LinkButton to={paths.contact} size="lg">
+                Request a 30-minute call
+              </LinkButton>
+              <LinkButton to={paths.healthCheck} variant="outline" size="lg" arrow={false}>
+                <span className="inline-flex items-center gap-2">
+                  Start with a delivery health check
+                  <ArrowDown size={15} aria-hidden />
+                </span>
+              </LinkButton>
+            </motion.div>
+
+            <motion.p
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.7, delay: 0.15 } },
+              }}
+              className="mt-10 font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase"
+            >
+              {site.shortName} · {site.base} · 21+ years
+            </motion.p>
+          </div>
         </motion.div>
 
         <motion.div

@@ -11,12 +11,15 @@ export function PageHeader({
   title,
   copy,
   breadcrumb,
+  aside,
   children,
 }: {
   eyebrow: string
   title: string
   copy?: string
   breadcrumb: string
+  /** Optional right-hand visual, used for the founder portrait. */
+  aside?: ReactNode
   children?: ReactNode
 }) {
   return (
@@ -42,11 +45,26 @@ export function PageHeader({
             </ol>
           </nav>
 
-          <Eyebrow className="mt-8">{eyebrow}</Eyebrow>
-          <h1 className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
-            {title}
-          </h1>
-          {copy ? <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">{copy}</p> : null}
+          <div
+            className={
+              aside
+                ? 'mt-8 grid items-center gap-10 lg:grid-cols-12 lg:gap-8'
+                : undefined
+            }
+          >
+            <div className={aside ? 'lg:col-span-7' : undefined}>
+              <Eyebrow className={aside ? undefined : 'mt-8'}>{eyebrow}</Eyebrow>
+              <h1 className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
+                {title}
+              </h1>
+              {copy ? <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">{copy}</p> : null}
+            </div>
+            {aside ? (
+              <div className="mx-auto w-[min(70%,16.5rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[20rem] lg:justify-self-end">
+                {aside}
+              </div>
+            ) : null}
+          </div>
           {children}
         </Reveal>
       </Container>

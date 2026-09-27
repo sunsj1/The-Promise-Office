@@ -21,10 +21,10 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 function readInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light'
+  if (typeof window === 'undefined') return 'dark'
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'light' || stored === 'dark') return stored
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  return 'dark'
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -34,18 +34,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.dataset.theme = theme
   }, [theme])
 
-  // Follow the OS only while the visitor has not made an explicit choice.
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const onChange = (event: MediaQueryListEvent) => {
-      if (window.localStorage.getItem(STORAGE_KEY)) return
-      setThemeState(event.matches ? 'dark' : 'light')
-    }
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
-  }, [])
-
-  // Only an explicit choice is persisted; otherwise the OS preference keeps winning.
+  // Persist only after an explicit choice; first visits stay dark.
   const setTheme = useCallback((next: Theme) => {
     window.localStorage.setItem(STORAGE_KEY, next)
     setThemeState(next)

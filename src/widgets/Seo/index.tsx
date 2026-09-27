@@ -66,6 +66,7 @@ export const personJsonLd = {
     'Commercial and P&L governance',
     'AI delivery and enablement',
   ],
+  image: `${site.url}/brand/rishi.png`,
   alumniOf: [
     { '@type': 'Organization', name: 'Infosys' },
     { '@type': 'Organization', name: 'Tech Mahindra' },

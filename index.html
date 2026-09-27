@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
@@ -26,12 +26,9 @@
       ;(function () {
         try {
           var stored = localStorage.getItem('tpo-theme')
-          var dark = stored
-            ? stored === 'dark'
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
-          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+          document.documentElement.dataset.theme = stored === 'light' ? 'light' : 'dark'
         } catch (error) {
-          document.documentElement.dataset.theme = 'light'
+          document.documentElement.dataset.theme = 'dark'
         }
       })()
     </script>
