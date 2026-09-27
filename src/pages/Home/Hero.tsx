@@ -6,7 +6,7 @@ import { site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { lineRise, sealEase, stagger } from '@/animations/variants'
 import { BackgroundPaths } from '@/widgets/BackgroundPaths'
-import { LinkButton } from '@/widgets/Button'
+import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { Portrait } from '@/widgets/Portrait'
 import { Seal } from '@/widgets/Seal'
@@ -86,9 +86,7 @@ export function HomeHero() {
               }}
               className="flex flex-wrap items-center gap-3"
             >
-              <LinkButton to={paths.contact} size="lg">
-                Request a 30-minute call
-              </LinkButton>
+              <BookCallButton size="lg">Request a 30-minute call</BookCallButton>
               <LinkButton to={paths.healthCheck} variant="outline" size="lg" arrow={false}>
                 <span className="inline-flex items-center gap-2">
                   Start with a delivery health check

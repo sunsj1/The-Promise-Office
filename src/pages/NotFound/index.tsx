@@ -1,6 +1,6 @@
 import { navLinks, paths } from '@/routes/paths'
 import { Link } from 'react-router-dom'
-import { LinkButton } from '@/widgets/Button'
+import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { Seal } from '@/widgets/Seal'
@@ -27,9 +27,9 @@ export function NotFoundPage() {
               <LinkButton to={paths.home} size="lg">
                 Back to home
               </LinkButton>
-              <LinkButton to={paths.contact} variant="outline" size="lg">
+              <BookCallButton variant="outline" size="lg">
                 Request a call
-              </LinkButton>
+              </BookCallButton>
             </div>
             <nav aria-label="Site sections" className="mt-12 border-t border-line pt-7">
               <ul className="flex flex-wrap gap-x-6 gap-y-3">

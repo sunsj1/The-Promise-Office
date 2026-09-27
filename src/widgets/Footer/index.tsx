@@ -1,11 +1,15 @@
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { bookCallAttrs } from '@/lib/cal'
+import { useTheme } from '@/lib/theme'
 import { disclaimers, site } from '@/data/site'
 import { navLinks, paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Logo } from '@/widgets/Logo'
 
 export function Footer() {
+  const { theme } = useTheme()
+
   return (
     <footer className="border-t border-line bg-sunk">
       <Container size="wide" className="py-16 lg:py-20">
@@ -16,8 +20,8 @@ export function Footer() {
               {site.person} · {site.role}. Independent practice working with IT services firms, GCCs
               and enterprise leaders.
             </p>
-            <Link
-              to={paths.contact}
+            <a
+              {...bookCallAttrs(theme)}
               className="group mt-7 inline-flex items-center gap-2 font-display text-xl text-ink transition-colors hover:text-amber"
             >
               Request a 30-minute call
@@ -26,7 +30,7 @@ export function Footer() {
                 aria-hidden
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
-            </Link>
+            </a>
           </div>
 
           <nav className="lg:col-span-3" aria-label="Footer">

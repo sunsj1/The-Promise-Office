@@ -1,7 +1,6 @@
-import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
-import { LinkButton } from '@/widgets/Button'
+import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Reveal } from '@/widgets/Reveal'
 import { Seal } from '@/widgets/Seal'
 
@@ -34,9 +33,7 @@ export function CtaBand({
           <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[3.1rem]">{title}</h2>
           <p className="mt-5 max-w-xl text-base text-muted sm:text-[1.0625rem]">{copy}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <LinkButton to={paths.contact} size="lg">
-              {primaryLabel}
-            </LinkButton>
+            <BookCallButton size="lg">{primaryLabel}</BookCallButton>
             {secondaryLabel && secondaryTo ? (
               <LinkButton to={secondaryTo} variant="outline" size="lg">
                 {secondaryLabel}

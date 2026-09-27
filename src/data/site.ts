@@ -9,6 +9,12 @@ export const site = {
   discipline: 'Independent consulting · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hrishikesh-salunkhe',
+  cal: {
+    link: 'hrishikesh.salunkhe/30min',
+    url: 'https://cal.com/hrishikesh.salunkhe/30min',
+    namespace: '30min',
+    successUrl: 'https://thepromiseoffice.com/booked',
+  },
   base: 'Pune, India',
   reach: 'Working with distributed teams across India, APAC and the UK. On-site work can be agreed for the mandate.',
   url: 'https://thepromiseoffice.com',

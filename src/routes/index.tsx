@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { BookedPage } from '@/pages/Booked'
 import { ContactPage } from '@/pages/Contact'
 import { EngagementDetailPage } from '@/pages/EngagementDetail'
 import { EngagementsPage } from '@/pages/Engagements'
@@ -23,6 +24,7 @@ export function AppRoutes() {
         <Route path={paths.insights} element={<InsightsPage />} />
         <Route path={paths.healthCheck} element={<HealthCheckPage />} />
         <Route path={paths.contact} element={<ContactPage />} />
+        <Route path={paths.booked} element={<BookedPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -1,6 +1,8 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
+import { bookCallAttrs } from '@/lib/cal'
+import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/cn'
 
 type Variant = 'primary' | 'outline' | 'ghost' | 'amber'
@@ -96,5 +98,25 @@ export function ActionButton({
     >
       <Inner arrow={arrow}>{children}</Inner>
     </button>
+  )
+}
+
+/** Opens the Cal.com 30-minute booker in a modal. Falls back to cal.com if the embed is blocked. */
+export function BookCallButton({
+  children = 'Request a 30-minute call',
+  variant = 'primary',
+  className,
+  arrow = true,
+  size = 'md',
+}: BaseProps) {
+  const { theme } = useTheme()
+
+  return (
+    <a
+      {...bookCallAttrs(theme)}
+      className={cn(base, variants[variant], variant !== 'ghost' && sizes[size], className)}
+    >
+      <Inner arrow={arrow}>{children}</Inner>
+    </a>
   )
 }

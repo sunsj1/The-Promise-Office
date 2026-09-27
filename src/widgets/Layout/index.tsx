@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { CalBoot } from '@/lib/cal'
 import { Footer } from '@/widgets/Footer'
 import { Navbar } from '@/widgets/Navbar'
 import { PageTransition } from '@/widgets/PageTransition'
@@ -14,6 +15,7 @@ export function Layout() {
 
   return (
     <div className="flex min-h-svh flex-col bg-paper">
+      <CalBoot />
       <Navbar />
       <ScrollProgressSeal />
       <main id="main" className="flex-1">

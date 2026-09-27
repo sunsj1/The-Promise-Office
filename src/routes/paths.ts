@@ -7,6 +7,7 @@ export const paths = {
   insights: '/insights',
   healthCheck: '/health-check',
   contact: '/contact',
+  booked: '/booked',
 } as const
 
 export const navLinks = [
