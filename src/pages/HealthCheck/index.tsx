@@ -3,6 +3,7 @@ import { paths } from '@/routes/paths'
 import { HealthCheckTool } from '@/features/healthCheck/HealthCheckTool'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
+import { ErrorBoundary } from '@/widgets/ErrorBoundary'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
 import { Seo } from '@/widgets/Seo'
@@ -14,6 +15,7 @@ export function HealthCheckPage() {
         title="Delivery Health Check"
         description="An eight-question interactive assessment of your program’s health, with a Red/Amber/Green reading and a recommended next step."
         path={paths.healthCheck}
+        breadcrumb="Health check"
       />
 
       <PageHeader
@@ -26,7 +28,9 @@ export function HealthCheckPage() {
       <section className="py-14 lg:py-20">
         <Container size="wide">
           <Reveal>
-            <HealthCheckTool />
+            <ErrorBoundary titleAs="h2">
+              <HealthCheckTool />
+            </ErrorBoundary>
           </Reveal>
 
           <Reveal className="mt-12 rounded-2xl border border-line bg-sunk p-7 lg:p-9">

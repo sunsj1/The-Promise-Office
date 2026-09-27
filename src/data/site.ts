@@ -9,6 +9,7 @@ export const site = {
   discipline: 'Independent consulting · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hrishikesh-v-salunkhe/',
+  youtube: 'https://www.youtube.com/@thepromiseoffice',
   cal: {
     link: 'hrishikesh.salunkhe/30min',
     url: 'https://cal.com/hrishikesh.salunkhe/30min',

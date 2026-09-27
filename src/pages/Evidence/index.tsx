@@ -24,6 +24,7 @@ export function EvidencePage() {
         title="Evidence"
         description="Selected work from prior roles: program recovery, managed services practice build, PGO governance, AI delivery, process automation and field operations."
         path={paths.evidence}
+        breadcrumb="Evidence"
       />
 
       <PageHeader

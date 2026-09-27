@@ -31,6 +31,7 @@ export function EngagementDetailPage() {
           description: engagement.lead,
           provider: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
         }}
+        breadcrumb={engagement.title}
       />
 
       <PageHeader

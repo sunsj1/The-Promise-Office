@@ -9,15 +9,15 @@ export function useCountUp(target: number, duration = 1400) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
   const reduceMotion = useReducedMotion()
-  const [value, setValue] = useState(0)
+  // Default to the real value so the stat never reads "0" before the
+  // count-up kicks in (or if it never fires) — the animation resets to 0
+  // and counts back up once the element is in view.
+  const [value, setValue] = useState(target)
 
   useEffect(() => {
-    if (!inView) return
-    if (reduceMotion) {
-      setValue(target)
-      return
-    }
+    if (!inView || reduceMotion) return
 
+    setValue(0)
     let frame = 0
     const start = performance.now()
 

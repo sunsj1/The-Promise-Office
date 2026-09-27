@@ -28,6 +28,7 @@ export function InsightsPage() {
             author: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
           })),
         }}
+        breadcrumb="Insights"
       />
 
       <PageHeader

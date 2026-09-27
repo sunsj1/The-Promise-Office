@@ -36,8 +36,10 @@ export function Marquee({
                 />
               </span>
             ) : (
-              <span className="font-display text-lg whitespace-nowrap text-muted sm:text-xl">
-                {item.name}
+              <span className="grid h-14 place-items-center rounded-xl bg-white px-5 py-2.5 shadow-[0_1px_0_rgba(26,25,21,0.06)]">
+                <span className="font-display text-sm whitespace-nowrap text-night sm:text-base">
+                  {item.name}
+                </span>
               </span>
             )}
             <span aria-hidden className="text-amber/60">

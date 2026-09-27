@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, SquarePlay } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { bookCallAttrs } from '@/lib/cal'
 import { useTheme } from '@/lib/theme'
@@ -82,6 +82,17 @@ export function Footer() {
                 >
                   <ArrowUpRight size={15} className="shrink-0 text-amber" aria-hidden />
                   LinkedIn profile
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.youtube}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2.5 transition-colors hover:text-amber"
+                >
+                  <SquarePlay size={15} className="shrink-0 text-amber" aria-hidden />
+                  YouTube channel
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-muted">

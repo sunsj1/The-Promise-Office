@@ -30,6 +30,7 @@ export function PerspectivePage() {
         description="Hrishikesh (Rishi) Salunkhe: 21+ years across process consulting, PMO/PGO leadership, service management, managed services, transformation and commercial roles."
         path={paths.perspective}
         jsonLd={personJsonLd}
+        breadcrumb="Perspective"
       />
 
       <PageHeader

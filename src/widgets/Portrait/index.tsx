@@ -1,5 +1,6 @@
 import { site } from '@/data/site'
-import portrait from '@/assets/Firefly_RemoveBackground.png'
+import portraitPng from '@/assets/portrait.png'
+import portraitWebp from '@/assets/portrait.webp'
 import { cn } from '@/lib/cn'
 
 type PortraitProps = {
@@ -17,13 +18,18 @@ export function Portrait({ className, size = 'hero' }: PortraitProps) {
       />
 
       <div className={cn('relative z-10 mx-auto w-[86%]', size === 'page' && 'w-[84%]')}>
-        <img
-          src={portrait}
-          alt={site.person}
-          width={912}
-          height={860}
-          className="h-auto w-full"
-        />
+        <picture>
+          <source srcSet={portraitWebp} type="image/webp" />
+          <img
+            src={portraitPng}
+            alt={site.person}
+            width={912}
+            height={860}
+            loading="eager"
+            fetchPriority="high"
+            className="h-auto w-full"
+          />
+        </picture>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-[44%] bg-gradient-to-t from-white from-[8%] via-white/75 to-transparent dark:from-[#12110e] dark:from-[8%] dark:via-[#12110e]/80 dark:to-transparent"

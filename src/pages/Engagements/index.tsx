@@ -31,6 +31,7 @@ export function EngagementsPage() {
         description="The consulting portfolio: delivery recovery, PMO/PGO, managed services, process-to-platform, commercial governance and AI delivery mandates."
         path={paths.engagements}
         jsonLd={serviceJsonLd}
+        breadcrumb="Engagements"
       />
 
       <PageHeader
