@@ -8,7 +8,7 @@ export const site = {
   role: 'Delivery & Transformation Advisory',
   discipline: 'Independent consulting · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/hrishikesh-salunkhe',
+  linkedin: 'https://www.linkedin.com/in/hrishikesh-v-salunkhe/',
   cal: {
     link: 'hrishikesh.salunkhe/30min',
     url: 'https://cal.com/hrishikesh.salunkhe/30min',
