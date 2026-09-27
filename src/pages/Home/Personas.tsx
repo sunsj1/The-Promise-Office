@@ -28,7 +28,7 @@ export function HomePersonas() {
             <motion.div key={persona.id} variants={fadeUp}>
               <SpotlightCard as="article" className="h-full">
                 <Link
-                  to={paths.engagementDetail(persona.entry)}
+                  to={paths.advisoryDetail(persona.entry)}
                   className="flex h-full flex-col p-7 lg:p-8"
                 >
                   <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">

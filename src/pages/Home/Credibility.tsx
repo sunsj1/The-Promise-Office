@@ -2,7 +2,7 @@ import { disclaimers, organisations } from '@/data/site'
 import { careerStats } from '@/data/evidence'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
-import { Marquee } from '@/widgets/Marquee'
+import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { StatCounter } from '@/widgets/StatCounter'
 import { fadeUp } from '@/animations/variants'
@@ -28,14 +28,14 @@ export function HomeCredibility() {
 
       <Reveal className="mt-16">
         <Container size="wide">
-          <Eyebrow>Experience behind the practice</Eyebrow>
+          <Eyebrow>Experience includes</Eyebrow>
           <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">
             Organisations I have worked within or delivered for during prior roles, across telecom,
             technology and enterprise operations.
           </p>
-        </Container>
-        <Marquee items={organisations} className="mt-8" />
-        <Container size="wide">
+          <div className="mt-8">
+            <ExperienceStrip items={organisations} />
+          </div>
           <p className="mt-7 max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
             {disclaimers.marks}
           </p>

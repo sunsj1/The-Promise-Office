@@ -15,7 +15,7 @@ export function HomeThesis() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            'radial-gradient(60% 50% at 80% 10%, rgba(240,180,60,0.16), transparent 62%), radial-gradient(50% 45% at 10% 90%, rgba(26,25,21,0.45), transparent 60%)',
+            'radial-gradient(60% 50% at 80% 10%, rgba(240,180,60,0.16), transparent 62%), radial-gradient(55% 48% at 10% 90%, rgba(75,46,131,0.38), transparent 62%)',
         }}
       />
       <Seal

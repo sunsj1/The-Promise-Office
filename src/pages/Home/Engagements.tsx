@@ -35,7 +35,7 @@ export function HomeEngagements() {
             >
               <SpotlightCard as="article" className="h-full">
                 <Link
-                  to={paths.engagementDetail(engagement.slug)}
+                  to={paths.advisoryDetail(engagement.slug)}
                   className="flex h-full flex-col p-7"
                 >
                   <div className="flex items-baseline justify-between gap-4">
@@ -67,7 +67,7 @@ export function HomeEngagements() {
         </RevealGroup>
 
         <div className="mt-10">
-          <LinkButton to={paths.engagements} variant="outline" size="lg">
+          <LinkButton to={paths.advisory} variant="outline" size="lg">
             Explore the full consulting portfolio
           </LinkButton>
         </div>

@@ -6,23 +6,27 @@ import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
-const SITE_URL = 'https://thepromiseoffice.com'
+const SITE_URL = 'https://www.thepromiseoffice.com'
 const today = new Date().toISOString().slice(0, 10)
 
 const entries = [
   { loc: '/', priority: '1.0' },
-  { loc: '/engagements', priority: '0.8' },
+  { loc: '/advisory', priority: '0.9' },
+  { loc: '/gcc', priority: '0.9' },
+  { loc: '/ai', priority: '0.9' },
   { loc: '/evidence', priority: '0.8' },
-  { loc: '/perspective', priority: '0.8' },
+  { loc: '/about', priority: '0.8' },
   { loc: '/insights', priority: '0.8' },
   { loc: '/health-check', priority: '0.8' },
   { loc: '/contact', priority: '0.8' },
-  { loc: '/engagements/red-to-ready-turnaround', priority: '0.6' },
-  { loc: '/engagements/the-delivery-office', priority: '0.6' },
-  { loc: '/engagements/managed-services-builder', priority: '0.6' },
-  { loc: '/engagements/process-to-platform', priority: '0.6' },
-  { loc: '/engagements/commercial-command', priority: '0.6' },
-  { loc: '/engagements/ai-that-works', priority: '0.6' },
+  { loc: '/privacy', priority: '0.3' },
+  { loc: '/terms', priority: '0.3' },
+  { loc: '/advisory/red-to-ready-turnaround', priority: '0.6' },
+  { loc: '/advisory/the-delivery-office', priority: '0.6' },
+  { loc: '/advisory/managed-services-builder', priority: '0.6' },
+  { loc: '/advisory/process-to-platform', priority: '0.6' },
+  { loc: '/advisory/commercial-command', priority: '0.6' },
+  { loc: '/advisory/ai-that-works', priority: '0.6' },
 ]
 
 const urlset = entries

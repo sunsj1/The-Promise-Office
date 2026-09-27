@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Layers } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import {
   career,
   credentials,
@@ -22,25 +23,28 @@ import { Portrait } from '@/widgets/Portrait'
 import { Seo, personJsonLd } from '@/widgets/Seo'
 import { TestimonialColumn } from '@/widgets/TestimonialColumns'
 
-export function PerspectivePage() {
+export function AboutPage() {
   return (
     <>
       <Seo
-        title="Perspective"
+        title="About"
         description="Hrishikesh (Rishi) Salunkhe: 21+ years across process consulting, PMO/PGO leadership, service management, managed services, transformation and commercial roles."
-        path={paths.perspective}
+        path={paths.about}
         jsonLd={personJsonLd}
-        breadcrumb="Perspective"
+        breadcrumb="About"
       />
 
       <PageHeader
-        breadcrumb="Perspective"
+        breadcrumb="About"
         eyebrow={site.person}
         title="Senior judgment. Practical ownership."
         copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
         aside={<Portrait size="page" />}
       >
-        <div className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+        <p className="mt-8 font-mono text-[0.7rem] tracking-[0.1em] text-muted uppercase">
+          {site.founderDescriptor}
+        </p>
+        <div className="mt-6 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
           {perspectiveHighlights.map((item) => (
             <div key={item.label}>
               <p className="font-display text-xl text-amber">{item.value}</p>
@@ -77,10 +81,19 @@ export function PerspectivePage() {
                 and sustainability, technology services and enterprise platforms.
               </p>
               <p>
-                I have led cross-functional programs through discovery, solution shaping, UAT,
-                rollout and steady state. I have also governed large managed services estates, helped
-                build a managed services practice, recovered a troubled transformation and delivered
-                AI-enabled and automation products in production.
+                The career arc moved from close to operations — service data, SLA and performance
+                reporting — into business analysis and process redesign, then into transition and
+                account governance across a large managed-services environment, then into program
+                leadership, commercial ownership and recovery, and most recently into practice
+                building and AI delivery. Each stage added a layer rather than replacing the one
+                before it, which is why a delivery problem rarely turns out to have just one cause.
+              </p>
+              <p>
+                <Link to={paths.evidence} className="text-amber hover:underline">
+                  Evidence
+                </Link>{' '}
+                sets out what that experience has taught, organised around the situations it
+                recurs in — not as a project list.
               </p>
               <p className="font-mono text-[0.72rem] leading-relaxed text-muted">
                 {disclaimers.practice}

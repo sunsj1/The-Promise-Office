@@ -1,4 +1,10 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/engagements", "destination": "/advisory", "permanent": true },
+    { "source": "/engagements/:slug", "destination": "/advisory/:slug", "permanent": true },
+    { "source": "/perspective", "destination": "/about", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

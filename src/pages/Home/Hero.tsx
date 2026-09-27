@@ -64,7 +64,19 @@ export function HomeHero() {
               }}
               className="mt-6 max-w-xl text-[1.05rem] text-muted sm:text-lg"
             >
-              Leaders call me when the status report no longer matches the reality of delivery.
+              The Promise Office helps leaders recover critical programs, build high-performing GCC
+              and service capabilities, redesign the operating models behind delivery, and move AI
+              from pilot to governed, measurable operations.
+            </motion.p>
+
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: sealEase, delay: 0.05 } },
+              }}
+              className="mt-4 max-w-xl font-mono text-[0.72rem] tracking-[0.06em] text-muted"
+            >
+              {site.founderDescriptor}
             </motion.p>
           </div>
 
@@ -102,7 +114,8 @@ export function HomeHero() {
               }}
               className="mt-10 font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase"
             >
-              {site.shortName} · {site.base} · 21+ years
+              Independent advisory · {site.base} · working across India and international delivery
+              environments
             </motion.p>
           </div>
         </motion.div>

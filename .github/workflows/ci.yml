@@ -41,13 +41,17 @@ jobs:
 
           routes=(
             "/"
-            "/engagements"
-            "/engagements/ai-that-works"
+            "/advisory"
+            "/advisory/ai-that-works"
+            "/gcc"
+            "/ai"
             "/evidence"
-            "/perspective"
+            "/about"
             "/insights"
             "/health-check"
             "/contact"
+            "/privacy"
+            "/terms"
           )
 
           fail=0

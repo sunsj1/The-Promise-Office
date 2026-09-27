@@ -12,6 +12,8 @@ export type Engagement = {
   whatYouReceive: string
   basis: string
   area: 'delivery' | 'managed-services' | 'commercial-ai'
+  /** Which of the four advisory practices this mandate belongs to. */
+  practice: 'delivery-recovery' | 'managed-services' | 'ai'
 }
 
 export const engagements: Engagement[] = [
@@ -24,6 +26,7 @@ export const engagements: Engagement[] = [
     verb: 'Restore control',
     featured: true,
     area: 'delivery',
+    practice: 'delivery-recovery',
     lead: 'A program is slipping. The reported status and the lived reality no longer match. The first task is to establish the truth, then earn back control.',
     whenToCall:
       'Repeated date changes, unresolved dependencies, customer escalations, unclear success criteria or a program that everyone knows is red but nobody can reset.',
@@ -48,6 +51,7 @@ export const engagements: Engagement[] = [
     verb: 'Build the management system',
     featured: false,
     area: 'delivery',
+    practice: 'delivery-recovery',
     lead: 'Build a PMO or PGO that lets leaders see where outcomes are at risk and equips teams to act — across projects, services and commercial commitments.',
     whenToCall:
       'Portfolio reports disagree, escalation comes late, projects use different rules, resources are stretched or governance is viewed as overhead.',
@@ -72,6 +76,7 @@ export const engagements: Engagement[] = [
     verb: 'Design the business',
     featured: true,
     area: 'managed-services',
+    practice: 'managed-services',
     lead: 'Turn “we should sell managed services” into a service business with a clear offer, transition path, performance promise and delivery economics.',
     whenToCall:
       'Sales has demand but operations lacks a repeatable model; SLAs are proposed before cost and capability are understood; every bid starts from scratch.',
@@ -96,6 +101,7 @@ export const engagements: Engagement[] = [
     verb: 'Remove the friction',
     featured: false,
     area: 'managed-services',
+    practice: 'managed-services',
     lead: 'Fix the work before automating it. Connect the customer journey, operating process, system handoffs and measures into one transformation path.',
     whenToCall:
       'Manual effort keeps growing, teams blame one another for handoffs, a digital project reproduces old inefficiency or the platform is live without adoption.',
@@ -120,6 +126,7 @@ export const engagements: Engagement[] = [
     verb: 'Find the margin truth',
     featured: false,
     area: 'commercial-ai',
+    practice: 'managed-services',
     lead: 'Bring delivery and P&L into the same conversation. Make the cost to serve, staffing model, service promise and account opportunity visible together.',
     whenToCall:
       'Revenue is growing but margin is unclear, utilization looks healthy while delivery struggles, scope changes go unpriced or a bid cannot be delivered at its proposed cost.',
@@ -144,6 +151,7 @@ export const engagements: Engagement[] = [
     verb: 'Move from pilot to practice',
     featured: true,
     area: 'commercial-ai',
+    practice: 'ai',
     lead: 'Choose the right work for AI, deliver the pilot with real controls, then teach the teams who must use and judge its outputs.',
     whenToCall:
       'Ideas are plentiful but value is vague; a demo is impressive but untested; teams need practical AI fluency; leaders need an accountable pilot.',
@@ -164,6 +172,189 @@ export const engagements: Engagement[] = [
 export function getEngagement(slug: string) {
   return engagements.find((item) => item.slug === slug)
 }
+
+export type PracticeKey = 'delivery-recovery' | 'gcc' | 'managed-services' | 'ai'
+
+/** The four practices clients engage The Promise Office to solve. GCC has no signature engagement of its own — see /gcc. */
+export const practices: {
+  key: PracticeKey
+  index: string
+  title: string
+  outcome: string
+  phrases: string[]
+  to: string
+}[] = [
+  {
+    key: 'delivery-recovery',
+    index: '01',
+    title: 'Delivery, Recovery & Assurance',
+    outcome: 'Get critical programs under control and keep leadership decisions connected to delivery reality.',
+    phrases: ['Program recovery', 'PMO / PGO', 'Delivery assurance', 'Executive governance'],
+    to: '/advisory#delivery',
+  },
+  {
+    key: 'gcc',
+    index: '02',
+    title: 'GCC & Capability Centre Advisory',
+    outcome: 'Build capability around outcomes, not tasks.',
+    phrases: ['Operating model & mandate', 'Governance & decision rights', 'Vendor-to-GCC transition', 'AI-enabled GCC'],
+    to: '/gcc',
+  },
+  {
+    key: 'managed-services',
+    index: '03',
+    title: 'Managed Services, ITSM & Capability Building',
+    outcome: 'Build services that can be sold, transitioned, governed and scaled.',
+    phrases: ['Service catalogue & pricing', 'ITSM / ITIL practices', 'SLA/KPI design', 'Process-to-platform'],
+    to: '/advisory#managed-services',
+  },
+  {
+    key: 'ai',
+    index: '04',
+    title: 'AI & Intelligent Operations',
+    outcome: 'Move AI from experimentation into governed, measurable operations.',
+    phrases: ['Use-case discovery', 'Pilot-to-production', 'AI operating model & governance', 'Workforce enablement'],
+    to: '/ai',
+  },
+]
+
+export type CapabilityKey =
+  | 'process-operating-model'
+  | 'practice-capability-building'
+  | 'itsm-service-management'
+  | 'pursuit-deal-assurance'
+  | 'commercial-value-assurance'
+  | 'governance-delivery-leadership'
+
+/**
+ * The six capabilities that cut across all four practices. Each traces back
+ * to a signature engagement, an evidence case, or an adjacent-mandate entry
+ * that already exists elsewhere on the site — no new claims are made here.
+ */
+export const capabilities: {
+  key: CapabilityKey
+  index: string
+  title: string
+  philosophy: string
+  problem: string
+  whatWeDo: string[]
+  whatYouReceive: string
+  experience: string
+  relatedSlug?: string
+}[] = [
+  {
+    key: 'process-operating-model',
+    index: '01',
+    title: 'Process & Operating Model Transformation',
+    philosophy: 'Fix the workflow before automating it.',
+    problem:
+      'Manual effort keeps growing, teams blame one another for handoffs, or a digital project reproduces the same friction it was meant to remove.',
+    whatWeDo: [
+      'Map current-state flows, ownership and customer friction.',
+      'Identify rework, control gaps, automation points and data handoffs.',
+      'Design the future-state process, roles and service measures.',
+      'Translate the change into delivery increments, acceptance criteria and adoption measures.',
+    ],
+    whatYouReceive:
+      'A process and system change roadmap, a prioritised business case, the future-state model and adoption measures — not a diagram nobody uses.',
+    experience:
+      'Telecom lead-to-cash and trouble-to-resolve redesign in New Zealand; energy compliance workflow automation across roughly 150 certification jobs a day, with reported SLA compliance rising from about 65% to about 95%.',
+    relatedSlug: 'process-to-platform',
+  },
+  {
+    key: 'practice-capability-building',
+    index: '02',
+    title: 'Practice & Capability Building',
+    philosophy: 'Turn know-how into a capability the organisation can repeat.',
+    problem:
+      'Individual expertise does not scale. Without a defined offer, operating model, methodology and reusable assets, growth depends on specific people rather than a system the organisation can run.',
+    whatWeDo: [
+      'Define the service catalogue, scope boundaries and target customers.',
+      'Build the operating model, roles, governance and methodology.',
+      'Develop estimation, pricing, staffing models and reusable proposal collateral.',
+      'Create templates, playbooks, quality gates and a training path so the capability outlives the mandate.',
+    ],
+    whatYouReceive:
+      'An operating model, methodology and commercial framework the organisation can run on its own once the mandate ends — the objective is not dependence on the advisor, but a capability left behind. This applies equally to a managed-services practice, an ITSM function, a GCC, a Delivery Office/PMO or an AI capability.',
+    experience:
+      'Led a six-month managed services practice build later adopted as the standard pursuit approach — reported bid pace moved from roughly 1–2 to around 10 managed-services opportunities a year.',
+    relatedSlug: 'managed-services-builder',
+  },
+  {
+    key: 'itsm-service-management',
+    index: '03',
+    title: 'ITSM & Service Management Transformation',
+    philosophy: 'Make service management improve the service — not merely administer the process.',
+    problem:
+      'SLA reports read green while the customer’s experience disagrees. Incident, problem and change practices exist on paper but do not change what customers feel.',
+    whatWeDo: [
+      'Examine incident, problem, change and request practices against real outcomes, not ITIL theory.',
+      'Redesign SLA/OLA measures, escalation models and the service-review cadence.',
+      'Align continual improvement and service ownership to where performance and experience diverge.',
+      'Design ServiceNow-aligned process where a platform is already in place.',
+    ],
+    whatYouReceive:
+      'Service practices, SLA/KPI design and a review cadence tied to what customers actually feel, not just what the dashboard reports.',
+    experience:
+      'ITSM, ITIL, SLA/SLM and major service governance across large managed-services accounts; the energy-compliance workflow redesign lifted reported SLA compliance from about 65% to about 95%.',
+    relatedSlug: 'managed-services-builder',
+  },
+  {
+    key: 'pursuit-deal-assurance',
+    index: '04',
+    title: 'Pursuit, RFP & Deal Assurance',
+    philosophy: 'Win the work without creating tomorrow’s delivery problem.',
+    problem:
+      'A bid can be won on a solution that sales, solutioning and delivery never actually agreed on — leaving margin, staffing and SLA commitments unresolved until they become someone else’s emergency.',
+    whatWeDo: [
+      'Pressure-test bid strategy, requirement interpretation and solution feasibility.',
+      'Review estimation, resource model, staffing mix and delivery model against the proposed timeline.',
+      'Examine pricing, margin, SLA feasibility, risks and assumptions before they become contractual.',
+      'Review transition feasibility, SOW conditions and give an executive delivery sign-off.',
+    ],
+    whatYouReceive:
+      'A pressure-tested commitment — solution, staffing, pricing and delivery plan that sales, solutioning, commercials and delivery can all stand behind before the signature.',
+    experience:
+      'RFP support, solution and cost modelling, staffing and pricing across telecom and enterprise accounts; one Australian telecom engagement grew from one platform to four concurrent programs on the back of this discipline.',
+    relatedSlug: 'commercial-command',
+  },
+  {
+    key: 'commercial-value-assurance',
+    index: '05',
+    title: 'Commercial & Value Assurance',
+    philosophy: 'Make the commercial model and the delivery model tell the same story.',
+    problem:
+      'Revenue is growing but margin is unclear, utilisation looks healthy while delivery struggles, or scope changes go unpriced until they surface at quarter-end.',
+    whatWeDo: [
+      'Review budget, actuals, forecast, effort and resource assumptions.',
+      'Examine scope, SLA obligations and commercial leakage points.',
+      'Model pricing and staffing options for pursuits or renewals.',
+      'Build a review cadence with named decision owners.',
+    ],
+    whatYouReceive:
+      'A transparent commercial baseline, decision options, a risk register and a repeatable financial review rhythm.',
+    experience: 'Portfolio P&L and account ownership, RFP solution shaping, pricing and managed-services resource models.',
+    relatedSlug: 'commercial-command',
+  },
+  {
+    key: 'governance-delivery-leadership',
+    index: '06',
+    title: 'Governance & Delivery Leadership',
+    philosophy: 'Governance should help leaders decide, not merely report.',
+    problem:
+      'Portfolio reports disagree, escalation arrives late, projects run by different rules, or governance is experienced as overhead rather than a way to act sooner.',
+    whatWeDo: [
+      'Assess delivery maturity, decision latency and current reporting quality.',
+      'Set the charter, service catalogue, RACI and governance levels.',
+      'Design assurance checkpoints, portfolio measures and risk triggers.',
+      'Establish SteerCo, QBR and operational review rhythm, then coach the team to run it.',
+    ],
+    whatYouReceive:
+      'A working PMO/PGO operating model — templates, dashboards, decision pathways and the first cycle of leadership reviews.',
+    experience: 'Headed a PGO in a ~550-FTE managed services program; led PMO/SLA functions and fintech governance assessment.',
+    relatedSlug: 'the-delivery-office',
+  },
+]
 
 export const engagementAreas = [
   {

@@ -41,7 +41,7 @@ export function HomeHealthCheckTeaser() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <LinkButton to={paths.healthCheck} size="lg">
-                Run the 2-minute version
+                Start the Health Check
               </LinkButton>
               <LinkButton to={paths.contact} variant="outline" size="lg">
                 Request a Health Check

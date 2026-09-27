@@ -56,6 +56,11 @@ export function Footer() {
                   Delivery Health Check
                 </Link>
               </li>
+              <li>
+                <Link to={paths.contact} className="text-muted transition-colors hover:text-amber">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -111,9 +116,17 @@ export function Footer() {
           <p className="max-w-4xl font-mono text-[0.68rem] leading-relaxed text-muted">
             {disclaimers.practice}
           </p>
-          <p className="mt-4 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
-            © {new Date().getFullYear()} {site.brand} · {site.tagline}
-          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
+            <span>
+              © {new Date().getFullYear()} {site.brand} · Founded by {site.person} · {site.base}
+            </span>
+            <Link to={paths.privacy} className="normal-case tracking-normal hover:text-amber">
+              Privacy
+            </Link>
+            <Link to={paths.terms} className="normal-case tracking-normal hover:text-amber">
+              Terms
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>

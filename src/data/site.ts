@@ -6,6 +6,9 @@ export const site = {
   person: 'Hrishikesh (Rishi) Salunkhe',
   shortName: 'Rishi Salunkhe',
   role: 'Delivery & Transformation Advisory',
+  /** Locked founder descriptor — use verbatim wherever an expanded founder line is appropriate. */
+  founderDescriptor:
+    'Hrishikesh (Rishi) Salunkhe · Delivery & Transformation Advisor to IT Services, GCCs & Enterprise Leaders',
   discipline: 'Independent consulting · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hrishikesh-v-salunkhe/',
@@ -14,11 +17,11 @@ export const site = {
     link: 'hrishikesh.salunkhe/30min',
     url: 'https://cal.com/hrishikesh.salunkhe/30min',
     namespace: '30min',
-    successUrl: 'https://thepromiseoffice.com/booked',
+    successUrl: 'https://www.thepromiseoffice.com/booked',
   },
   base: 'Pune, India',
   reach: 'Working with distributed teams across India, APAC and the UK. On-site work can be agreed for the mandate.',
-  url: 'https://thepromiseoffice.com',
+  url: 'https://www.thepromiseoffice.com',
   description:
     'Delivery, transformation and managed services advisor for IT services firms, GCCs and enterprise leaders. 21+ years connecting decisions, numbers, teams and operating rhythm.',
   experienceYears: 21,

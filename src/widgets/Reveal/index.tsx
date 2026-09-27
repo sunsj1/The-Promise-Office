@@ -6,17 +6,19 @@ import { cn } from '@/lib/cn'
 type RevealProps = {
   children: ReactNode
   className?: string
+  id?: string
   delay?: number
   variants?: Variants
   as?: ElementType
 }
 
-export function Reveal({ children, className, delay = 0, variants = fadeUp, as }: RevealProps) {
+export function Reveal({ children, className, id, delay = 0, variants = fadeUp, as }: RevealProps) {
   const reduceMotion = useReducedMotion()
   const Component = as ? motion(as) : motion.div
 
   return (
     <Component
+      id={id}
       className={cn(className)}
       initial={reduceMotion ? false : 'hidden'}
       whileInView="visible"
