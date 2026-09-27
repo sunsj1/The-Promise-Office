@@ -4,8 +4,8 @@ import { fadeUp } from '@/animations/variants'
 import { RevealGroup } from '@/widgets/Reveal'
 
 /*
-  Vertical rhythm from the examples folder: number on the rail, card on the
-  right. Executives can scan four steps in under ten seconds.
+  Vertical rhythm: number on the rail, card on the right. Executives can
+  scan four steps in under ten seconds.
 */
 export function ProcessTimeline() {
   return (

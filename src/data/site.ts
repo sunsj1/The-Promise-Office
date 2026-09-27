@@ -1,3 +1,5 @@
+import { orgLogos } from '@/assets/orgs'
+
 export const site = {
   brand: 'The Promise Office',
   tagline: 'Make the promise deliverable',
@@ -28,20 +30,25 @@ export const disclaimers = {
   form: 'This prepares an email for you to review and send. The site does not store or submit your information.',
 } as const
 
-export const organisations = [
-  'Infosys',
-  'Tech Mahindra',
-  'Cleverex',
-  'British Telecom',
-  'Openreach',
-  'Vodafone Hutchison Australia',
-  'TPG Telecom',
-  'Optus',
-  'Nokia',
-  'Aspire Systems',
-  'Globe Telecom',
-  'PiES',
-  'Spark New Zealand',
-  'Rakuten',
-  'Energy Advance Australia',
-] as const
+export type Organisation = {
+  name: string
+  src?: string
+}
+
+export const organisations: Organisation[] = [
+  { name: 'Infosys', src: orgLogos.infosys },
+  { name: 'Tech Mahindra', src: orgLogos.techMahindra },
+  { name: 'CleverEX Technology', src: orgLogos.cleverex },
+  { name: 'BT Group', src: orgLogos.btGroup },
+  { name: 'Openreach' },
+  { name: 'Vodafone Hutchison Australia', src: orgLogos.vodafone },
+  { name: 'TPG Telecom', src: orgLogos.tpgTelecom },
+  { name: 'Optus', src: orgLogos.optus },
+  { name: 'Nokia', src: orgLogos.nokia },
+  { name: 'Aspire Systems', src: orgLogos.aspireSystems },
+  { name: 'Globe Telecom', src: orgLogos.globeTelecom },
+  { name: 'PiES' },
+  { name: 'Spark New Zealand', src: orgLogos.sparkNz },
+  { name: 'Rakuten', src: orgLogos.rakuten },
+  { name: 'Energy Advance Australia', src: orgLogos.energyAdvance },
+]

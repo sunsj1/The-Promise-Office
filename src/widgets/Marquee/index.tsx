@@ -1,12 +1,13 @@
+import type { Organisation } from '@/data/site'
 import { cn } from '@/lib/cn'
 
-/** Edge-faded horizontal marquee for the organisation list. */
+/** Edge-faded horizontal marquee for the organisation marks. */
 export function Marquee({
   items,
   duration = 46,
   className,
 }: {
-  items: readonly string[]
+  items: readonly Organisation[]
   duration?: number
   className?: string
 }) {
@@ -20,14 +21,25 @@ export function Marquee({
       )}
     >
       <div
-        className="marquee-track flex w-max items-center gap-10"
+        className="marquee-track flex w-max items-center gap-5"
         style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
       >
         {loop.map((item, index) => (
-          <span key={`${item}-${index}`} className="flex shrink-0 items-center gap-10">
-            <span className="font-display text-lg whitespace-nowrap text-muted sm:text-xl">
-              {item}
-            </span>
+          <span key={`${item.name}-${index}`} className="flex shrink-0 items-center gap-5">
+            {item.src ? (
+              <span className="grid h-14 place-items-center rounded-xl bg-white px-5 py-2.5 shadow-[0_1px_0_rgba(26,25,21,0.06)]">
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  height={32}
+                  className="h-8 w-auto max-w-[9.5rem] object-contain"
+                />
+              </span>
+            ) : (
+              <span className="font-display text-lg whitespace-nowrap text-muted sm:text-xl">
+                {item.name}
+              </span>
+            )}
             <span aria-hidden className="text-amber/60">
               ·
             </span>
