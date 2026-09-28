@@ -8,7 +8,7 @@ import {
   engagementAreas,
   engagements,
   faqs,
-  healthCheckOffer,
+  deliveryDiagnostic,
   practices,
 } from '@/data/engagements'
 import { engagementShapes } from '@/data/personas'
@@ -84,20 +84,20 @@ export function AdvisoryPage() {
         </Container>
       </section>
 
-      {/* Health Check offer */}
+      {/* Delivery Diagnostic offer */}
       <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
               <Eyebrow>Where most clients start</Eyebrow>
-              <h2 className="mt-5 text-3xl sm:text-4xl">{healthCheckOffer.title}</h2>
-              <p className="mt-5 text-[1.0625rem] text-muted">{healthCheckOffer.lead}</p>
+              <h2 className="mt-5 text-3xl sm:text-4xl">{deliveryDiagnostic.title}</h2>
+              <p className="mt-5 text-[1.0625rem] text-muted">{deliveryDiagnostic.lead}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <LinkButton to={paths.contact} size="lg">
-                  Request a Health Check
+                  Request the Delivery Diagnostic
                 </LinkButton>
                 <LinkButton to={paths.healthCheck} variant="outline" size="lg">
-                  Start the Health Check
+                  Try the free Health Check
                 </LinkButton>
               </div>
             </Reveal>
@@ -108,7 +108,7 @@ export function AdvisoryPage() {
                   You receive
                 </p>
                 <ul className="mt-5 space-y-3">
-                  {healthCheckOffer.receive.map((item) => (
+                  {deliveryDiagnostic.receive.map((item) => (
                     <li key={item} className="flex gap-3 text-[1.0625rem]">
                       <Check size={16} className="mt-1.5 shrink-0 text-amber" aria-hidden />
                       {item}
@@ -116,7 +116,7 @@ export function AdvisoryPage() {
                   ))}
                 </ul>
                 <dl className="mt-8 grid gap-5 border-t border-line pt-7 sm:grid-cols-2">
-                  {healthCheckOffer.facts.map((fact) => (
+                  {deliveryDiagnostic.facts.map((fact) => (
                     <div key={fact.label}>
                       <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
                         {fact.label}

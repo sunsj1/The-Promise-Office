@@ -1,4 +1,4 @@
-import { healthCheckOffer } from '@/data/engagements'
+import { deliveryDiagnostic } from '@/data/engagements'
 import { paths } from '@/routes/paths'
 import { HealthCheckTool } from '@/features/healthCheck/HealthCheckTool'
 import { Container } from '@/widgets/Container'
@@ -35,12 +35,12 @@ export function HealthCheckPage() {
 
           <Reveal className="mt-12 rounded-2xl border border-line bg-sunk p-7 lg:p-9">
             <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
-              The full engagement
+              Prefer a human-led, paid review instead?
             </p>
-            <h2 className="mt-4 font-display text-2xl">{healthCheckOffer.title}</h2>
-            <p className="mt-3 max-w-2xl text-[0.97rem] text-muted">{healthCheckOffer.lead}</p>
+            <h2 className="mt-4 font-display text-2xl">{deliveryDiagnostic.title}</h2>
+            <p className="mt-3 max-w-2xl text-[0.97rem] text-muted">{deliveryDiagnostic.lead}</p>
             <dl className="mt-7 grid gap-5 border-t border-line pt-6 sm:grid-cols-2 lg:grid-cols-4">
-              {healthCheckOffer.facts.map((fact) => (
+              {deliveryDiagnostic.facts.map((fact) => (
                 <div key={fact.label}>
                   <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
                     {fact.label}

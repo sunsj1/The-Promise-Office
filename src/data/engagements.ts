@@ -370,7 +370,7 @@ export const engagementAreas = [
     index: '01',
     label: 'Delivery & recovery',
     question: 'Is the plan still credible?',
-    copy: 'Start with the Delivery Health Check, then decide whether recovery leadership or a stronger delivery office is needed.',
+    copy: 'Start with the Delivery Diagnostic, then decide whether recovery leadership or a stronger delivery office is needed.',
     cta: 'Start here',
     area: 'delivery' as const,
   },
@@ -392,8 +392,12 @@ export const engagementAreas = [
   },
 ]
 
-export const healthCheckOffer = {
-  title: 'The Delivery Health Check',
+/**
+ * The paid, fixed-scope engagement — distinct from the free online Health Check
+ * self-assessment tool at /health-check (src/features/healthCheck).
+ */
+export const deliveryDiagnostic = {
+  title: 'The Delivery Diagnostic',
   lead: 'A fixed-scope, two-week independent review of one program, account or delivery unit. You get a clear reading of where it stands, what puts it at risk, and which decisions will restore control.',
   facts: [
     { label: 'Length', value: 'Two weeks, remote or on site as agreed' },
@@ -491,7 +495,7 @@ export const adjacentMandates = [
 export const faqs = [
   {
     q: 'How long does an engagement take?',
-    a: 'The Delivery Health Check is designed around two weeks when documents and stakeholders are available. A practice build, transition or interim leadership mandate is scoped against the work and decision cycle.',
+    a: 'The Delivery Diagnostic is designed around two weeks when documents and stakeholders are available. A practice build, transition or interim leadership mandate is scoped against the work and decision cycle.',
   },
   {
     q: 'Remote or on-site?',

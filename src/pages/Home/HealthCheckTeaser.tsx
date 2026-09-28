@@ -1,7 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { useRef } from 'react'
-import { healthCheckOffer } from '@/data/engagements'
+import { deliveryDiagnostic } from '@/data/engagements'
 import { paths } from '@/routes/paths'
 import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
@@ -25,11 +25,11 @@ export function HomeHealthCheckTeaser() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-5">
             <Eyebrow>Where most clients start</Eyebrow>
-            <h2 className="mt-5 text-3xl sm:text-4xl">{healthCheckOffer.title}</h2>
-            <p className="mt-5 text-[1.0625rem] text-muted">{healthCheckOffer.lead}</p>
+            <h2 className="mt-5 text-3xl sm:text-4xl">{deliveryDiagnostic.title}</h2>
+            <p className="mt-5 text-[1.0625rem] text-muted">{deliveryDiagnostic.lead}</p>
 
             <dl className="mt-8 space-y-4 border-t border-line pt-7">
-              {healthCheckOffer.facts.map((fact) => (
+              {deliveryDiagnostic.facts.map((fact) => (
                 <div key={fact.label} className="grid gap-1 sm:grid-cols-[7rem_1fr] sm:gap-4">
                   <dt className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
                     {fact.label}
@@ -41,10 +41,10 @@ export function HomeHealthCheckTeaser() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <LinkButton to={paths.healthCheck} size="lg">
-                Start the Health Check
+                Try the free Health Check
               </LinkButton>
               <LinkButton to={paths.contact} variant="outline" size="lg">
-                Request a Health Check
+                Request the Delivery Diagnostic
               </LinkButton>
             </div>
           </Reveal>
@@ -58,7 +58,7 @@ export function HomeHealthCheckTeaser() {
                 You receive
               </p>
               <ul className="mt-6 space-y-5">
-                {healthCheckOffer.receive.map((item, index) => (
+                {deliveryDiagnostic.receive.map((item, index) => (
                   <li key={item} className="flex gap-4 border-b border-line pb-5 last:border-0 last:pb-0">
                     <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-line font-mono text-[0.65rem] text-amber">
                       0{index + 1}
