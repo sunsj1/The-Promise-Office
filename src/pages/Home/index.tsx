@@ -2,7 +2,6 @@ import { CtaBand } from '@/widgets/CtaBand'
 import { paths } from '@/routes/paths'
 import { personJsonLd, Seo } from '@/widgets/Seo'
 import { HomeCapabilities } from '@/pages/Home/Capabilities'
-import { HomeCredibility } from '@/pages/Home/Credibility'
 import { HomeEngagements } from '@/pages/Home/Engagements'
 import { HomeFramework } from '@/pages/Home/Framework'
 import { HomeGccAiSpotlight } from '@/pages/Home/GccAiSpotlight'
@@ -19,7 +18,6 @@ export function HomePage() {
     <>
       <Seo path="/" jsonLd={personJsonLd} />
       <HomeHero />
-      <HomeCredibility />
       <HomePractices />
       <HomePersonas />
       <HomeThesis />

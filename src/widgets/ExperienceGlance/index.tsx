@@ -6,7 +6,7 @@ import { StatCounter } from '@/widgets/StatCounter'
 import { fadeUp } from '@/animations/variants'
 import { motion } from 'framer-motion'
 
-export function HomeCredibility() {
+export function ExperienceGlance() {
   return (
     <section className="border-y border-line bg-sunk py-16 lg:py-20">
       <Container size="wide">

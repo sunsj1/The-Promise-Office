@@ -16,6 +16,7 @@ import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { ExperienceGlance } from '@/widgets/ExperienceGlance'
 import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
@@ -103,6 +104,8 @@ export function AboutPage() {
           </div>
         </Container>
       </section>
+
+      <ExperienceGlance />
 
       {/* Career timeline */}
       <section className="border-y border-line bg-sunk py-20 lg:py-24">
