@@ -17,17 +17,28 @@ export function HomePage() {
   return (
     <>
       <Seo path="/" jsonLd={personJsonLd} />
+      {/* 1. Client problems */}
       <HomeHero />
       <HomePractices />
       <HomePersonas />
       <HomeThesis />
-      <HomePromiseLens />
-      <HomeCapabilities />
-      <HomeFramework />
+
+      {/* 2. Advisory / GCC / AI offers */}
       <HomeEngagements />
       <HomeGccAiSpotlight />
+      <HomeCapabilities />
+
+      {/* 3. How engagements work */}
+      <HomePromiseLens />
+      <HomeFramework />
+
+      {/* 4. A clear starting offer */}
       <HomeHealthCheckTeaser />
+
+      {/* 5. Evidence */}
       <HomeProof />
+
+      {/* 6. Contact */}
       <CtaBand
         eyebrow="The first conversation"
         title="Tell us where the promise is at risk."
