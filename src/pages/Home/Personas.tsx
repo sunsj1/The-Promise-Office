@@ -18,9 +18,9 @@ export function HomePersonas() {
     <section className="py-14 lg:py-20">
       <Container size="wide">
         <SectionHeader
-          eyebrow="Who I work with"
+          eyebrow="Who we help"
           title="Built for leaders who carry the delivery promise."
-          copy="Most difficult delivery problems sit between functions: sales promised one thing, the plan says another, and operations inherits both. That gap is where I work."
+          copy="Most difficult delivery problems sit between functions: sales promised one thing, the plan says another, and operations inherits both. That gap is where The Promise Office works."
         />
 
         <RevealGroup className="mt-14 grid gap-5 lg:grid-cols-3">
