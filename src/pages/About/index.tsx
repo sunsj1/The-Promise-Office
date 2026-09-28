@@ -36,9 +36,30 @@ export function AboutPage() {
         breadcrumb="About"
       />
 
+      {/* The practice, introduced before the founder bio */}
+      <section className="border-b border-line pt-32 pb-14 lg:pt-40 lg:pb-16">
+        <Container size="wide">
+          <Reveal className="max-w-3xl">
+            <Eyebrow>The Promise Office</Eyebrow>
+            <h1 className="mt-5 text-[clamp(2rem,4.6vw,3.2rem)] leading-[1.05]">
+              An independent practice, built on one person's judgment.
+            </h1>
+            <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">
+              The Promise Office helps organisations recover critical programs, build delivery and GCC
+              capability, and move AI into governed, measurable operations. The practice is
+              founder-led, so its record is inseparable from its founder's — the sections below set
+              out that experience directly, so you can see exactly what the practice is built on.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Founder */}
       <PageHeader
         breadcrumb="About"
-        eyebrow={site.person}
+        leading={false}
+        headingLevel="h2"
+        eyebrow={`Founder · ${site.person}`}
         title="Senior judgment. Practical ownership."
         copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
         aside={<Portrait size="page" />}
