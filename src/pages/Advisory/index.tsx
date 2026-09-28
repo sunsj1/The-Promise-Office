@@ -128,7 +128,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Six core mandates, tagged by practice */}
-      <section id="managed-services" className="py-20 lg:py-28">
+      <section id="core-mandates" className="py-20 lg:py-28">
         <Container size="wide">
           <SectionHeader
             eyebrow="Core mandates"
