@@ -35,7 +35,7 @@ export function InsightsPage() {
         breadcrumb="Insights"
         eyebrow="Notes on delivery"
         title="Short pieces on the decisions that actually move programs."
-        copy="No thought-leadership theatre. These are the arguments I make in steering committees, written down so you can decide whether my thinking is useful to you before we ever speak."
+        copy="No thought-leadership theatre. These are the arguments we make in steering committees, written down so you can decide whether our thinking is useful to you before we ever speak."
       />
 
       <section className="py-12 lg:py-16">
@@ -124,7 +124,7 @@ export function InsightsPage() {
       <CtaBand
         eyebrow="Discuss the thinking"
         title="Disagree with something here?"
-        copy="That is usually the most productive way to start. Tell me about your program and I will tell you what I would test first."
+        copy="That is usually the most productive way to start. Tell us about your program and we will tell you what we would test first."
         secondaryLabel="Run the health check"
         secondaryTo={paths.healthCheck}
       />

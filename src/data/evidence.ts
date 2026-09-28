@@ -100,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
     context: 'Telecom · Australia and Philippines',
     metric: '~550 FTE governed',
     title: 'Governance for large operations and high-stakes transitions.',
-    lead: 'For an Australian managed services engagement of around 550 FTE, I led the Project Governance Office across managed services and projects, connecting performance, commercials, executive reviews and transformation work. In the Philippines, I led PM and governance for a roughly 400-FTE Test CoE transition from an incumbent provider.',
+    lead: 'For an Australian managed services engagement of around 550 FTE, the Project Governance Office ran across managed services and projects, connecting performance, commercials, executive reviews and transformation work. In the Philippines, PM and governance were led for a roughly 400-FTE Test CoE transition from an incumbent provider.',
     facts: [
       {
         label: 'Scope',
@@ -129,7 +129,7 @@ export const caseStudies: CaseStudy[] = [
     context: 'Energy compliance · Australia',
     metric: '~80,000 source files',
     title: 'From document overload to a usable knowledge assistant.',
-    lead: 'Assessors needed reliable access to information across a large body of plans, policies and regulatory documents. I led delivery of a production GenAI knowledge assistant designed for contextual questions with source references and confidence scoring.',
+    lead: 'Assessors needed reliable access to information across a large body of plans, policies and regulatory documents. The engagement delivered a production GenAI knowledge assistant designed for contextual questions with source references and confidence scoring.',
     facts: [
       {
         label: 'Scale',
@@ -179,7 +179,7 @@ export const caseStudies: CaseStudy[] = [
     context: 'Telecom and enterprise technology',
     metric: '1 → 4 programs',
     title: 'Connecting account growth to dependable execution.',
-    lead: 'Commercial work has been part of my delivery responsibility: pursuit workshops, solution shaping, estimation, staffing, pricing, P&L review, executive customer relationships and growth. On an Australian telecom account, the engagement grew from one platform to four concurrent programs.',
+    lead: 'Commercial work has been part of the delivery remit: pursuit workshops, solution shaping, estimation, staffing, pricing, P&L review, executive customer relationships and growth. On an Australian telecom account, the engagement grew from one platform to four concurrent programs.',
     facts: [
       { label: 'Role', value: 'Account delivery and commercial ownership in prior roles.' },
       {
@@ -204,7 +204,7 @@ export const caseStudies: CaseStudy[] = [
     context: 'Telecom · Australia',
     metric: '~3,000 generators',
     title: 'Making a distributed asset operation visible.',
-    lead: 'Generator tracking across a national telecommunications estate relied on spreadsheets. I led delivery of a portal to improve visibility, utilisation and operational decisions across an estate of roughly 50,000 tower sites and 3,000 generators.',
+    lead: 'Generator tracking across a national telecommunications estate relied on spreadsheets. The engagement delivered a portal to improve visibility, utilisation and operational decisions across an estate of roughly 50,000 tower sites and 3,000 generators.',
     facts: [
       { label: 'Role', value: 'End-to-end project leadership for the generator management portal.' },
       {

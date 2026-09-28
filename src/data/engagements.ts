@@ -499,7 +499,7 @@ export const faqs = [
   },
   {
     q: 'Remote or on-site?',
-    a: 'Both. I am based in Pune and have worked with distributed teams and customers across markets. Workshops, critical reviews and transitions may benefit from time on site; we agree the model and travel in the scope.',
+    a: 'Both. The practice is based in Pune and has worked with distributed teams and customers across markets. Workshops, critical reviews and transitions may benefit from time on site; we agree the model and travel in the scope.',
   },
   {
     q: 'How is confidential information handled?',
@@ -515,6 +515,6 @@ export const faqs = [
   },
   {
     q: 'What happens in the first call?',
-    a: 'In about 30 minutes, we discuss the decision you face, timing, the people involved and what evidence exists. I will say whether I can help and what a useful first step would look like.',
+    a: 'In about 30 minutes, we discuss the decision you face, timing, the people involved and what evidence exists. We will say whether we can help and what a useful first step would look like.',
   },
 ] as const

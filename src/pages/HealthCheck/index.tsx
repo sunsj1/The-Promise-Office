@@ -56,7 +56,7 @@ export function HealthCheckPage() {
       <CtaBand
         eyebrow="Your situation"
         title="Prefer to talk it through?"
-        copy="In about 30 minutes we can discuss the decision you face, timing, the people involved and what evidence exists. I will say whether I can help and what a useful first step would look like."
+        copy="In about 30 minutes we can discuss the decision you face, timing, the people involved and what evidence exists. We will say whether we can help and what a useful first step would look like."
         secondaryLabel="See the engagements"
         secondaryTo={paths.advisory}
       />

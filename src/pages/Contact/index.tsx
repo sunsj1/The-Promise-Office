@@ -15,7 +15,7 @@ import { Seo } from '@/widgets/Seo'
 const expectations = [
   'A 30-minute call to understand the decision you face.',
   'A calendar invite as soon as you book.',
-  'An honest answer on whether I can help, and what a useful first step is.',
+  'An honest answer on whether we can help, and what a useful first step is.',
 ]
 
 export function ContactPage() {
@@ -46,7 +46,7 @@ export function ContactPage() {
         breadcrumb="Contact"
         eyebrow="Start a conversation"
         title="Book a 30-minute call."
-        copy="Pick a time that works. We will use it to understand the decision in front of you, whether I can help, and what a useful first step looks like."
+        copy="Pick a time that works. We will use it to understand the decision in front of you, whether we can help, and what a useful first step looks like."
       />
 
       <section className="py-12 lg:py-16">
