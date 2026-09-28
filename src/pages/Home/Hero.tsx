@@ -1,7 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { problems } from '@/data/problems'
 import { site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { lineRise, sealEase, stagger } from '@/animations/variants'
@@ -120,34 +118,6 @@ export function HomeHero() {
               Independent advisory · {site.base} · working across India and international delivery
               environments
             </motion.p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, ease: sealEase }}
-          className="mt-12 grid gap-3 border-t border-line pt-8 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-10"
-        >
-          <div className="hidden lg:block">
-            <Seal animate delay={0.4} className="h-20 w-20" />
-          </div>
-          <div>
-            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">
-              What’s already in the room?
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {problems.map((problem) => (
-                <li key={problem.id}>
-                  <Link
-                    to={problem.href}
-                    className="inline-flex rounded-full border border-line bg-surface px-3.5 py-2 text-[0.86rem] transition-colors hover:border-amber hover:text-amber"
-                  >
-                    {problem.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </motion.div>
       </Container>
