@@ -13,9 +13,9 @@ export function HomePractices() {
     <section className="py-20 lg:py-28">
       <Container size="wide">
         <SectionHeader
-          eyebrow="Four advisory practices"
+          eyebrow="Four problems we're brought in to solve"
           title="Where the promise usually breaks."
-          copy="The Promise Office helps organisations build the capability required to keep an important commitment. These are the four problems clients engage us to solve — connected by one idea, not four unrelated services."
+          copy="The Promise Office helps organisations build the capability required to keep an important commitment. These are the four situations that bring clients to us — connected by one idea, worked through the Advisory, GCC and AI practices."
         />
         <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {practices.map((practice) => (
@@ -28,7 +28,7 @@ export function HomePractices() {
                   <h3 className="mt-4 font-display text-xl leading-snug">{practice.title}</h3>
                   <p className="mt-3 flex-1 text-[0.93rem] text-muted">{practice.outcome}</p>
                   <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.68rem] tracking-[0.14em] text-amber uppercase">
-                    {practice.key === 'gcc' ? 'See the GCC page' : practice.key === 'ai' ? 'See the AI page' : 'Explore'}
+                    {practice.cta}
                     <ArrowRight
                       size={13}
                       aria-hidden

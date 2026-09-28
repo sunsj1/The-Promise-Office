@@ -183,6 +183,7 @@ export const practices: {
   outcome: string
   phrases: string[]
   to: string
+  cta: string
 }[] = [
   {
     key: 'delivery-recovery',
@@ -191,6 +192,7 @@ export const practices: {
     outcome: 'Get critical programs under control and keep leadership decisions connected to delivery reality.',
     phrases: ['Program recovery', 'PMO / PGO', 'Delivery assurance', 'Executive governance'],
     to: '/advisory#delivery',
+    cta: 'See delivery & recovery mandates',
   },
   {
     key: 'gcc',
@@ -199,6 +201,7 @@ export const practices: {
     outcome: 'Build capability around outcomes, not tasks.',
     phrases: ['Operating model & mandate', 'Governance & decision rights', 'Vendor-to-GCC transition', 'AI-enabled GCC'],
     to: '/gcc',
+    cta: 'See the GCC page',
   },
   {
     key: 'managed-services',
@@ -207,6 +210,7 @@ export const practices: {
     outcome: 'Build services that can be sold, transitioned, governed and scaled.',
     phrases: ['Service catalogue & pricing', 'ITSM / ITIL practices', 'SLA/KPI design', 'Process-to-platform'],
     to: '/advisory#managed-services',
+    cta: 'See managed services mandates',
   },
   {
     key: 'ai',
@@ -215,6 +219,7 @@ export const practices: {
     outcome: 'Move AI from experimentation into governed, measurable operations.',
     phrases: ['Use-case discovery', 'Pilot-to-production', 'AI operating model & governance', 'Workforce enablement'],
     to: '/ai',
+    cta: 'See the AI page',
   },
 ]
 

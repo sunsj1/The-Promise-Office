@@ -43,10 +43,10 @@ export function AdvisoryPage() {
         copy="Some mandates need a sharp independent diagnosis. Others need a capability built, a transition led or a delivery leader in the room. Four practices, and the capabilities that cut across them, connect strategy, operating design, commercials and execution around the outcome at stake."
       />
 
-      {/* Four advisory practices */}
+      {/* Four problems we're brought in to solve */}
       <section className="py-20 lg:py-24">
         <Container size="wide">
-          <Eyebrow>The four advisory practices</Eyebrow>
+          <Eyebrow>The four problems we're brought in to solve</Eyebrow>
           <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {practices.map((practice) => (
               <motion.div key={practice.key} variants={fadeUp}>
@@ -70,7 +70,7 @@ export function AdvisoryPage() {
                     to={practice.to}
                     className="mt-5 inline-flex items-center gap-1.5 font-mono text-[0.68rem] tracking-[0.12em] text-amber uppercase transition-colors hover:text-ink"
                   >
-                    {practice.key === 'gcc' ? 'See the GCC page' : practice.key === 'ai' ? 'See the AI page' : 'Explore below'}
+                    {practice.cta}
                     <ArrowRight size={12} aria-hidden />
                   </Link>
                 </SpotlightCard>

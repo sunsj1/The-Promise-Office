@@ -1,6 +1,10 @@
 import {
   allQuestions,
+  confidenceZoneLibrary,
+  consequencesLibrary,
   coreDimensions,
+  heroLibrary,
+  interventionsLibrary,
   lenses,
   modules,
   orientationQuestions,
@@ -176,6 +180,21 @@ export function progressCount(state: EngineState): { answered: number; estimated
   return { answered, estimatedTotal: MAX_QUESTIONS }
 }
 
+/**
+ * Human-readable phase, shown from question 1 so the visitor always has a
+ * sense of where they are — never an exact count, since the path is adaptive.
+ */
+export function getPhaseLabel(state: EngineState, currentQuestion: Question | null): string {
+  if (!currentQuestion || currentQuestion.track === 'orientation') return 'Orientation'
+  const { answered } = progressCount(state)
+  const tracks = activeCoreAndLensTracks(state)
+  const sufficientCount = tracks.filter((t) => trackEvidenceUnits(state, t) >= SUFFICIENT_UNITS).length
+  if (state.pendingQueue.length > 0) return 'Validating the diagnosis'
+  if (answered <= 2) return 'Understanding your situation'
+  if (sufficientCount < Math.ceil(tracks.length / 2)) return 'Exploring the strongest signals'
+  return 'Preparing your assessment'
+}
+
 function computeTrackEvidence(state: EngineState, track: TrackKey): TrackEvidence {
   const ids = state.askedIds.filter((id) => questionById(id)?.track === track)
   const units = trackEvidenceUnits(state, track)
@@ -216,6 +235,18 @@ export type DiagnosticResult = {
   oneQuestionBack: string
   examineNext: string[]
   relevantSupport: { label: string; to: string }[]
+  /** Plain-English executive headline — shown as the result hero, above `pattern`. */
+  heroStatement: string
+  /** 2-4 translated signals explaining why the diagnosis landed where it did. */
+  whyWeThinkThis: string[]
+  /** Only the readings that materially contributed (sufficient+ evidence) — for the primary "at a glance" visual. */
+  materialReadings: TrackEvidence[]
+  consequences: { title: string; body: string }[]
+  pathToConfidenceZone: {
+    currentPosition: string
+    interventions: string[]
+    confidenceZone: string
+  } | null
 }
 
 const oneQuestionByTrack: Record<TrackKey, string> = {
@@ -341,6 +372,57 @@ export function computeResult(state: EngineState): DiagnosticResult {
   // not the advisory practices that address them (shown separately below).
   const examineNext = relevantTracks.map((t) => trackLabel[t]).slice(0, 4)
 
+  const heroStatement = primaryConstraint
+    ? heroLibrary[primaryConstraint.track]
+    : 'No single issue dominates — the pattern is fairly even across what you’ve shared.'
+
+  // Why we think this: pull the signalNote from every answered question that
+  // (a) belongs to a track that materially contributed, and (b) was actually
+  // answered on the concerning side. Business language, no raw scoring.
+  const materialTrackKeys = new Set(
+    [primaryConstraint?.track, secondaryConstraint?.track, ...contributingConditions.map((c) => c.track)].filter(
+      (t): t is TrackKey => !!t,
+    ),
+  )
+  const whyWeThinkThis = state.askedIds
+    .map((id) => questionById(id))
+    .filter((q): q is Question => !!q && !!q.signalNote && materialTrackKeys.has(q.track as TrackKey))
+    .filter((q) => (state.answers[q.id] ?? 0) > 0)
+    .map((q) => q.signalNote as string)
+    .slice(0, 4)
+
+  // Capped at 5 and prioritised by narrative relevance (primary/secondary/
+  // contributing/preserved first) — a uniformly bad or uniformly good answer
+  // set can still legitimately fill all 5, but this stops "everything has
+  // sufficient evidence" from turning into a 7-row wall on a mixed result.
+  const priorityOrder: TrackKey[] = [
+    primaryConstraint?.track,
+    secondaryConstraint?.track,
+    ...contributingConditions.map((c) => c.track),
+    strengthToPreserve?.track,
+  ].filter((t): t is TrackKey => !!t)
+  const materialReadings = evidence
+    .filter((e) => e.strength === 'sufficient' || e.strength === 'strong')
+    .sort((a, b) => {
+      const ai = priorityOrder.includes(a.track) ? priorityOrder.indexOf(a.track) : 99
+      const bi = priorityOrder.includes(b.track) ? priorityOrder.indexOf(b.track) : 99
+      if (ai !== bi) return ai - bi
+      // Exposure first (worst to least), then strengths.
+      const rank = (x: TrackEvidence) => (x.direction === 'negative' ? -x.avg : x.direction === 'positive' ? 10 + x.avg : 5)
+      return rank(a) - rank(b)
+    })
+    .slice(0, 5)
+
+  const consequences = primaryConstraint ? consequencesLibrary[primaryConstraint.track].slice(0, 3) : []
+
+  const pathToConfidenceZone = primaryConstraint
+    ? {
+        currentPosition: heroStatement,
+        interventions: interventionsLibrary[primaryConstraint.track],
+        confidenceZone: confidenceZoneLibrary[primaryConstraint.track],
+      }
+    : null
+
   return {
     pattern,
     interpretation,
@@ -357,6 +439,11 @@ export function computeResult(state: EngineState): DiagnosticResult {
     oneQuestionBack,
     examineNext,
     relevantSupport,
+    heroStatement,
+    whyWeThinkThis,
+    materialReadings,
+    consequences,
+    pathToConfidenceZone,
   }
 }
 
@@ -370,6 +457,20 @@ export function evidenceLabel(strength: EvidenceStrength): string {
     case 'none':
       return 'Not assessed'
   }
+}
+
+/**
+ * Visitor-facing label — deliberately plainer than the internal
+ * strength/direction vocabulary (which the engine keeps for its own use).
+ */
+export function simpleReadingLabel(e: TrackEvidence): { text: string; tone: 'muted' | 'exposure' | 'solid' } {
+  if (e.strength === 'none' || e.strength === 'limited') return { text: 'Not enough information', tone: 'muted' }
+  if (e.direction === 'negative') {
+    if (e.avg >= 1.3) return { text: 'High exposure', tone: 'exposure' }
+    return { text: 'Needs attention', tone: 'exposure' }
+  }
+  if (e.direction === 'positive') return { text: e.avg <= -1.3 ? 'Strength' : 'Working well', tone: 'solid' }
+  return { text: 'Needs attention', tone: 'muted' }
 }
 
 export type { CoreDimension }

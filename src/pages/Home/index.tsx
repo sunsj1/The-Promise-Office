@@ -8,7 +8,6 @@ import { HomeFramework } from '@/pages/Home/Framework'
 import { HomeGccAiSpotlight } from '@/pages/Home/GccAiSpotlight'
 import { HomeHealthCheckTeaser } from '@/pages/Home/HealthCheckTeaser'
 import { HomeHero } from '@/pages/Home/Hero'
-import { HomeModes } from '@/pages/Home/Modes'
 import { HomePersonas } from '@/pages/Home/Personas'
 import { HomePractices } from '@/pages/Home/Practices'
 import { HomeProof } from '@/pages/Home/Proof'
@@ -30,12 +29,11 @@ export function HomePage() {
       <HomeEngagements />
       <HomeGccAiSpotlight />
       <HomeHealthCheckTeaser />
-      <HomeModes />
       <HomeProof />
       <CtaBand
         eyebrow="The first conversation"
-        title="Tell me where the promise is at risk."
-        copy="Share the situation, the decision you need to make and the time pressure. I’ll suggest a useful first step and where my experience fits."
+        title="Tell us where the promise is at risk."
+        copy="Share the situation, the decision you need to make and the time pressure. We’ll suggest a useful first step and where our experience fits."
         secondaryLabel="Run the health check"
         secondaryTo={paths.healthCheck}
       />

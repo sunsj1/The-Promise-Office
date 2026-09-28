@@ -78,6 +78,12 @@ export type Question = {
     when: (thisValue: number, otherValue: number) => boolean
     followUpId: string
   }
+  /**
+   * Plain-language business statement shown in "Why we think this" when this
+   * question contributed a concerning (positive-value) signal to a track
+   * that ended up material to the result. Not shown for neutral/healthy answers.
+   */
+  signalNote?: string
 }
 
 /** Minimal shape the engine passes into skipIf — kept here to avoid a circular import. */
@@ -165,6 +171,7 @@ export const questionBank: Question[] = [
       { label: 'Informally', value: 0 },
       { label: 'No', value: 2 },
     ],
+    signalNote: 'No named owner is accountable for the business benefit, separate from delivery.',
   },
   {
     id: 'VP-02',
@@ -176,6 +183,7 @@ export const questionBank: Question[] = [
       { label: 'Sometimes', value: 0 },
       { label: 'Rarely', value: 2 },
     ],
+    signalNote: 'Lower-value initiatives are rarely stopped or deferred when priorities compete for the same resources.',
     contradiction: {
       withQuestionId: 'VP-03',
       when: (thisValue, otherValue) => thisValue >= 2 && otherValue <= -1,
@@ -213,6 +221,7 @@ export const questionBank: Question[] = [
       { label: 'Mixed', value: 0 },
       { label: 'Rarely', value: 2 },
     ],
+    signalNote: 'Even the clearly prioritised initiatives don’t reliably deliver against agreed scope and milestones.',
   },
   {
     id: 'VP-05',
@@ -224,6 +233,7 @@ export const questionBank: Question[] = [
       { label: 'Partly shifted', value: 1 },
       { label: 'No longer sure', value: 2 },
     ],
+    signalNote: 'The original business case for the largest initiative may no longer hold.',
   },
 
   // Economics & Value Leakage
@@ -237,6 +247,7 @@ export const questionBank: Question[] = [
       { label: 'Roughly, not in detail', value: 0 },
       { label: 'Mainly at quarter-end', value: 2 },
     ],
+    signalNote: 'Margin and cost-to-serve mainly surface at quarter-end, not while there’s time to act.',
   },
   {
     id: 'EC-02',
@@ -248,6 +259,7 @@ export const questionBank: Question[] = [
       { label: 'Known anecdotally', value: 1 },
       { label: 'Not really tracked', value: 2 },
     ],
+    signalNote: 'Rework, duplication and manual effort exist but haven’t been costed.',
   },
   {
     id: 'EC-03',
@@ -259,6 +271,7 @@ export const questionBank: Question[] = [
       { label: 'Some change, renegotiated', value: 0 },
       { label: 'Some change, not renegotiated', value: 2 },
     ],
+    signalNote: 'Scope changed on a pressured program without a matching commercial renegotiation.',
   },
   {
     id: 'EC-04',
@@ -270,6 +283,7 @@ export const questionBank: Question[] = [
       { label: 'Partial', value: 1 },
       { label: 'Not really', value: 2 },
     ],
+    signalNote: 'It isn’t clear which parts of the portfolio are absorbing cost without a return.',
   },
 
   // Execution & Transformation
@@ -283,6 +297,7 @@ export const questionBank: Question[] = [
       { label: 'Sometimes', value: 0 },
       { label: 'Frequently', value: 2 },
     ],
+    signalNote: 'Delivery dates move without a clearly documented reason.',
   },
   {
     id: 'EX-02',
@@ -294,6 +309,7 @@ export const questionBank: Question[] = [
       { label: 'Mostly', value: 0 },
       { label: 'No — frequent disagreement', value: 2 },
     ],
+    signalNote: 'Teams frequently disagree on what “done” looks like for the current phase.',
   },
   {
     id: 'EX-03',
@@ -305,6 +321,7 @@ export const questionBank: Question[] = [
       { label: 'Known to a few', value: 1 },
       { label: 'Mainly one person', value: 2 },
     ],
+    signalNote: 'The sequencing of dependent work lives mainly in one person’s head.',
   },
   {
     id: 'EX-04',
@@ -315,6 +332,7 @@ export const questionBank: Question[] = [
       { label: 'Set originally, largely unchanged', value: 2 },
       { label: 'Renegotiated significantly since', value: -1 },
     ],
+    signalNote: 'Staffing and timeline were set at proposal stage and have stayed largely unchanged since — even as reality moved on.',
   },
 
   // Governance & Decision Quality
@@ -328,6 +346,7 @@ export const questionBank: Question[] = [
       { label: 'Several reports, mostly agree', value: 0 },
       { label: 'Reports disagree depending who you ask', value: 2 },
     ],
+    signalNote: 'Status reports disagree depending on who you ask.',
     contradiction: {
       withQuestionId: 'GV-02',
       when: (thisValue, otherValue) => thisValue <= -1 && otherValue >= 2,
@@ -344,6 +363,7 @@ export const questionBank: Question[] = [
       { label: 'Usually, after chasing', value: 0 },
       { label: 'Often nobody does', value: 2 },
     ],
+    signalNote: 'When a decision is stuck between two teams, often nobody owns getting it unstuck.',
   },
   {
     id: 'GV-CONTRADICTION',
@@ -354,6 +374,7 @@ export const questionBank: Question[] = [
       { label: 'Escalation paths exist but are slow to trigger', value: 1 },
       { label: 'There is no defined escalation path at all', value: 2 },
     ],
+    signalNote: 'Reporting is trusted, but there’s no reliable escalation path once a decision actually gets stuck.',
   },
   {
     id: 'GV-03',
@@ -365,6 +386,7 @@ export const questionBank: Question[] = [
       { label: 'Increasingly often', value: 2 },
       { label: 'Routinely', value: 2 },
     ],
+    signalNote: 'Decisions increasingly stay unresolved until senior leadership has to step in.',
   },
   {
     id: 'GV-04',
@@ -376,6 +398,7 @@ export const questionBank: Question[] = [
       { label: 'About half', value: 1 },
       { label: 'Few', value: 2 },
     ],
+    signalNote: 'Few governance meetings end in an explicit decision rather than a status update.',
   },
   {
     id: 'GV-05',
@@ -387,6 +410,7 @@ export const questionBank: Question[] = [
       { label: 'Limited involvement', value: 1 },
       { label: 'Not involved', value: 2 },
     ],
+    signalNote: 'Delivery had little or no say in the estimate before it was committed to the customer.',
   },
 
   // Operating Model & Capability
@@ -400,6 +424,7 @@ export const questionBank: Question[] = [
       { label: 'Slowly, with pain', value: 1 },
       { label: "We couldn't", value: 2 },
     ],
+    signalNote: 'Critical operating knowledge sits with two or three people and isn’t documented.',
   },
   {
     id: 'OM-02',
@@ -411,6 +436,7 @@ export const questionBank: Question[] = [
       { label: 'Some reuse, a lot of rework', value: 0 },
       { label: 'From scratch, most times', value: 2 },
     ],
+    signalNote: 'New proposals or transitions mostly start from a blank page, not a repeatable model.',
   },
   {
     id: 'OM-03',
@@ -422,6 +448,7 @@ export const questionBank: Question[] = [
       { label: 'Some overlap or gaps', value: 1 },
       { label: 'Frequently unclear', value: 2 },
     ],
+    signalNote: 'Two people would frequently give different answers about who owns what.',
   },
   {
     id: 'OM-04',
@@ -433,6 +460,7 @@ export const questionBank: Question[] = [
       { label: 'Mixed', value: 0 },
       { label: 'Usually pulled back', value: 2 },
     ],
+    signalNote: 'Delegated responsibility usually needs to be pulled back rather than sticking.',
   },
 
   // Benefits Realisation (remaining)
@@ -446,6 +474,7 @@ export const questionBank: Question[] = [
       { label: 'Informally, not owned', value: 1 },
       { label: 'Not really', value: 2 },
     ],
+    signalNote: 'Nobody is tracking whether the intended benefit actually materialised after go-live.',
   },
   {
     id: 'BR-02',
@@ -457,6 +486,7 @@ export const questionBank: Question[] = [
       { label: 'Assumed, not measured', value: 1 },
       { label: 'Not considered', value: 2 },
     ],
+    signalNote: '“Delivered” is treated as the finish line — adoption isn’t actually measured.',
   },
 
   // GCC module
@@ -471,6 +501,7 @@ export const questionBank: Question[] = [
       { label: 'Some ownership, some task execution', value: 0 },
       { label: 'Executes tasks assigned to it', value: 2 },
     ],
+    signalNote: 'The centre executes tasks assigned to it rather than owning outcomes end-to-end.',
   },
   {
     id: 'GCC-02',
@@ -495,6 +526,7 @@ export const questionBank: Question[] = [
       { label: 'Partly', value: 1 },
       { label: 'No, genuine capability gaps remain', value: -1 },
     ],
+    signalNote: 'The centre has the domain knowledge for decisions it isn’t currently authorised to make — this points to a mandate gap, not a capability one.',
   },
   {
     id: 'OM-04-GCC',
@@ -508,6 +540,7 @@ export const questionBank: Question[] = [
       { label: 'Mixed', value: 0 },
       { label: 'Usually needs to be pulled back', value: -1 },
     ],
+    signalNote: 'When responsibility is actually delegated to the centre, it consistently performs — the constraint is mandate, not ability.',
   },
   {
     id: 'GCC-05',
@@ -519,6 +552,7 @@ export const questionBank: Question[] = [
       { label: 'Includes capability/outcome contribution', value: -1 },
       { label: 'Mainly cost', value: 1 },
     ],
+    signalNote: 'The centre’s value case is still framed mainly around cost, not capability or outcomes.',
   },
   {
     id: 'GCC-06',
@@ -531,6 +565,7 @@ export const questionBank: Question[] = [
       { label: 'The centre decided to run them', value: -1 },
       { label: 'Mostly assigned to it', value: 1 },
     ],
+    signalNote: 'AI/automation work inside the centre is mostly assigned to it rather than something it chose to run.',
   },
 
   // AI module
@@ -545,6 +580,7 @@ export const questionBank: Question[] = [
       { label: 'Not yet reliable enough', value: 2 },
       { label: 'Working and used', value: -2 },
     ],
+    signalNote: 'Pilots are technically working, but adoption is inconsistent.',
   },
   {
     id: 'AI-02',
@@ -557,6 +593,7 @@ export const questionBank: Question[] = [
       { label: 'Informally', value: 1 },
       { label: 'No — the technical team owns it end to end', value: 2 },
     ],
+    signalNote: 'No business owner is accountable for a pilot’s value, separate from the technical team.',
   },
   {
     id: 'AI-03',
@@ -569,6 +606,7 @@ export const questionBank: Question[] = [
       { label: 'Informal', value: 1 },
       { label: 'No', value: 2 },
     ],
+    signalNote: 'There’s no defined human-review step before an AI output is acted on.',
   },
   {
     id: 'AI-04',
@@ -580,6 +618,7 @@ export const questionBank: Question[] = [
       { label: 'Target measurably expensive/slow work', value: -1 },
       { label: 'Mostly technically impressive', value: 1 },
     ],
+    signalNote: 'Use cases are chosen more for technical impressiveness than measurable cost or time savings.',
   },
   {
     id: 'AI-05',
@@ -592,6 +631,7 @@ export const questionBank: Question[] = [
       { label: 'Somewhat', value: 0 },
       { label: 'No', value: 1 },
     ],
+    signalNote: 'The underlying knowledge these pilots depend on isn’t yet something you’d trust an important decision on.',
   },
   {
     id: 'AI-06',
@@ -624,3 +664,111 @@ export const patternLibrary: {
   { primary: 'operating-model', statement: 'Delivering through people, not yet through capability.' },
   { primary: 'execution', statement: 'Momentum without control.' },
 ]
+
+/** Plain-English executive headline, shown as the result hero — clarity first, personality (patternLibrary) second. */
+export const heroLibrary: Record<TrackKey, string> = {
+  'value-priorities': 'You may be busy with the wrong things.',
+  economics: 'Growth may be outpacing margin visibility.',
+  execution: 'Delivery confidence may be higher than delivery control.',
+  governance: 'Decisions may be getting stuck despite good reporting.',
+  'operating-model': 'Delivery may depend on people more than on a repeatable model.',
+  'commercial-alignment': 'Your commercial commitments may be outpacing delivery reality.',
+  'benefits-realisation': 'Work may be getting delivered without the benefit being confirmed.',
+  gcc: 'The centre may be capable of more ownership than it currently has.',
+  ai: 'AI activity may be proving capability more than it is proving value.',
+}
+
+/** 2-3 priority interventions per track, shown in "Path to the Confidence Zone". */
+export const interventionsLibrary: Record<TrackKey, string[]> = {
+  'value-priorities': [
+    'Name an accountable owner for benefit, separate from delivery',
+    'Make stopping lower-value work a real, exercised option',
+  ],
+  economics: [
+    'Move margin and cost-to-serve review to a monthly cadence',
+    'Cost the friction that is currently only known anecdotally',
+  ],
+  execution: [
+    'Agree what "done" means before work starts, not after it slips',
+    'Make dependency sequencing visible beyond one person',
+  ],
+  governance: [
+    'Name an owner for unblocking stuck cross-team decisions',
+    'Track how many governance meetings produce an explicit decision',
+  ],
+  'operating-model': [
+    'Document the knowledge currently held by two or three people',
+    'Build one repeatable model instead of starting from scratch each time',
+  ],
+  'commercial-alignment': [
+    'Bring delivery into the estimate and staffing review before commitment',
+    'Detect commercial drift earlier — while intervention is still possible',
+    'Reconnect scope change to an explicit commercial conversation',
+  ],
+  'benefits-realisation': [
+    'Assign an owner for benefit realisation beyond go-live',
+    'Measure adoption, not just delivery, as part of "done"',
+  ],
+  gcc: [
+    'Test delegated decisions in practice, not just in policy',
+    'Reframe the centre’s value case around capability, not just cost',
+  ],
+  ai: [
+    'Assign a business owner to each pilot’s value, separate from the build team',
+    'Choose the next use case by cost/time impact, not technical novelty',
+  ],
+}
+
+/** "What this can lead to" — result-specific, not invented financial impact. */
+export const consequencesLibrary: Record<TrackKey, { title: string; body: string }[]> = {
+  'value-priorities': [
+    { title: 'Diluted leadership attention', body: 'Effort spreads across too many initiatives for any one of them to get a fair chance.' },
+    { title: 'Unclear return on investment', body: 'Without an accountable owner, nobody can say with confidence what the investment actually bought.' },
+  ],
+  economics: [
+    { title: 'Margin erosion', body: 'Cost-to-serve drifts unnoticed until it surfaces as a quarter-end surprise.' },
+    { title: 'Under-priced renewals', body: 'The next commercial conversation repeats assumptions nobody has re-tested.' },
+  ],
+  execution: [
+    { title: 'Recurring schedule slip', body: 'Dates keep moving because the same unresolved ambiguity resurfaces each phase.' },
+    { title: 'Eroding stakeholder trust', body: 'Repeated, unexplained delay makes the next date harder to believe, even when it is right.' },
+  ],
+  governance: [
+    { title: 'Recurring escalation', body: 'The same class of decision keeps arriving at senior leadership because nothing lower down is authorised to resolve it.' },
+    { title: 'Decision fatigue', body: 'More meetings get added to compensate, without more decisions actually getting made.' },
+  ],
+  'operating-model': [
+    { title: 'Key-person dependency', body: 'Delivery capacity is really the availability of two or three specific people.' },
+    { title: 'Every bid starts from zero', body: 'Estimation and pricing keep being rebuilt because nothing from the last one was kept.' },
+  ],
+  'commercial-alignment': [
+    { title: 'Margin erosion', body: 'Delivery absorbs assumptions or scope that no longer match the original economics.' },
+    { title: 'Schedule pressure', body: 'Teams work against commitments they had limited opportunity to validate.' },
+    { title: 'Recurring escalation', body: 'Commercial, customer and delivery conversations increasingly revolve around exceptions and recovery.' },
+  ],
+  'benefits-realisation': [
+    { title: 'Technically complete, commercially unproven', body: 'A program can close out as "delivered" while nobody can confirm the business case it was funded on.' },
+    { title: 'Repeat investment for the same problem', body: 'Without adoption tracking, a second initiative can end up solving what the first was meant to.' },
+  ],
+  gcc: [
+    { title: 'Capability plateau', body: 'The centre stops growing in mandate because nothing tests whether it is ready for more.' },
+    { title: 'Value framed only as cost', body: 'The centre stays a line item rather than becoming an enterprise contributor.' },
+  ],
+  ai: [
+    { title: 'Pilot purgatory', body: 'Impressive demonstrations accumulate without a growing base of production value.' },
+    { title: 'Trust ceiling', body: 'Without a named owner and a review step, adoption stalls at whatever level of trust already exists.' },
+  ],
+}
+
+/** Track-specific description of what the Confidence Zone looks like once reached. */
+export const confidenceZoneLibrary: Record<TrackKey, string> = {
+  'value-priorities': 'Investment and activity connect visibly to a small number of owned outcomes.',
+  economics: 'Cost-to-serve and margin are visible monthly, by account, well before quarter-end.',
+  execution: 'Delivery dates move for documented reasons the team agrees on, not by surprise.',
+  governance: 'Stuck decisions have a named owner and a route to resolution before they need escalating.',
+  'operating-model': 'The operating model survives the departure of any one person.',
+  'commercial-alignment': 'Commitments remain aligned with economics and executable capacity.',
+  'benefits-realisation': 'Benefit ownership and adoption are tracked as part of "done," not an afterthought.',
+  gcc: 'The centre owns outcomes commensurate with its demonstrated capability.',
+  ai: 'AI activity is judged, and funded, by measured business value.',
+}

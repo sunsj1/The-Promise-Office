@@ -22,9 +22,7 @@ export function Seo({
   breadcrumb,
   noindex = false,
 }: SeoProps) {
-  const pageTitle = title
-    ? `${title} — ${site.shortName}`
-    : `${site.shortName} — ${site.role}`
+  const pageTitle = title ? `${title} — ${site.brand}` : `${site.brand} — ${site.role}`
   const pageDescription = description ?? site.description
   const url = `${site.url}${path}`
   const image = `${site.url}/brand/social-preview-1200x630.png`

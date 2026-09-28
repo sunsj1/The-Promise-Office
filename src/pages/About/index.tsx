@@ -9,13 +9,14 @@ import {
   testimonials,
 } from '@/data/perspective'
 import { engagementShapes } from '@/data/personas'
-import { disclaimers, site } from '@/data/site'
+import { disclaimers, organisations, site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { fadeUp } from '@/animations/variants'
 import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
@@ -231,6 +232,24 @@ export function AboutPage() {
         </Container>
       </section>
 
+      {/* Experience behind the practice */}
+      <section className="border-t border-line py-20 lg:py-24">
+        <Container size="wide">
+          <Eyebrow>Experience behind the practice</Eyebrow>
+          <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">
+            The Promise Office is informed by work across telecommunications, technology services,
+            enterprise operations and transformation environments in prior roles.
+          </p>
+          <div className="mt-8">
+            <ExperienceStrip items={organisations} />
+          </div>
+          <p className="mt-7 max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
+            Prior employers and client environments shown for experience context only; no
+            endorsement of this independent practice is implied.
+          </p>
+        </Container>
+      </section>
+
       {/* Recommendations */}
       <section className="border-t border-line bg-sunk py-20 lg:py-24">
         <Container size="wide">
@@ -238,15 +257,15 @@ export function AboutPage() {
             <Reveal className="lg:col-span-5">
               <Eyebrow>In their words</Eyebrow>
               <h2 className="mt-5 text-3xl sm:text-4xl">
-                How I show up when delivery gets difficult.
+                How Rishi shows up when delivery gets difficult.
               </h2>
               <p className="mt-5 text-[1.0625rem] text-muted">
-                Excerpts from public LinkedIn recommendations written by people who worked with me in
-                prior roles.
+                Excerpts from public LinkedIn recommendations written by people who worked with him
+                in prior roles.
               </p>
               <div className="mt-8">
                 <LinkButton to={site.linkedin} external variant="outline">
-                  View Rishi’s LinkedIn profile
+                  View the LinkedIn profile
                 </LinkButton>
               </div>
             </Reveal>

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, Check, ClipboardCopy, Mail, RotateCcw } from 'lucide-react'
+import { ArrowLeft, Check, ChevronDown, ClipboardCopy, Mail, RotateCcw } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { orientationQuestions } from '@/data/diagnostic'
@@ -9,10 +9,11 @@ import {
   computeResult,
   createInitialState,
   getNextQuestion,
+  getPhaseLabel,
   progressCount,
+  simpleReadingLabel,
   type DiagnosticResult,
   type EngineState,
-  type TrackEvidence,
 } from '@/lib/diagnosticEngine'
 import { sealEase } from '@/animations/variants'
 import { ActionButton, LinkButton } from '@/widgets/Button'
@@ -20,18 +21,6 @@ import { cn } from '@/lib/cn'
 
 /** History of {state, question} so "Previous" can step back through an adaptive path. */
 type HistoryEntry = { state: EngineState; questionId: string }
-
-function readingBand(e: TrackEvidence): { text: string; tone: 'muted' | 'exposure' | 'solid' } {
-  if (e.strength === 'none') return { text: 'Not assessed', tone: 'muted' }
-  if (e.strength === 'limited') return { text: 'Limited signal', tone: 'muted' }
-  if (e.direction === 'negative') {
-    if (e.avg >= 1.3) return { text: 'Material exposure', tone: 'exposure' }
-    if (e.avg >= 0.7) return { text: 'Exposure emerging', tone: 'exposure' }
-    return { text: 'Worth watching', tone: 'exposure' }
-  }
-  if (e.direction === 'positive') return { text: e.avg <= -1.3 ? 'Clear strength' : 'Currently solid', tone: 'solid' }
-  return { text: 'Mixed signal', tone: 'muted' }
-}
 
 const confidenceCopy: Record<DiagnosticResult['promiseConfidence'], string> = {
   Exposed:
@@ -48,18 +37,18 @@ export function HealthCheckTool() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [copied, setCopied] = useState(false)
+  const [detailOpen, setDetailOpen] = useState(false)
 
   const currentQuestion = getNextQuestion(state)
   const finished = !currentQuestion && state.askedIds.length > orientationQuestions.length
   const { answered } = progressCount(state)
   const inOrientation = !!currentQuestion && currentQuestion.track === 'orientation'
+  const phase = getPhaseLabel(state, currentQuestion)
 
   const result = useMemo(() => (finished ? computeResult(state) : null), [finished, state])
 
   const choose = (optionIndex: number) => {
     if (!currentQuestion) return
-    // Guards against a double-click landing during the exit/enter transition,
-    // which would otherwise re-submit the same question twice.
     if (state.askedIds.includes(currentQuestion.id)) return
     setHistory((h) => [...h, { state, questionId: currentQuestion.id }])
     setState((prev) => applyAnswer(prev, currentQuestion, optionIndex))
@@ -78,6 +67,7 @@ export function HealthCheckTool() {
     setState(createInitialState())
     setHistory([])
     setCopied(false)
+    setDetailOpen(false)
   }
 
   const briefText = useMemo(() => {
@@ -89,7 +79,7 @@ export function HealthCheckTool() {
       '',
       `Name: ${name.trim() || '—'}`,
       `Email: ${email.trim() || '—'}`,
-      `Advisory profile: ${result.pattern}`,
+      `Main issue: ${result.heroStatement}`,
       `Primary constraint: ${result.primaryConstraint?.label ?? 'Not clearly separated yet'}`,
       `Promise Confidence: ${result.promiseConfidence}`,
       '',
@@ -109,23 +99,28 @@ export function HealthCheckTool() {
 
   const mailtoHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(
-        `My Delivery Health Check results — ${result.pattern}`,
+        `My Delivery Health Check results — ${result.heroStatement}`,
       )}&body=${encodeURIComponent(briefText)}`
     : '#'
 
   return (
     <div className="rounded-3xl border border-line bg-surface p-6 sm:p-9 lg:p-11">
       {!finished ? (
-        <div className="flex items-center justify-between gap-6">
-          <div className="h-1 flex-1 overflow-hidden rounded-full bg-line">
-            <motion.div
-              className="h-full rounded-full bg-amber"
-              animate={{ width: `${Math.min((answered / 12) * 100, 96)}%` }}
-              transition={{ duration: 0.3, ease: sealEase }}
-            />
+        <div>
+          <div className="flex items-center justify-between gap-6">
+            <div className="h-1 flex-1 overflow-hidden rounded-full bg-line">
+              <motion.div
+                className="h-full rounded-full bg-amber"
+                animate={{ width: `${Math.min((answered / 12) * 100, 96)}%` }}
+                transition={{ duration: 0.3, ease: sealEase }}
+              />
+            </div>
+            <p className="shrink-0 font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase">
+              {inOrientation ? 'Orientation' : `Question ${answered + 1}`}
+            </p>
           </div>
-          <p className="shrink-0 font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase">
-            {inOrientation ? 'Orientation' : `Question ${answered + 1}`}
+          <p className="mt-3 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase">
+            {phase} · Usually 8–15 questions · about 5 minutes
           </p>
         </div>
       ) : null}
@@ -178,166 +173,247 @@ export function HealthCheckTool() {
               transition={{ duration: 0.45, ease: sealEase }}
               className="mx-auto max-w-2xl"
             >
+              {/* YOUR ASSESSMENT */}
               <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
-                Your advisory profile
+                Your assessment
               </p>
-              <h3 className="mt-3 text-2xl sm:text-[1.9rem]">{result.pattern}</h3>
-              <p className="mt-4 text-[0.97rem] text-muted">{result.interpretation}</p>
+              <h3 className="mt-3 text-2xl sm:text-[1.9rem] leading-snug">{result.heroStatement}</h3>
+              <p className="mt-3 text-[0.95rem] text-muted italic">“{result.pattern}”</p>
 
-              {/* Primary / secondary / contributing */}
-              <div className="mt-8 space-y-4">
-                {result.primaryConstraint ? (
-                  <div className="rounded-xl border border-amber/30 bg-amber/5 p-5">
-                    <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
-                      Primary constraint
-                    </p>
-                    <p className="mt-1.5 font-display text-lg">{result.primaryConstraint.label}</p>
-                  </div>
-                ) : null}
-                {result.secondaryConstraint ? (
-                  <div className="rounded-xl border border-line bg-sunk p-5">
-                    <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                      Secondary constraint
-                    </p>
-                    <p className="mt-1.5 font-display text-lg">{result.secondaryConstraint.label}</p>
-                  </div>
-                ) : null}
-                {result.contributingConditions.length ? (
-                  <div className="rounded-xl border border-line bg-sunk p-5">
-                    <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                      Contributing conditions
-                    </p>
-                    <ul className="mt-2 space-y-1">
-                      {result.contributingConditions.map((c) => (
-                        <li key={c.track} className="text-[0.93rem]">
-                          {c.label}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-                {result.strengthToPreserve ? (
-                  <div className="rounded-xl border border-line bg-surface p-5">
-                    <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                      Strength to preserve
-                    </p>
-                    <p className="mt-1.5 text-[0.95rem]">
-                      {result.strengthToPreserve.label} — positively tested, not just the absence of a problem.
-                    </p>
-                  </div>
-                ) : null}
+              {/* AT A GLANCE */}
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-xl border border-amber/30 bg-amber/5 p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-amber uppercase">
+                    Primary issue
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">
+                    {result.primaryConstraint?.label ?? 'No single dominant issue'}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    What is working
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">
+                    {result.strengthToPreserve?.label ?? 'Not yet clearly established'}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    Diagnostic confidence
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">{result.diagnosticConfidence.band}</p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    Current position
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">{result.promiseConfidence}</p>
+                </div>
               </div>
+              <p className="mt-3 text-[0.88rem] text-muted">{confidenceCopy[result.promiseConfidence]}</p>
 
-              {/* Core readings */}
-              <div className="mt-9 border-t border-line pt-7">
-                <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                  Core diagnostic readings
-                </p>
-                <dl className="mt-4 space-y-3">
-                  {result.coreReadings.map((reading) => {
-                    const band = readingBand(reading)
-                    return (
-                      <div key={reading.track} className="flex items-center justify-between gap-4">
-                        <dt className="text-[0.93rem]">{reading.label}</dt>
-                        <dd
-                          className={cn(
-                            'shrink-0 font-mono text-[0.68rem] tracking-[0.1em] uppercase',
-                            band.tone === 'exposure' && 'text-amber',
-                            band.tone === 'solid' && 'text-plum',
-                            band.tone === 'muted' && 'text-muted',
-                          )}
-                        >
-                          {band.text}
-                        </dd>
-                      </div>
-                    )
-                  })}
-                </dl>
-              </div>
+              {/* WHY WE THINK THIS */}
+              {result.whyWeThinkThis.length ? (
+                <div className="mt-9 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    Why we think this
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {result.whyWeThinkThis.map((note) => (
+                      <li key={note} className="flex gap-3 text-[0.97rem]">
+                        <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber" />
+                        {note}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
 
-              {/* Cross-cutting + domain */}
-              {result.crossCutting.some((c) => c.strength !== 'none') || result.domainSignals.length ? (
+              {/* WHERE THE PRESSURE SITS */}
+              {result.materialReadings.length ? (
                 <div className="mt-7 border-t border-line pt-7">
                   <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                    Cross-cutting & domain signals
+                    Where the pressure sits
                   </p>
                   <dl className="mt-4 space-y-3">
-                    {[...result.crossCutting, ...result.domainSignals]
-                      .filter((r) => r.strength !== 'none')
-                      .map((reading) => {
-                        const band = readingBand(reading)
-                        return (
-                          <div key={reading.track} className="flex items-center justify-between gap-4">
-                            <dt className="text-[0.93rem]">{reading.label}</dt>
-                            <dd
-                              className={cn(
-                                'shrink-0 font-mono text-[0.68rem] tracking-[0.1em] uppercase',
-                                band.tone === 'exposure' && 'text-amber',
-                                band.tone === 'solid' && 'text-plum',
-                                band.tone === 'muted' && 'text-muted',
-                              )}
-                            >
-                              {band.text}
-                            </dd>
-                          </div>
-                        )
-                      })}
+                    {result.materialReadings.map((reading) => {
+                      const band = simpleReadingLabel(reading)
+                      return (
+                        <div key={reading.track} className="flex items-center justify-between gap-4">
+                          <dt className="text-[0.93rem]">{reading.label}</dt>
+                          <dd
+                            className={cn(
+                              'shrink-0 rounded-full px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.08em] uppercase',
+                              band.tone === 'exposure' && 'bg-amber/10 text-amber',
+                              band.tone === 'solid' && 'bg-plum/10 text-plum',
+                            )}
+                          >
+                            {band.text}
+                          </dd>
+                        </div>
+                      )
+                    })}
                   </dl>
                 </div>
               ) : null}
 
-              {/* Promise Confidence + Diagnostic Confidence */}
-              <div className="mt-7 grid gap-4 border-t border-line pt-7 sm:grid-cols-2">
-                <div>
+              {/* WHAT THIS CAN LEAD TO */}
+              {result.consequences.length ? (
+                <div className="mt-7 border-t border-line pt-7">
                   <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                    Promise Confidence
+                    What this can lead to
                   </p>
-                  <p className="mt-1.5 font-display text-xl">{result.promiseConfidence}</p>
-                  <p className="mt-1.5 text-[0.85rem] text-muted">{confidenceCopy[result.promiseConfidence]}</p>
+                  <div className="mt-4 space-y-4">
+                    {result.consequences.map((c) => (
+                      <div key={c.title}>
+                        <p className="font-display text-base">{c.title}</p>
+                        <p className="mt-1 text-[0.9rem] text-muted">{c.body}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                    Diagnostic confidence
-                  </p>
-                  <p className="mt-1.5 font-display text-xl">{result.diagnosticConfidence.band}</p>
-                  <p className="mt-1.5 text-[0.85rem] text-muted">{result.diagnosticConfidence.note}</p>
-                </div>
-              </div>
+              ) : null}
 
-              {/* One question back + examine next + support */}
-              <div className="mt-8 rounded-2xl border border-line bg-sunk p-6">
+              {/* PATH TO THE CONFIDENCE ZONE */}
+              {result.pathToConfidenceZone ? (
+                <div className="mt-7 rounded-2xl border border-line bg-sunk p-6">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    Path to the Confidence Zone
+                  </p>
+                  <div className="mt-4 space-y-4">
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-muted uppercase">
+                        Current position
+                      </p>
+                      <p className="mt-1 text-[0.93rem]">{result.pathToConfidenceZone.currentPosition}</p>
+                    </div>
+                    <div className="text-amber" aria-hidden>
+                      ↓
+                    </div>
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-muted uppercase">
+                        Priority interventions
+                      </p>
+                      <ul className="mt-1.5 space-y-1.5">
+                        {result.pathToConfidenceZone.interventions.map((item) => (
+                          <li key={item} className="flex gap-2.5 text-[0.93rem]">
+                            <Check size={14} className="mt-1 shrink-0 text-amber" aria-hidden />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="text-amber" aria-hidden>
+                      ↓
+                    </div>
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-amber uppercase">
+                        Confidence Zone
+                      </p>
+                      <p className="mt-1 text-[0.93rem]">{result.pathToConfidenceZone.confidenceZone}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
+              {/* ONE QUESTION */}
+              <div className="mt-8 rounded-2xl border border-amber/30 bg-amber/5 p-6">
                 <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
                   One question worth taking back to your team
                 </p>
-                <p className="mt-2.5 font-display text-lg leading-snug">{result.oneQuestionBack}</p>
+                <p className="mt-2.5 font-display text-xl leading-snug">{result.oneQuestionBack}</p>
+              </div>
 
-                {result.examineNext.length ? (
-                  <div className="mt-6 border-t border-line pt-5">
-                    <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
-                      What we would examine next
-                    </p>
-                    <ul className="mt-2.5 space-y-1.5">
-                      {result.examineNext.map((item) => (
-                        <li key={item} className="flex gap-2.5 text-[0.93rem]">
-                          <Check size={14} className="mt-1 shrink-0 text-amber" aria-hidden />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-
-                {result.relevantSupport.length ? (
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {result.relevantSupport.map((s) => (
-                      <Link
-                        key={s.to}
-                        to={s.to}
-                        className="rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase transition-colors hover:border-amber hover:text-amber"
-                      >
-                        {s.label}
-                      </Link>
+              {/* WHAT WE WOULD EXAMINE NEXT + SUPPORT */}
+              {result.examineNext.length ? (
+                <div className="mt-7 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    What we would examine next
+                  </p>
+                  <ul className="mt-2.5 space-y-1.5">
+                    {result.examineNext.map((item) => (
+                      <li key={item} className="flex gap-2.5 text-[0.93rem]">
+                        <Check size={14} className="mt-1 shrink-0 text-amber" aria-hidden />
+                        {item}
+                      </li>
                     ))}
+                  </ul>
+                  {result.relevantSupport.length ? (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      <p className="w-full font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
+                        Relevant Promise Office support
+                      </p>
+                      {result.relevantSupport.map((s) => (
+                        <Link
+                          key={s.to}
+                          to={s.to}
+                          className="rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase transition-colors hover:border-amber hover:text-amber"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* EXPLORE THE DETAILED DIAGNOSTIC */}
+              <div className="mt-7 border-t border-line pt-5">
+                <button
+                  type="button"
+                  onClick={() => setDetailOpen((v) => !v)}
+                  aria-expanded={detailOpen}
+                  className="flex w-full items-center justify-between gap-2 font-mono text-[0.68rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                >
+                  Explore the detailed diagnostic
+                  <ChevronDown
+                    size={14}
+                    aria-hidden
+                    className={cn('transition-transform duration-300', detailOpen && 'rotate-180')}
+                  />
+                </button>
+                {detailOpen ? (
+                  <div className="mt-6 space-y-6">
+                    <div>
+                      <p className="font-mono text-[0.62rem] tracking-[0.14em] text-muted uppercase">
+                        Core diagnostic readings
+                      </p>
+                      <dl className="mt-3 space-y-2.5">
+                        {result.coreReadings.map((reading) => {
+                          const band = simpleReadingLabel(reading)
+                          return (
+                            <div key={reading.track} className="flex items-center justify-between gap-4">
+                              <dt className="text-[0.88rem] text-muted">{reading.label}</dt>
+                              <dd className="shrink-0 font-mono text-[0.62rem] tracking-[0.08em] text-muted uppercase">
+                                {band.text}
+                              </dd>
+                            </div>
+                          )
+                        })}
+                      </dl>
+                    </div>
+                    {[...result.crossCutting, ...result.domainSignals].length ? (
+                      <div>
+                        <p className="font-mono text-[0.62rem] tracking-[0.14em] text-muted uppercase">
+                          Cross-cutting & domain signals
+                        </p>
+                        <dl className="mt-3 space-y-2.5">
+                          {[...result.crossCutting, ...result.domainSignals].map((reading) => {
+                            const band = simpleReadingLabel(reading)
+                            return (
+                              <div key={reading.track} className="flex items-center justify-between gap-4">
+                                <dt className="text-[0.88rem] text-muted">{reading.label}</dt>
+                                <dd className="shrink-0 font-mono text-[0.62rem] tracking-[0.08em] text-muted uppercase">
+                                  {band.text}
+                                </dd>
+                              </div>
+                            )
+                          })}
+                        </dl>
+                      </div>
+                    ) : null}
+                    <p className="text-[0.85rem] text-muted">{result.diagnosticConfidence.note}</p>
                   </div>
                 ) : null}
               </div>

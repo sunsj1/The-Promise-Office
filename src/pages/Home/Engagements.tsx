@@ -21,9 +21,9 @@ export function HomeEngagements() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-dotgrid opacity-40" />
       <Container size="wide" className="relative">
         <SectionHeader
-          eyebrow="Signature engagements"
-          title="What leaders call me in to solve."
-          copy="Each offer has a defined entry problem and a concrete output. The mandate can be diagnostic, build-and-embed, or hands-on leadership."
+          eyebrow="Six core mandates"
+          title="What organisations bring The Promise Office in to solve."
+          copy="Each mandate has a defined entry problem and a concrete output. It can be scoped as an independent diagnostic, a capability build, or hands-on leadership."
         />
 
         <RevealGroup className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
@@ -68,7 +68,7 @@ export function HomeEngagements() {
 
         <div className="mt-10">
           <LinkButton to={paths.advisory} variant="outline" size="lg">
-            Explore the full consulting portfolio
+            See the full advisory practice
           </LinkButton>
         </div>
       </Container>
