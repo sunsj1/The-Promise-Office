@@ -8,7 +8,6 @@ import { lineRise, sealEase, stagger } from '@/animations/variants'
 import { BackgroundPaths } from '@/widgets/BackgroundPaths'
 import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
-import { Portrait } from '@/widgets/Portrait'
 import { Seal } from '@/widgets/Seal'
 
 const headline = ['Make the promise', 'deliverable.']
@@ -68,16 +67,6 @@ export function HomeHero() {
               and service capabilities, redesign the operating models behind delivery, and move AI
               from pilot to governed, measurable operations.
             </motion.p>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: sealEase, delay: 0.05 } },
-              }}
-              className="mt-4 max-w-xl font-mono text-[0.72rem] tracking-[0.06em] text-muted"
-            >
-              {site.founderDescriptor}
-            </motion.p>
           </div>
 
           <motion.div
@@ -87,7 +76,20 @@ export function HomeHero() {
             }}
             className="mx-auto w-[min(72%,18rem)] lg:col-span-5 lg:row-span-2 lg:mx-0 lg:w-full lg:max-w-[26rem] lg:justify-self-end"
           >
-            <Portrait />
+            <div className="relative mx-auto aspect-square w-full">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_42%,rgba(240,180,60,0.32),rgba(240,180,60,0.08)_42%,transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_42%,rgba(240,180,60,0.22),rgba(240,180,60,0.05)_48%,transparent_72%)]"
+              />
+              <div aria-hidden className="absolute inset-[9%] rounded-full border border-line" />
+              <div aria-hidden className="absolute inset-[19%] rounded-full border border-line/60" />
+              <div className="absolute inset-0 grid place-items-center">
+                <Seal animate delay={0.5} className="h-[30%] w-[30%] text-ink" />
+              </div>
+            </div>
+            <p className="mt-6 text-center font-mono text-[0.7rem] tracking-[0.2em] text-muted uppercase">
+              Advisory · GCC · AI
+            </p>
           </motion.div>
 
           <div className="lg:col-span-7">
