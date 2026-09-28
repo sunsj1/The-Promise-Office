@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navLinks, paths } from '@/routes/paths'
 import { sealEase } from '@/animations/variants'
-import { bookCallAttrs, useBookCallClick } from '@/lib/cal'
+import { bookCallAttrs } from '@/lib/cal'
 import { useTheme } from '@/lib/theme'
 import { Logo } from '@/widgets/Logo'
 import { ThemeToggle } from '@/widgets/ThemeToggle'
@@ -16,7 +16,6 @@ export function Navbar() {
   const location = useLocation()
   const { theme } = useTheme()
   const bookCall = bookCallAttrs(theme)
-  const handleBookCallClick = useBookCallClick(theme)
 
   useEffect(() => setOpen(false), [location.pathname])
 
@@ -96,7 +95,6 @@ export function Navbar() {
             </Link>
             <a
               {...bookCall}
-              onClick={handleBookCallClick}
               className="group hidden items-center gap-1.5 rounded-full bg-[#1a1915] px-4 py-2 text-[0.85rem] text-[#f6f4ef] transition-colors hover:bg-[#2c2a24] sm:inline-flex dark:bg-[#f3f1ea] dark:text-[#1a1915] dark:hover:bg-white"
             >
               Request a call
@@ -145,7 +143,6 @@ export function Navbar() {
             <div className="px-5 pb-10 sm:px-7">
               <a
                 {...bookCall}
-                onClick={handleBookCallClick}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1a1915] px-6 py-3.5 text-[#f6f4ef] dark:bg-[#f3f1ea] dark:text-[#1a1915]"
               >
                 Request a 30-minute call
