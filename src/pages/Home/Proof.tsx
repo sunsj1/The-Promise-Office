@@ -1,10 +1,8 @@
-import { site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { Reveal } from '@/widgets/Reveal'
-import { TestimonialColumns } from '@/widgets/TestimonialColumns'
 
 export function HomeProof() {
   return (
@@ -25,28 +23,6 @@ export function HomeProof() {
             </LinkButton>
           </div>
         </Reveal>
-
-        {/* Recommendations, looped vertically like the 21st.dev column pattern. */}
-        <div className="mt-20">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="justify-center">In their words</Eyebrow>
-            <h2 className="mt-5 text-3xl sm:text-4xl">
-              How The Promise Office shows up when delivery gets difficult.
-            </h2>
-            <p className="mt-5 text-[1.0625rem] text-muted">
-              Excerpts from public LinkedIn recommendations written by people who worked with
-              Rishi in prior roles.
-            </p>
-            <div className="mt-8">
-              <LinkButton to={site.linkedin} external variant="outline">
-                View the LinkedIn profile
-              </LinkButton>
-            </div>
-          </Reveal>
-          <div className="mt-12">
-            <TestimonialColumns />
-          </div>
-        </div>
       </Container>
     </section>
   )
