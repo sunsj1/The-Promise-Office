@@ -6,6 +6,23 @@
     { "source": "/perspective", "destination": "/about", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/advisory", "destination": "/index.html" },
+    { "source": "/advisory/red-to-ready-turnaround", "destination": "/index.html" },
+    { "source": "/advisory/the-delivery-office", "destination": "/index.html" },
+    { "source": "/advisory/managed-services-builder", "destination": "/index.html" },
+    { "source": "/advisory/process-to-platform", "destination": "/index.html" },
+    { "source": "/advisory/commercial-command", "destination": "/index.html" },
+    { "source": "/advisory/ai-that-works", "destination": "/index.html" },
+    { "source": "/gcc", "destination": "/index.html" },
+    { "source": "/ai", "destination": "/index.html" },
+    { "source": "/evidence", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/insights", "destination": "/index.html" },
+    { "source": "/health-check", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/booked", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/index.html" }
   ]
 }
