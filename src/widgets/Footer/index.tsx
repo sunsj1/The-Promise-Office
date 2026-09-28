@@ -1,6 +1,6 @@
 import { ArrowUpRight, Mail, MapPin, SquarePlay } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { bookCallAttrs } from '@/lib/cal'
+import { bookCallAttrs, useBookCallClick } from '@/lib/cal'
 import { useTheme } from '@/lib/theme'
 import { disclaimers, site } from '@/data/site'
 import { navLinks, paths } from '@/routes/paths'
@@ -9,6 +9,7 @@ import { Logo } from '@/widgets/Logo'
 
 export function Footer() {
   const { theme } = useTheme()
+  const handleBookCallClick = useBookCallClick(theme)
 
   return (
     <footer className="border-t border-line bg-sunk">
@@ -22,6 +23,7 @@ export function Footer() {
             </p>
             <a
               {...bookCallAttrs(theme)}
+              onClick={handleBookCallClick}
               className="group mt-7 inline-flex items-center gap-2 font-display text-xl text-ink transition-colors hover:text-amber"
             >
               Request a 30-minute call

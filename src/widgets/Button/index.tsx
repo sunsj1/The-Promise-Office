@@ -1,8 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
-import { trackEvent } from '@/lib/analytics'
-import { bookCallAttrs } from '@/lib/cal'
+import { bookCallAttrs, useBookCallClick } from '@/lib/cal'
 import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/cn'
 
@@ -111,11 +110,12 @@ export function BookCallButton({
   size = 'md',
 }: BaseProps) {
   const { theme } = useTheme()
+  const handleClick = useBookCallClick(theme)
 
   return (
     <a
       {...bookCallAttrs(theme)}
-      onClick={() => trackEvent('request_call_click')}
+      onClick={handleClick}
       className={cn(base, variants[variant], variant !== 'ghost' && sizes[size], className)}
     >
       <Inner arrow={arrow}>{children}</Inner>
