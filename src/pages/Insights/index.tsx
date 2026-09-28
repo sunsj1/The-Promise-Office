@@ -38,7 +38,7 @@ export function InsightsPage() {
         copy="No thought-leadership theatre. These are the arguments I make in steering committees, written down so you can decide whether my thinking is useful to you before we ever speak."
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-12 lg:py-16">
         <Container>
           <div className="space-y-20 lg:space-y-28">
             {insights.map((article) => (
@@ -90,7 +90,7 @@ export function InsightsPage() {
       </section>
 
       {/* The guide */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-24">
+      <section className="border-t border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <Reveal>
             <div className="relative grid items-center gap-10 overflow-hidden rounded-3xl border border-line bg-surface p-8 lg:grid-cols-12 lg:gap-14 lg:p-12">

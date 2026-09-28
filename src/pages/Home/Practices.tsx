@@ -10,7 +10,7 @@ import { SpotlightCard } from '@/widgets/SpotlightCard'
 
 export function HomePractices() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-14 lg:py-20">
       <Container size="wide">
         <SectionHeader
           eyebrow="Four problems we're brought in to solve"

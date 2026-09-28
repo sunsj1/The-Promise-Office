@@ -44,7 +44,7 @@ export function AdvisoryPage() {
       />
 
       {/* Four problems we're brought in to solve */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <Eyebrow>The four problems we're brought in to solve</Eyebrow>
           <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -81,7 +81,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Health Check offer */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
@@ -128,7 +128,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Six core mandates, tagged by practice */}
-      <section id="managed-services" className="py-20 lg:py-28">
+      <section id="managed-services" className="py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Core mandates"
@@ -202,7 +202,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Capabilities behind the outcome */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-28">
+      <section className="border-t border-line bg-sunk py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Capabilities behind the outcome"
@@ -269,7 +269,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* AI enablement formats */}
-      <section className="border-b border-line py-20 lg:py-24">
+      <section className="border-b border-line py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="AI enablement formats"
@@ -307,7 +307,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Adjacent mandates */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Adjacent mandates"
@@ -332,7 +332,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Ways to engage + FAQ */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-28">
+      <section className="border-t border-line bg-sunk py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Ways to engage"

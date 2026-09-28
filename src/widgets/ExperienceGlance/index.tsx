@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 
 export function ExperienceGlance() {
   return (
-    <section className="border-y border-line bg-sunk py-16 lg:py-20">
+    <section className="border-y border-line bg-sunk py-12 lg:py-14">
       <Container size="wide">
         <Eyebrow className="justify-center sm:justify-start">Experience at a glance</Eyebrow>
         <RevealGroup className="mt-8 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">

@@ -7,7 +7,7 @@ import { Reveal } from '@/widgets/Reveal'
 
 export function HomeGccAiSpotlight() {
   return (
-    <section className="relative isolate overflow-hidden bg-night py-20 text-cream lg:py-28">
+    <section className="relative isolate overflow-hidden bg-night py-14 text-cream lg:py-20">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"

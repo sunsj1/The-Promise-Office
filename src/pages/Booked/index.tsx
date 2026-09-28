@@ -49,7 +49,7 @@ export function BookedPage() {
         noindex
       />
 
-      <section className="grid min-h-[80vh] place-items-center py-32">
+      <section className="grid min-h-[80vh] place-items-center py-24">
         <Container>
           <div className="max-w-2xl">
             <Seal className="h-16 w-16" animate />

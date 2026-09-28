@@ -20,7 +20,7 @@ export function HomeHealthCheckTeaser() {
   const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1])
 
   return (
-    <section className="border-t border-line py-20 lg:py-28">
+    <section className="border-t border-line py-14 lg:py-20">
       <Container size="wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           <Reveal className="lg:col-span-5">

@@ -17,7 +17,7 @@ export function HomeHero() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-14 lg:pt-40 lg:pb-20">
+    <section className="relative overflow-hidden pt-24 pb-10 lg:pt-40 lg:pb-14">
       <BackgroundPaths className="pointer-events-none absolute inset-0 -z-10 opacity-80 dark:opacity-50" />
       <div
         aria-hidden

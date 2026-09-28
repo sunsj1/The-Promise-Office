@@ -17,7 +17,7 @@ import { cn } from '@/lib/cn'
 */
 export function HomeEngagements() {
   return (
-    <section className="relative border-t border-line py-20 lg:py-28">
+    <section className="relative border-t border-line py-14 lg:py-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-dotgrid opacity-40" />
       <Container size="wide" className="relative">
         <SectionHeader

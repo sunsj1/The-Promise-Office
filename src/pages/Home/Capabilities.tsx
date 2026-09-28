@@ -9,7 +9,7 @@ import { SectionHeader } from '@/widgets/SectionHeader'
 
 export function HomeCapabilities() {
   return (
-    <section className="border-y border-line bg-sunk py-20 lg:py-28">
+    <section className="border-y border-line bg-sunk py-14 lg:py-20">
       <Container size="wide">
         <SectionHeader
           eyebrow="Capabilities behind the outcome"

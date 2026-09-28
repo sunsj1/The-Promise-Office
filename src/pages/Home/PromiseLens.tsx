@@ -18,7 +18,7 @@ const questions = [
  */
 export function HomePromiseLens() {
   return (
-    <section className="py-16 lg:py-20">
+    <section className="py-12 lg:py-14">
       <Container size="wide">
         <Reveal className="max-w-3xl">
           <Eyebrow>How we think</Eyebrow>

@@ -9,7 +9,7 @@ import { Seal } from '@/widgets/Seal'
 */
 export function HomeThesis() {
   return (
-    <section className="relative isolate overflow-hidden bg-night py-24 text-cream lg:py-32">
+    <section className="relative isolate overflow-hidden bg-night py-16 text-cream lg:py-24">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"

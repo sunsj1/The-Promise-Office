@@ -6,7 +6,7 @@ import { Reveal } from '@/widgets/Reveal'
 
 export function HomeProof() {
   return (
-    <section className="border-t border-line bg-sunk py-20 lg:py-28">
+    <section className="border-t border-line bg-sunk py-14 lg:py-20">
       <Container size="wide">
         <Reveal className="max-w-2xl">
           <Eyebrow>Grounded in practice</Eyebrow>

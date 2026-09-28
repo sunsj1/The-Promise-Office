@@ -15,7 +15,7 @@ import { SpotlightCard } from '@/widgets/SpotlightCard'
 */
 export function HomePersonas() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-14 lg:py-20">
       <Container size="wide">
         <SectionHeader
           eyebrow="Who I work with"

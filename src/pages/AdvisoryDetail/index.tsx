@@ -41,7 +41,7 @@ export function AdvisoryDetailPage() {
         copy={engagement.lead}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7">

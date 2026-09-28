@@ -23,7 +23,7 @@ export function PageHeader({
   children?: ReactNode
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line pt-32 pb-16 lg:pt-40 lg:pb-20">
+    <section className="relative overflow-hidden border-b border-line pt-24 pb-12 lg:pt-40 lg:pb-14">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"

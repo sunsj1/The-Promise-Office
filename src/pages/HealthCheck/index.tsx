@@ -25,7 +25,7 @@ export function HealthCheckPage() {
         copy="Roughly 8–15 questions, adjusted as you answer — fewer if the pattern is clear early, more where it isn't. The result names a primary constraint and a strength to preserve, not a single score. Nothing is stored or submitted by this site; your answers stay in this browser tab."
       />
 
-      <section className="py-14 lg:py-20">
+      <section className="py-10 lg:py-14">
         <Container size="wide">
           <Reveal>
             <ErrorBoundary titleAs="h2">

@@ -49,7 +49,7 @@ export function ContactPage() {
         copy="Pick a time that works. We will use it to understand the decision in front of you, whether I can help, and what a useful first step looks like."
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-12 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
@@ -57,7 +57,7 @@ export function ContactPage() {
                 <div className="min-h-[45rem] overflow-hidden rounded-2xl border border-line bg-surface">
                   <ErrorBoundary
                     titleAs="h2"
-                    className="grid min-h-[45rem] place-items-center py-16"
+                    className="grid min-h-[45rem] place-items-center py-12"
                   >
                     <Cal
                       namespace="contact"
