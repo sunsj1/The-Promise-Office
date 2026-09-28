@@ -253,8 +253,12 @@ export const proofPoints = [
 ] as const
 
 export const careerStats = [
-  { value: 21, suffix: '+', label: 'Years in delivery and consulting' },
-  { value: 550, prefix: '~', label: 'FTE managed services program governed' },
-  { value: 20, prefix: '~US$', suffix: 'M', label: 'Transformation recovered and restarted' },
-  { value: 5, label: 'Markets delivered across' },
+  { metric: '21+ years', label: 'In technology delivery and transformation' },
+  { metric: '~US$40M', label: 'Account under delivery and commercial oversight' },
+  { metric: '~550 FTE', label: 'Managed services programme governed' },
+  { metric: '~US$20M', label: 'Troubled transformation steered back to controlled delivery' },
+  { metric: '~350 → ~75', label: 'Systems rationalised into a smaller application estate' },
+  { metric: '7 → 3', label: 'Data centres consolidated in a major transformation' },
+  { metric: '~80,000', label: 'Documents in an AI knowledge assistant delivered' },
+  { metric: '~150/day', label: 'Jobs handled by an automated intake workflow' },
 ] as const
