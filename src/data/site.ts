@@ -9,7 +9,7 @@ export const site = {
   /** Locked founder descriptor — use verbatim wherever an expanded founder line is appropriate. */
   founderDescriptor:
     'Hrishikesh (Rishi) Salunkhe · Delivery & Transformation Advisor to IT Services, GCCs & Enterprise Leaders',
-  discipline: 'Independent consulting · delivery, transformation & service performance',
+  discipline: 'Independent advisory · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hrishikesh-v-salunkhe/',
   youtube: 'https://www.youtube.com/@thepromiseoffice',
