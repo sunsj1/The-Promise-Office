@@ -52,11 +52,15 @@ export function useBookCallClick(theme: Theme) {
       void (async () => {
         try {
           const cal = await getCalApi({ namespace: site.cal.namespace })
-          cal('modal', {
+          // embedBookingConfig's return shape is only ever JSON.stringify'd elsewhere
+          // (bookCallAttrs' data-cal-config), so it was never checked against Cal's
+          // actual config type until this call site - cast defensively rather than
+          // risk a tsc failure on a field Cal's types don't recognize.
+          const modalArgs = {
             calLink: site.cal.link,
             config: embedBookingConfig(theme),
-            namespace: site.cal.namespace,
-          })
+          }
+          ;(cal as unknown as (methodName: string, arg: unknown) => void)('modal', modalArgs)
         } catch {
           window.open(site.cal.url, '_blank', 'noreferrer')
         }
