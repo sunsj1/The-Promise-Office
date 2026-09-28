@@ -63,9 +63,10 @@ export function HomeHero() {
               }}
               className="mt-6 max-w-xl text-[1.05rem] text-muted sm:text-lg"
             >
-              The Promise Office helps leaders recover critical programs, build high-performing GCC
-              and service capabilities, redesign the operating models behind delivery, and move AI
-              from pilot to governed, measurable operations.
+              The programme that must recover. The GCC or service model that must scale. The AI
+              investment that must prove its worth. The Promise Office brings the independent
+              judgment, operating design and hands-on leadership to turn those commitments into
+              measurable performance.
             </motion.p>
           </div>
 
