@@ -50,7 +50,7 @@ export function EvidencePage() {
                   aria-selected={isActive}
                   onClick={() => setFilter(option.id)}
                   className={cn(
-                    'relative rounded-full border px-4 py-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase transition-colors',
+                    'relative rounded-full border px-4 py-2 font-mono text-[0.75rem] tracking-[0.12em] uppercase transition-colors',
                     isActive
                       ? 'border-amber text-ink'
                       : 'border-line text-muted hover:border-amber hover:text-ink',
@@ -83,17 +83,17 @@ export function EvidencePage() {
                 >
                   <SpotlightCard as="article" className="h-full p-7 lg:p-8">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                      <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+                      <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                         {study.index} / {study.discipline}
                       </p>
                       {study.metric ? (
-                        <p className="rounded-full bg-amber/12 px-2.5 py-0.5 font-mono text-[0.62rem] tracking-[0.1em] text-amber">
+                        <p className="rounded-full bg-amber/12 px-2.5 py-0.5 font-mono text-[0.75rem] tracking-[0.1em] text-amber">
                           {study.metric}
                         </p>
                       ) : null}
                     </div>
 
-                    <p className="mt-4 font-mono text-[0.7rem] tracking-[0.1em] text-amber">
+                    <p className="mt-4 font-mono text-[0.75rem] tracking-[0.1em] text-amber">
                       {study.context}
                     </p>
                     <h2 className="mt-2 font-display text-2xl">{study.title}</h2>
@@ -102,7 +102,7 @@ export function EvidencePage() {
                     <dl className="mt-6 space-y-4 border-t border-line pt-6">
                       {study.facts.map((fact) => (
                         <div key={fact.label}>
-                          <dt className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                          <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                             {fact.label}
                           </dt>
                           <dd className="mt-1 text-[0.93rem]">{fact.value}</dd>
@@ -115,7 +115,7 @@ export function EvidencePage() {
             </AnimatePresence>
           </RevealGroup>
 
-          <p className="mt-12 max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
+          <p className="mt-12 max-w-3xl font-mono text-[0.75rem] leading-relaxed text-muted">
             {disclaimers.figures}
           </p>
         </Container>

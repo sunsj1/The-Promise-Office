@@ -10,14 +10,14 @@ export function ProblemChooser() {
         <li key={problem.id}>
           <SpotlightCard as="article" className="h-full">
             <Link to={problem.href} className="flex h-full flex-col p-6">
-              <span className="font-mono text-[0.68rem] tracking-[0.16em] text-muted">
+              <span className="font-mono text-[0.75rem] tracking-[0.16em] text-muted">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className="mt-4 font-display text-xl leading-snug sm:text-[1.35rem]">
                 {problem.label}
               </h3>
               <p className="mt-2 flex-1 text-[0.95rem] text-muted">{problem.hint}</p>
-              <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.68rem] tracking-[0.14em] text-amber uppercase">
+              <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.14em] text-amber uppercase">
                 Start here
                 <ArrowUpRight
                   size={13}

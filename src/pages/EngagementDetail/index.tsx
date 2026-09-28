@@ -54,7 +54,7 @@ export function EngagementDetailPage() {
                 <ol className="mt-6 space-y-px overflow-hidden rounded-2xl border border-line bg-line">
                   {engagement.whatIDo.map((step, index) => (
                     <li key={step} className="flex gap-5 bg-surface px-6 py-5">
-                      <span className="font-mono text-[0.7rem] text-amber">
+                      <span className="font-mono text-[0.75rem] text-amber">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                       <span className="text-[1.0rem]">{step}</span>
@@ -73,13 +73,13 @@ export function EngagementDetailPage() {
                   </p>
                   <div className="mt-7 flex items-start gap-3 border-t border-line pt-6">
                     <Check size={16} className="mt-1 shrink-0 text-amber" aria-hidden />
-                    <p className="font-mono text-[0.72rem] leading-relaxed text-muted">
+                    <p className="font-mono text-[0.75rem] leading-relaxed text-muted">
                       <span className="text-ink">Basis:</span> {engagement.basis}
                     </p>
                   </div>
                   <Link
                     to={paths.evidence}
-                    className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.7rem] tracking-[0.12em] text-amber uppercase hover:underline"
+                    className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.12em] text-amber uppercase hover:underline"
                   >
                     Relevant career example
                     <ArrowRight size={13} aria-hidden />
@@ -91,7 +91,7 @@ export function EngagementDetailPage() {
 
           <Reveal className="mt-20 flex flex-col justify-between gap-6 border-t border-line pt-9 sm:flex-row sm:items-end">
             <div>
-              <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+              <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                 Next mandate
               </p>
               <Link
@@ -103,7 +103,7 @@ export function EngagementDetailPage() {
             </div>
             <Link
               to={paths.engagements}
-              className="font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+              className="font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
             >
               ← All engagements
             </Link>

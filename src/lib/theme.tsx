@@ -24,7 +24,8 @@ function readInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'dark'
   const stored = window.localStorage.getItem(STORAGE_KEY)
   if (stored === 'light' || stored === 'dark') return stored
-  return 'dark'
+  const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)').matches
+  return prefersLight ? 'light' : 'dark'
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -34,7 +35,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.dataset.theme = theme
   }, [theme])
 
-  // Persist only after an explicit choice; first visits stay dark.
+  // Persist only after an explicit choice; first visits follow the OS preference.
   const setTheme = useCallback((next: Theme) => {
     window.localStorage.setItem(STORAGE_KEY, next)
     setThemeState(next)

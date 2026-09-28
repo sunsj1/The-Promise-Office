@@ -22,7 +22,7 @@ export function HomeProof() {
         <RevealGroup className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
           {proofPoints.map((point) => (
             <motion.article key={point.discipline} variants={fadeUp} className="bg-surface p-7">
-              <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+              <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                 {point.discipline}
               </p>
               <p className="mt-4 font-display text-2xl text-amber">{point.metric}</p>
@@ -32,7 +32,7 @@ export function HomeProof() {
         </RevealGroup>
 
         <Reveal className="mt-7">
-          <p className="max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
+          <p className="max-w-3xl font-mono text-[0.75rem] leading-relaxed text-muted">
             {disclaimers.evidence}
           </p>
           <div className="mt-7">

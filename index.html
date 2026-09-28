@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Delivery, transformation and managed services advisory for IT services firms, GCCs and enterprise leaders. 21+ years connecting decisions, numbers, teams and operating rhythm."
+      content="Delivery, transformation and managed services advisory for IT services firms, GCCs (Global Capability Centres) and enterprise leaders. 21+ years connecting decisions, numbers, teams and operating rhythm."
     />
     <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#12110e" media="(prefers-color-scheme: dark)" />
@@ -26,7 +26,13 @@
       ;(function () {
         try {
           var stored = localStorage.getItem('tpo-theme')
-          document.documentElement.dataset.theme = stored === 'light' ? 'light' : 'dark'
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.dataset.theme = stored
+          } else {
+            var prefersLight =
+              window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+            document.documentElement.dataset.theme = prefersLight ? 'light' : 'dark'
+          }
         } catch (error) {
           document.documentElement.dataset.theme = 'dark'
         }

@@ -36,7 +36,7 @@ export function HomeCredibility() {
         </Container>
         <Marquee items={organisations} className="mt-8" />
         <Container size="wide">
-          <p className="mt-7 max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
+          <p className="mt-7 max-w-3xl font-mono text-[0.75rem] leading-relaxed text-muted">
             {disclaimers.marks}
           </p>
         </Container>

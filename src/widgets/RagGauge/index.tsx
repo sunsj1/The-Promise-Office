@@ -48,11 +48,11 @@ export function RagGauge({
           transition={{ duration: 0.7, ease: sealEase }}
         />
       </svg>
-      <div className="-mt-4 flex w-full max-w-[260px] justify-between font-mono text-[0.6rem] tracking-[0.12em] text-muted uppercase">
+      <div className="-mt-4 flex w-full max-w-[260px] justify-between font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase">
         <span>Steady</span>
         <span>At risk</span>
       </div>
-      <p className="mt-3 text-center font-mono text-[0.72rem] tracking-[0.08em] text-muted">
+      <p className="mt-3 text-center font-mono text-[0.75rem] tracking-[0.08em] text-muted">
         {label}
       </p>
     </div>

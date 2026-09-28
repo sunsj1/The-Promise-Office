@@ -44,10 +44,10 @@ export function InsightsPage() {
               <Reveal key={article.slug}>
                 <article className="border-t border-line pt-10">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+                    <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                       {article.index}
                     </p>
-                    <p className="rounded-full bg-amber/12 px-2.5 py-0.5 font-mono text-[0.62rem] tracking-[0.1em] text-amber uppercase">
+                    <p className="rounded-full bg-amber/12 px-2.5 py-0.5 font-mono text-[0.75rem] tracking-[0.1em] text-amber uppercase">
                       {article.category}
                     </p>
                   </div>
@@ -76,7 +76,7 @@ export function InsightsPage() {
 
                   <Link
                     to={article.cta.to}
-                    className="mt-10 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.72rem] tracking-[0.12em] text-amber uppercase transition-colors hover:border-amber"
+                    className="mt-10 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.75rem] tracking-[0.12em] text-amber uppercase transition-colors hover:border-amber"
                   >
                     {article.cta.label}
                     <ArrowRight size={14} aria-hidden />
@@ -98,7 +98,7 @@ export function InsightsPage() {
                 aria-hidden
               />
               <div className="relative lg:col-span-7">
-                <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
+                <p className="inline-flex items-center gap-2.5 font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
                   <BookOpen size={15} aria-hidden />
                   {guide.kicker}
                 </p>
@@ -109,7 +109,7 @@ export function InsightsPage() {
                 <div className="rounded-2xl border border-line bg-sunk p-7">
                   <Eyebrow>The promise</Eyebrow>
                   <p className="mt-4 font-display text-2xl leading-snug">{guide.strap}</p>
-                  <p className="mt-6 font-mono text-[0.68rem] leading-relaxed text-muted">
+                  <p className="mt-6 font-mono text-[0.75rem] leading-relaxed text-muted">
                     Written for people starting their careers and professionals who want to
                     understand AI, LLMs and agents without writing code.
                   </p>

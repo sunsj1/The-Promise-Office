@@ -60,7 +60,7 @@ export function ContactPage() {
                     style={{ width: '100%', height: '45rem', overflow: 'auto' }}
                   />
                 </div>
-                <p className="mt-4 font-mono text-[0.68rem] leading-relaxed text-muted">
+                <p className="mt-4 font-mono text-[0.75rem] leading-relaxed text-muted">
                   Booking is handled by Cal.com. If the calendar does not load,{' '}
                   <a href={site.cal.url} target="_blank" rel="noreferrer" className="text-amber hover:underline">
                     open it in a new tab
@@ -141,13 +141,13 @@ export function ContactPage() {
                 </p>
                 <Link
                   to={paths.healthCheck}
-                  className="mt-5 inline-block font-mono text-[0.7rem] tracking-[0.12em] text-amber uppercase hover:underline"
+                  className="mt-5 inline-block font-mono text-[0.75rem] tracking-[0.12em] text-amber uppercase hover:underline"
                 >
                   Start the health check →
                 </Link>
               </Reveal>
 
-              <p className="font-mono text-[0.68rem] leading-relaxed text-muted">
+              <p className="font-mono text-[0.75rem] leading-relaxed text-muted">
                 {disclaimers.practice}
               </p>
             </aside>

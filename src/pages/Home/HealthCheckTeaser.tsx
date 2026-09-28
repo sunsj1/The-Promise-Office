@@ -31,7 +31,7 @@ export function HomeHealthCheckTeaser() {
             <dl className="mt-8 space-y-4 border-t border-line pt-7">
               {healthCheckOffer.facts.map((fact) => (
                 <div key={fact.label} className="grid gap-1 sm:grid-cols-[7rem_1fr] sm:gap-4">
-                  <dt className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+                  <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                     {fact.label}
                   </dt>
                   <dd className="text-[0.95rem]">{fact.value}</dd>
@@ -54,13 +54,13 @@ export function HomeHealthCheckTeaser() {
               style={reduceMotion ? undefined : { rotateX, scale }}
               className="rounded-3xl border border-line bg-surface p-8 shadow-[0_40px_90px_-50px_rgba(22,19,43,0.5)] lg:p-10"
             >
-              <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
+              <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
                 You receive
               </p>
               <ul className="mt-6 space-y-5">
                 {healthCheckOffer.receive.map((item, index) => (
                   <li key={item} className="flex gap-4 border-b border-line pb-5 last:border-0 last:pb-0">
-                    <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-line font-mono text-[0.65rem] text-amber">
+                    <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-line font-mono text-[0.75rem] text-amber">
                       0{index + 1}
                     </span>
                     <span className="text-[1.0625rem]">{item}</span>

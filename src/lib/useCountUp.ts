@@ -4,12 +4,16 @@ import { useInView, useReducedMotion } from 'framer-motion'
 /**
  * Counts from 0 to `target` once the element scrolls into view.
  * Returns a ref to attach and the current display value.
+ *
+ * The initial render shows `target` directly (not 0) so crawlers,
+ * link-preview bots and anyone reading before JS/animation runs see the
+ * real figure; the count-up is a purely visual flourish once in view.
  */
 export function useCountUp(target: number, duration = 1400) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
   const reduceMotion = useReducedMotion()
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(target)
 
   useEffect(() => {
     if (!inView) return
@@ -17,6 +21,8 @@ export function useCountUp(target: number, duration = 1400) {
       setValue(target)
       return
     }
+
+    setValue(0)
 
     let frame = 0
     const start = performance.now()

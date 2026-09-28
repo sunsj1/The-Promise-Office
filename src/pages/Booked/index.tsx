@@ -66,7 +66,7 @@ export function BookedPage() {
               <div className="flex gap-3">
                 <CalendarCheck size={16} className="mt-1 shrink-0 text-amber" aria-hidden />
                 <div>
-                  <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                  <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                     Conversation
                   </dt>
                   <dd className="mt-1 text-[0.97rem]">{title}</dd>
@@ -76,7 +76,7 @@ export function BookedPage() {
                 <div className="flex gap-3">
                   <Clock size={16} className="mt-1 shrink-0 text-amber" aria-hidden />
                   <div>
-                    <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                       When
                     </dt>
                     <dd className="mt-1 text-[0.97rem]">{when}</dd>
@@ -86,7 +86,7 @@ export function BookedPage() {
               <div className="flex gap-3">
                 <Mail size={16} className="mt-1 shrink-0 text-amber" aria-hidden />
                 <div>
-                  <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                  <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                     With
                   </dt>
                   <dd className="mt-1 text-[0.97rem]">
@@ -102,7 +102,7 @@ export function BookedPage() {
                 <div className="flex gap-3">
                   <Video size={16} className="mt-1 shrink-0 text-amber" aria-hidden />
                   <div>
-                    <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
                       Join
                     </dt>
                     <dd className="mt-1">
