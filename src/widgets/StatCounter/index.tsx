@@ -21,7 +21,7 @@ export function StatCounter({ value, prefix = '', suffix = '', label, className 
         </span>
         <span className="text-amber">{suffix}</span>
       </p>
-      <p className="mt-3 max-w-[16rem] font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+      <p className="mt-3 max-w-[16rem] font-mono text-[0.7rem] tracking-[0.14em] text-muted uppercase">
         {label}
       </p>
     </div>

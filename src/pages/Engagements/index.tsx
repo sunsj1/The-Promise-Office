@@ -48,14 +48,14 @@ export function EngagementsPage() {
             {engagementAreas.map((area) => (
               <motion.div key={area.index} variants={fadeUp}>
                 <SpotlightCard className="h-full p-7 lg:p-8">
-                  <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+                  <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
                     {area.index} / {area.label}
                   </p>
                   <h2 className="mt-4 font-display text-2xl">{area.question}</h2>
                   <p className="mt-4 text-[0.95rem] text-muted">{area.copy}</p>
                   <a
                     href={`#${area.area}`}
-                    className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.12em] uppercase transition-colors hover:text-amber"
+                    className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.7rem] tracking-[0.12em] uppercase transition-colors hover:text-amber"
                   >
                     {area.cta}
                     <ArrowRight size={13} aria-hidden />
@@ -87,7 +87,7 @@ export function EngagementsPage() {
 
             <Reveal className="lg:col-span-7" delay={0.1}>
               <div className="rounded-2xl border border-line bg-surface p-7 lg:p-9">
-                <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
+                <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
                   You receive
                 </p>
                 <ul className="mt-5 space-y-3">
@@ -101,7 +101,7 @@ export function EngagementsPage() {
                 <dl className="mt-8 grid gap-5 border-t border-line pt-7 sm:grid-cols-2">
                   {healthCheckOffer.facts.map((fact) => (
                     <div key={fact.label}>
-                      <dt className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+                      <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
                         {fact.label}
                       </dt>
                       <dd className="mt-1.5 text-[0.93rem]">{fact.value}</dd>
@@ -138,11 +138,11 @@ export function EngagementsPage() {
                         >
                           <div className="lg:col-span-4">
                             <div className="flex flex-wrap items-center gap-3">
-                              <span className="font-mono text-[0.75rem] tracking-[0.14em] text-muted">
+                              <span className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">
                                 {engagement.index} / Core mandate
                               </span>
                               {engagement.featured ? (
-                                <span className="rounded-full border border-amber/40 px-2 py-0.5 font-mono text-[0.75rem] tracking-[0.14em] text-amber uppercase">
+                                <span className="rounded-full border border-amber/40 px-2 py-0.5 font-mono text-[0.58rem] tracking-[0.14em] text-amber uppercase">
                                   Featured
                                 </span>
                               ) : null}
@@ -150,7 +150,7 @@ export function EngagementsPage() {
                             <h3 className="mt-4 font-display text-2xl lg:text-[1.75rem]">
                               {engagement.title}
                             </h3>
-                            <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
+                            <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[0.7rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
                               Read the mandate
                               <ArrowRight
                                 size={13}
@@ -162,7 +162,7 @@ export function EngagementsPage() {
                           <div className="lg:col-span-8">
                             <p className="text-[1.0625rem]">{engagement.lead}</p>
                             <div className="mt-6 border-t border-line pt-5">
-                              <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+                              <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
                                 When to call
                               </p>
                               <p className="mt-2 text-[0.95rem] text-muted">
@@ -201,7 +201,7 @@ export function EngagementsPage() {
                   {format.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase"
+                      className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase"
                     >
                       {tag}
                     </li>
@@ -229,12 +229,12 @@ export function EngagementsPage() {
           <RevealGroup className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {adjacentMandates.map((mandate) => (
               <motion.article key={mandate.title} variants={fadeUp} className="bg-surface p-7">
-                <p className="font-mono text-[0.75rem] tracking-[0.14em] text-amber uppercase">
+                <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
                   {mandate.kicker}
                 </p>
                 <h3 className="mt-3 font-display text-xl">{mandate.title}</h3>
                 <p className="mt-3 text-[0.93rem] text-muted">{mandate.copy}</p>
-                <p className="mt-4 border-t border-line pt-4 font-mono text-[0.75rem] leading-relaxed text-muted">
+                <p className="mt-4 border-t border-line pt-4 font-mono text-[0.68rem] leading-relaxed text-muted">
                   {mandate.basis}
                 </p>
               </motion.article>
@@ -258,11 +258,11 @@ export function EngagementsPage() {
                 variants={fadeUp}
                 className="rounded-2xl border border-line bg-surface p-7"
               >
-                <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted">
+                <p className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">
                   {shape.index}
                 </p>
                 <h3 className="mt-4 font-display text-xl">{shape.title}</h3>
-                <p className="mt-1.5 font-mono text-[0.75rem] tracking-[0.1em] text-amber uppercase">
+                <p className="mt-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-amber uppercase">
                   {shape.meta}
                 </p>
                 <ul className="mt-5 space-y-2">

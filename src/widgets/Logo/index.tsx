@@ -17,7 +17,7 @@ export function Logo({ className, markOnly = false }: LogoProps) {
           <span className="font-display text-[1.05rem] font-semibold tracking-tight">
             The Promise Office
           </span>
-          <span className="mt-0.5 font-mono text-[0.75rem] tracking-[0.18em] text-muted uppercase">
+          <span className="mt-0.5 font-mono text-[0.58rem] tracking-[0.18em] text-muted uppercase">
             {site.tagline}
           </span>
         </span>

@@ -34,7 +34,7 @@ export function PageHeader({
       <Container size="wide">
         <Reveal>
           <nav aria-label="Breadcrumb">
-            <ol className="flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+            <ol className="flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
               <li>
                 <Link to={paths.home} className="transition-colors hover:text-amber">
                   Home

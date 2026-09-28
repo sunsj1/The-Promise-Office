@@ -1,19 +1,9 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/engagements", "destination": "/index.html" },
-    { "source": "/engagements/red-to-ready-turnaround", "destination": "/index.html" },
-    { "source": "/engagements/the-delivery-office", "destination": "/index.html" },
-    { "source": "/engagements/managed-services-builder", "destination": "/index.html" },
-    { "source": "/engagements/process-to-platform", "destination": "/index.html" },
-    { "source": "/engagements/commercial-command", "destination": "/index.html" },
-    { "source": "/engagements/ai-that-works", "destination": "/index.html" },
-    { "source": "/evidence", "destination": "/index.html" },
-    { "source": "/perspective", "destination": "/index.html" },
-    { "source": "/insights", "destination": "/index.html" },
-    { "source": "/health-check", "destination": "/index.html" },
-    { "source": "/contact", "destination": "/index.html" },
-    { "source": "/booked", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {

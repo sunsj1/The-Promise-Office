@@ -30,7 +30,7 @@ function Column({
             <blockquote className="mt-4 text-[1.02rem] leading-relaxed">“{item.text}”</blockquote>
             <figcaption className="mt-5 border-t border-line pt-4">
               <p className="font-display text-base font-semibold">{item.name}</p>
-              <p className="mt-1 font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase">
+              <p className="mt-1 font-mono text-[0.68rem] tracking-[0.12em] text-muted uppercase">
                 {item.relation} · {item.year}
               </p>
             </figcaption>

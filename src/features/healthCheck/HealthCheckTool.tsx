@@ -133,7 +133,7 @@ export function HealthCheckTool() {
             />
           ))}
         </ol>
-        <p className="shrink-0 font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase">
+        <p className="shrink-0 font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase">
           {finished ? 'Result' : `${index + 1} / ${questions.length}`}
         </p>
       </div>
@@ -163,7 +163,7 @@ export function HealthCheckTool() {
                 exit={{ opacity: 0, x: -18 }}
                 transition={{ duration: 0.3, ease: sealEase }}
               >
-                <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
+                <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
                   {questions[index].category}
                 </p>
                 <h3 className="mt-3 text-2xl sm:text-[1.75rem]">{questions[index].text}</h3>
@@ -190,7 +190,7 @@ export function HealthCheckTool() {
                   <button
                     type="button"
                     onClick={() => setIndex(index - 1)}
-                    className="mt-6 inline-flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                    className="mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
                   >
                     <ArrowLeft size={13} aria-hidden /> Previous
                   </button>
@@ -203,7 +203,7 @@ export function HealthCheckTool() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, ease: sealEase }}
               >
-                <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
+                <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
                   Your reading
                 </p>
                 <h3 className="mt-3 text-2xl sm:text-[1.9rem]">{verdicts[result.verdict].label}</h3>
@@ -214,7 +214,7 @@ export function HealthCheckTool() {
                 <ul className="mt-7 space-y-3">
                   {result.top.map((entry, position) => (
                     <li key={entry.category} className="flex gap-4 rounded-xl bg-sunk px-5 py-4">
-                      <span className="pt-0.5 font-mono text-[0.75rem] text-amber">
+                      <span className="pt-0.5 font-mono text-[0.72rem] text-amber">
                         0{position + 1}
                       </span>
                       <div>
@@ -228,7 +228,7 @@ export function HealthCheckTool() {
                 </ul>
 
                 <div className="mt-8 rounded-2xl border border-line p-6">
-                  <p className="font-mono text-[0.75rem] tracking-[0.16em] text-muted uppercase">
+                  <p className="font-mono text-[0.7rem] tracking-[0.16em] text-muted uppercase">
                     Suggested starting point · {result.recommendation.need}
                   </p>
                   <h4 className="mt-3 font-display text-xl">{result.recommendation.name}</h4>
@@ -243,7 +243,7 @@ export function HealthCheckTool() {
                   </ul>
                   <Link
                     to={paths.engagementDetail(result.recommendation.slug)}
-                    className="mt-5 inline-flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.12em] text-amber uppercase hover:underline"
+                    className="mt-5 inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[0.12em] text-amber uppercase hover:underline"
                   >
                     Read the mandate →
                   </Link>

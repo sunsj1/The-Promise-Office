@@ -31,12 +31,12 @@ export function HomePersonas() {
                   to={paths.engagementDetail(persona.entry)}
                   className="flex h-full flex-col p-7 lg:p-8"
                 >
-                  <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
+                  <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
                     {persona.who}
                   </p>
                   <h3 className="mt-3 font-display text-2xl">{persona.audience}</h3>
                   <p className="mt-4 flex-1 text-[0.97rem] text-muted">{persona.pain}</p>
-                  <span className="mt-7 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
+                  <span className="mt-7 inline-flex items-center gap-1.5 font-mono text-[0.7rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
                     This sounds like us
                     <ArrowUpRight
                       size={13}

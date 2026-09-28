@@ -43,7 +43,7 @@ export function PerspectivePage() {
           {perspectiveHighlights.map((item) => (
             <div key={item.label}>
               <p className="font-display text-xl text-amber">{item.value}</p>
-              <p className="mt-1.5 font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase">
+              <p className="mt-1.5 font-mono text-[0.66rem] tracking-[0.12em] text-muted uppercase">
                 {item.label}
               </p>
             </div>
@@ -63,9 +63,9 @@ export function PerspectivePage() {
             </Reveal>
             <Reveal className="space-y-6 text-[1.0625rem] leading-relaxed lg:col-span-7" delay={0.08}>
               <p>
-                Over 21 years, I have worked in process consulting, PMO (Project/Program Management
-                Office) and PGO (Project/Program Governance Office) leadership, service management,
-                managed services, large transformations, customer delivery and commercial roles. That combination matters because the root cause of a delivery problem is often
+                Over 21 years, I have worked in process consulting, PMO and PGO leadership, service
+                management, managed services, large transformations, customer delivery and commercial
+                roles. That combination matters because the root cause of a delivery problem is often
                 outside the project plan: a process handoff, a service promise, a resource assumption
                 or a decision nobody owns.
               </p>
@@ -81,7 +81,7 @@ export function PerspectivePage() {
                 build a managed services practice, recovered a troubled transformation and delivered
                 AI-enabled and automation products in production.
               </p>
-              <p className="font-mono text-[0.75rem] leading-relaxed text-muted">
+              <p className="font-mono text-[0.72rem] leading-relaxed text-muted">
                 {disclaimers.practice}
               </p>
             </Reveal>
@@ -106,7 +106,7 @@ export function PerspectivePage() {
                     aria-hidden
                     className="absolute top-2 -left-[2.3rem] grid h-4 w-4 place-items-center rounded-full border-2 border-amber bg-paper sm:-left-[2.8rem]"
                   />
-                  <p className="font-mono text-[0.75rem] tracking-[0.14em] text-amber uppercase">
+                  <p className="font-mono text-[0.7rem] tracking-[0.14em] text-amber uppercase">
                     {role.period}
                   </p>
                   <h3 className="mt-3 font-display text-2xl">{role.company}</h3>
@@ -126,7 +126,7 @@ export function PerspectivePage() {
           <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {principles.map((principle) => (
               <motion.article key={principle.index} variants={fadeUp} className="bg-surface p-7">
-                <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted">
+                <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted">
                   {principle.index} / {principle.title}
                 </p>
                 <h3 className="mt-4 font-display text-xl">{principle.heading}</h3>
@@ -152,9 +152,9 @@ export function PerspectivePage() {
                 variants={fadeUp}
                 className="rounded-2xl border border-line bg-surface p-7"
               >
-                <p className="font-mono text-[0.75rem] tracking-[0.14em] text-muted">{shape.index}</p>
+                <p className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">{shape.index}</p>
                 <h3 className="mt-4 font-display text-xl">{shape.title}</h3>
-                <p className="mt-1.5 font-mono text-[0.75rem] tracking-[0.1em] text-amber uppercase">
+                <p className="mt-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-amber uppercase">
                   {shape.meta}
                 </p>
                 <ul className="mt-5 space-y-2">
@@ -180,7 +180,7 @@ export function PerspectivePage() {
           />
           <div className="mt-12 grid gap-10 lg:grid-cols-2">
             <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8">
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
                 <GraduationCap size={15} className="text-amber" aria-hidden />
                 Education and certifications
               </p>
@@ -194,7 +194,7 @@ export function PerspectivePage() {
               </ul>
             </Reveal>
             <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8" delay={0.08}>
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.75rem] tracking-[0.14em] text-muted uppercase">
+              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
                 <Layers size={15} className="text-amber" aria-hidden />
                 Domain and technology exposure
               </p>
@@ -209,7 +209,7 @@ export function PerspectivePage() {
             </Reveal>
           </div>
           <Reveal className="mt-10">
-            <p className="font-mono text-[0.75rem] text-muted">
+            <p className="font-mono text-[0.72rem] text-muted">
               Available for selected mandates, with scope, timing and delivery model agreed for each
               enquiry.
             </p>

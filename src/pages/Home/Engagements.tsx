@@ -39,11 +39,11 @@ export function HomeEngagements() {
                   className="flex h-full flex-col p-7"
                 >
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-mono text-[0.75rem] tracking-[0.14em] text-muted">
+                    <span className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">
                       {engagement.index} /
                     </span>
                     {engagement.featured ? (
-                      <span className="rounded-full border border-amber/40 px-2.5 py-0.5 font-mono text-[0.75rem] tracking-[0.14em] text-amber uppercase">
+                      <span className="rounded-full border border-amber/40 px-2.5 py-0.5 font-mono text-[0.6rem] tracking-[0.14em] text-amber uppercase">
                         Featured
                       </span>
                     ) : null}
@@ -52,7 +52,7 @@ export function HomeEngagements() {
                   <h3 className="mt-4 font-display text-xl sm:text-2xl">{engagement.title}</h3>
                   <p className="mt-3 flex-1 text-[0.95rem] text-muted">{engagement.entryProblem}</p>
 
-                  <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.75rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
+                  <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.7rem] tracking-[0.12em] uppercase transition-colors group-hover/spot:text-amber">
                     {engagement.verb}
                     <ArrowRight
                       size={13}

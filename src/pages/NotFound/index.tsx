@@ -37,7 +37,7 @@ export function NotFoundPage() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="font-mono text-[0.75rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                      className="font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
                     >
                       {link.label}
                     </Link>

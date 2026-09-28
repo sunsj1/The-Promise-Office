@@ -99,7 +99,7 @@ export function OrbitalModes() {
               </span>
               <span
                 className={cn(
-                  'mt-2.5 font-mono text-[0.75rem] tracking-[0.16em] uppercase',
+                  'mt-2.5 font-mono text-[0.66rem] tracking-[0.16em] uppercase',
                   isActive ? 'text-white' : 'text-white/50',
                 )}
               >
@@ -119,7 +119,7 @@ export function OrbitalModes() {
             className="absolute bottom-0 z-40 w-full max-w-lg text-center"
             onClick={(event) => event.stopPropagation()}
           >
-            <p className="font-mono text-[0.75rem] tracking-[0.16em] text-amber uppercase">
+            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
               {active.title}
             </p>
             <p className="mt-3 text-[1.02rem] leading-relaxed text-[#a39e93]">{active.copy}</p>

@@ -41,7 +41,7 @@ export function HomeHero() {
                 hidden: { opacity: 0, y: 12 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: sealEase } },
               }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.75rem] tracking-[0.18em] text-muted uppercase"
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] tracking-[0.18em] text-muted uppercase"
             >
               <span aria-hidden className="h-px w-8 bg-amber" />
               {site.discipline}
@@ -100,7 +100,7 @@ export function HomeHero() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.7, delay: 0.15 } },
               }}
-              className="mt-10 font-mono text-[0.75rem] tracking-[0.16em] text-muted uppercase"
+              className="mt-10 font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase"
             >
               {site.shortName} · {site.base} · 21+ years
             </motion.p>
@@ -117,7 +117,7 @@ export function HomeHero() {
             <Seal animate delay={0.4} className="h-20 w-20" />
           </div>
           <div>
-            <p className="font-mono text-[0.75rem] tracking-[0.16em] text-muted uppercase">
+            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">
               What’s already in the room?
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">

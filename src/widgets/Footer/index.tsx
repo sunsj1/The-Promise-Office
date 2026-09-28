@@ -34,7 +34,7 @@ export function Footer() {
           </div>
 
           <nav className="lg:col-span-3" aria-label="Footer">
-            <p className="font-mono text-[0.75rem] tracking-[0.16em] text-muted uppercase">Site</p>
+            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">Site</p>
             <ul className="mt-4 space-y-2.5 text-[0.95rem]">
               <li>
                 <Link to={paths.home} className="text-muted transition-colors hover:text-amber">
@@ -60,7 +60,7 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-4">
-            <p className="font-mono text-[0.75rem] tracking-[0.16em] text-muted uppercase">
+            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">
               Direct
             </p>
             <ul className="mt-4 space-y-3 text-[0.95rem]">
@@ -97,10 +97,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-line pt-7">
-          <p className="max-w-4xl font-mono text-[0.75rem] leading-relaxed text-muted">
+          <p className="max-w-4xl font-mono text-[0.68rem] leading-relaxed text-muted">
             {disclaimers.practice}
           </p>
-          <p className="mt-4 font-mono text-[0.75rem] tracking-[0.1em] text-muted uppercase">
+          <p className="mt-4 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
             © {new Date().getFullYear()} {site.brand} · {site.tagline}
           </p>
         </div>
