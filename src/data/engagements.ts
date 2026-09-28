@@ -175,7 +175,11 @@ export function getEngagement(slug: string) {
 
 export type PracticeKey = 'delivery-recovery' | 'gcc' | 'managed-services' | 'ai'
 
-/** The four practices clients engage The Promise Office to solve. GCC has no signature engagement of its own — see /gcc. */
+/**
+ * The four practices clients engage The Promise Office to solve. Nav only shows three
+ * top-level links (Advisory, GCC, AI) because delivery-recovery and managed-services both
+ * live under /advisory as anchors; GCC has no signature engagement of its own — see /gcc.
+ */
 export const practices: {
   key: PracticeKey
   index: string

@@ -40,13 +40,17 @@ export function AdvisoryPage() {
         breadcrumb="Advisory"
         eyebrow="The advisory practice"
         title="Bring the difficult brief."
-        copy="Some mandates need a sharp independent diagnosis. Others need a capability built, a transition led or a delivery leader in the room. Four practices, and the capabilities that cut across them, connect strategy, operating design, commercials and execution around the outcome at stake."
+        copy="Some mandates need a sharp independent diagnosis. Others need a capability built, a transition led or a delivery leader in the room. Four practices — two of them, Delivery Recovery and Managed Services, covered here on Advisory, plus dedicated GCC and AI pages — connect strategy, operating design, commercials and execution around the outcome at stake."
       />
 
       {/* Four problems we're brought in to solve */}
       <section className="py-14 lg:py-16">
         <Container size="wide">
           <Eyebrow>The four problems we're brought in to solve</Eyebrow>
+          <p className="mt-3 max-w-2xl text-[0.9rem] text-muted">
+            Delivery Recovery and Managed Services are covered here on Advisory. GCC and AI each have
+            their own dedicated page — linked from the cards below.
+          </p>
           <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {practices.map((practice) => (
               <motion.div key={practice.key} variants={fadeUp}>
@@ -207,7 +211,7 @@ export function AdvisoryPage() {
           <SectionHeader
             eyebrow="Capabilities behind the outcome"
             title="More than advice. Capability that stays."
-            copy="These six capabilities cut across all four practices. They do not each need a separate mandate — most engagements draw on two or three of them at once."
+            copy="These six capabilities cut across all four practices — the two covered on this page, plus GCC and AI. They do not each need a separate mandate — most engagements draw on two or three of them at once."
           />
 
           <div className="mt-14 space-y-14">
