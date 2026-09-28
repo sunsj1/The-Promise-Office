@@ -1,3 +1,5 @@
+export type CaseTag = 'delivery' | 'gcc' | 'managed-services' | 'process' | 'ai' | 'commercial'
+
 export type CaseStudy = {
   slug: string
   index: string
@@ -7,7 +9,10 @@ export type CaseStudy = {
   title: string
   lead: string
   facts: { label: string; value: string }[]
-  filter: 'delivery' | 'managed-services' | 'process' | 'ai' | 'commercial'
+  /** Translates the historical engagement into current advisory capability. Kept out of the compact card, shown on expand. */
+  whatThisProves: string
+  /** A case can carry more than one tag; filters match on inclusion. */
+  tags: CaseTag[]
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -31,7 +36,9 @@ export const caseStudies: CaseStudy[] = [
           'Useful where customers experience delays that individual functions cannot solve on their own.',
       },
     ],
-    filter: 'process',
+    whatThisProves:
+      'The ability to redesign a customer-facing process end-to-end, across business, operations and technology — not just within one function.',
+    tags: ['process'],
   },
   {
     slug: 'billing-recovery',
@@ -57,7 +64,9 @@ export const caseStudies: CaseStudy[] = [
           'Moved the program from a red state to controlled delivery, with schedule deviation kept limited. A precise variance was not recorded for publication.',
       },
     ],
-    filter: 'delivery',
+    whatThisProves:
+      'An ability to convert a distressed, high-value program back to controlled delivery on the strength of fact, not reassurance — the basis for the Red-to-Ready Turnaround mandate.',
+    tags: ['delivery'],
   },
   {
     slug: 'managed-services-practice',
@@ -80,7 +89,9 @@ export const caseStudies: CaseStudy[] = [
           'The framework became a standard pursuit approach; the reported bid pace moved from roughly 1–2 to around 10 managed services opportunities a year.',
       },
     ],
-    filter: 'managed-services',
+    whatThisProves:
+      'That practice-building work sticks: the framework was still the standard pursuit approach after the engagement ended, not a one-off deliverable — the basis for the Practice & Capability Building capability.',
+    tags: ['managed-services'],
   },
   {
     slug: 'pgo-transition',
@@ -107,7 +118,9 @@ export const caseStudies: CaseStudy[] = [
           'Large transitions succeed when people, operating processes, infrastructure and customer governance become ready together.',
       },
     ],
-    filter: 'managed-services',
+    whatThisProves:
+      'Governance and transition discipline at capability-centre scale — directly relevant experience behind the GCC & Capability Centre Advisory proposition, though this was delivered as managed-services governance and a CoE transition, not a formal GCC consulting engagement.',
+    tags: ['managed-services', 'gcc'],
   },
   {
     slug: 'knowledge-assistant',
@@ -131,7 +144,9 @@ export const caseStudies: CaseStudy[] = [
         value: 'Accuracy and hallucination risk were explicit considerations in testing and acceptance.',
       },
     ],
-    filter: 'ai',
+    whatThisProves:
+      'AI delivery leadership that treats accuracy, grounding and adoption as delivery requirements, not afterthoughts — the basis for AI That Works and the AI page.',
+    tags: ['ai'],
   },
   {
     slug: 'certification-automation',
@@ -153,7 +168,9 @@ export const caseStudies: CaseStudy[] = [
           'The gain came from redesigning the workflow and its ownership, then implementing automation around it.',
       },
     ],
-    filter: 'process',
+    whatThisProves:
+      'That the SLA gain followed the redesign of ownership and flow, not automation alone — the argument behind "fix the workflow before automating it."',
+    tags: ['process'],
   },
   {
     slug: 'account-leadership',
@@ -176,7 +193,9 @@ export const caseStudies: CaseStudy[] = [
           'Growth is durable when the service promise, staffing model and delivery controls agree.',
       },
     ],
-    filter: 'commercial',
+    whatThisProves:
+      'That an account can grow without the service promise, staffing model and delivery controls drifting apart — the basis for Pursuit, RFP & Deal Assurance.',
+    tags: ['commercial'],
   },
   {
     slug: 'generator-portal',
@@ -199,17 +218,20 @@ export const caseStudies: CaseStudy[] = [
           'The program reported roughly 30–35% cost optimisation in the targeted operation. This is a historical engagement figure, not a forecast for another client.',
       },
     ],
-    filter: 'process',
+    whatThisProves:
+      'End-to-end delivery ownership of a field-operations platform, from business case through to a measurable operational outcome.',
+    tags: ['process'],
   },
 ]
 
 export const evidenceFilters = [
   { id: 'all', label: 'All work' },
-  { id: 'delivery', label: 'Delivery & recovery' },
-  { id: 'managed-services', label: 'Managed services' },
-  { id: 'process', label: 'Process' },
-  { id: 'ai', label: 'AI' },
-  { id: 'commercial', label: 'Commercial' },
+  { id: 'delivery', label: 'Delivery & Recovery' },
+  { id: 'gcc', label: 'GCC & Capability' },
+  { id: 'managed-services', label: 'Managed Services & ITSM' },
+  { id: 'process', label: 'Process & Transformation' },
+  { id: 'commercial', label: 'Commercial & Pursuits' },
+  { id: 'ai', label: 'AI & Automation' },
 ] as const
 
 export const proofPoints = [
@@ -233,6 +255,6 @@ export const proofPoints = [
 export const careerStats = [
   { value: 21, suffix: '+', label: 'Years in delivery and consulting' },
   { value: 550, prefix: '~', label: 'FTE managed services program governed' },
-  { value: 20, prefix: '~$', suffix: 'M', label: 'Transformation recovered and restarted' },
+  { value: 20, prefix: '~US$', suffix: 'M', label: 'Transformation recovered and restarted' },
   { value: 5, label: 'Markets delivered across' },
 ] as const

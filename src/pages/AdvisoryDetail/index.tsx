@@ -9,11 +9,11 @@ import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
 import { Seo } from '@/widgets/Seo'
 
-export function EngagementDetailPage() {
+export function AdvisoryDetailPage() {
   const { slug } = useParams()
   const engagement = slug ? getEngagement(slug) : undefined
 
-  if (!engagement) return <Navigate to={paths.engagements} replace />
+  if (!engagement) return <Navigate to={paths.advisory} replace />
 
   const position = engagements.findIndex((item) => item.slug === engagement.slug)
   const next = engagements[(position + 1) % engagements.length]
@@ -23,7 +23,7 @@ export function EngagementDetailPage() {
       <Seo
         title={engagement.title}
         description={engagement.entryProblem}
-        path={paths.engagementDetail(engagement.slug)}
+        path={paths.advisoryDetail(engagement.slug)}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'Service',
@@ -31,6 +31,7 @@ export function EngagementDetailPage() {
           description: engagement.lead,
           provider: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
         }}
+        breadcrumb={engagement.title}
       />
 
       <PageHeader
@@ -95,17 +96,17 @@ export function EngagementDetailPage() {
                 Next mandate
               </p>
               <Link
-                to={paths.engagementDetail(next.slug)}
+                to={paths.advisoryDetail(next.slug)}
                 className="mt-2 block font-display text-2xl transition-colors hover:text-amber sm:text-3xl"
               >
                 {next.title}
               </Link>
             </div>
             <Link
-              to={paths.engagements}
+              to={paths.advisory}
               className="font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
             >
-              ← All engagements
+              ← All advisory mandates
             </Link>
           </Reveal>
         </Container>

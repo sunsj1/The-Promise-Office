@@ -7,7 +7,9 @@ type SeoProps = {
   path?: string
   /** Article pages emit a different og:type and structured data. */
   type?: 'website' | 'article'
-  jsonLd?: Record<string, unknown>
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
+  /** Adds a two-level BreadcrumbList (Home > this label) for the current `path`. */
+  breadcrumb?: string
   noindex?: boolean
 }
 
@@ -17,14 +19,29 @@ export function Seo({
   path = '/',
   type = 'website',
   jsonLd,
+  breadcrumb,
   noindex = false,
 }: SeoProps) {
-  const pageTitle = title
-    ? `${title} — ${site.shortName}`
-    : `${site.shortName} — ${site.role}`
+  const pageTitle = title ? `${title} — ${site.brand}` : `${site.brand} — ${site.role}`
   const pageDescription = description ?? site.description
   const url = `${site.url}${path}`
   const image = `${site.url}/brand/social-preview-1200x630.png`
+
+  const breadcrumbSchema = breadcrumb
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+          { '@type': 'ListItem', position: 2, name: breadcrumb, item: url },
+        ],
+      }
+    : null
+
+  const schemas = [
+    ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+    ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+  ]
 
   return (
     <Helmet>
@@ -42,7 +59,12 @@ export function Seo({
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={image} />
-      {jsonLd ? <script type="application/ld+json">{JSON.stringify(jsonLd)}</script> : null}
+      {schemas.map((schema, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   )
 }

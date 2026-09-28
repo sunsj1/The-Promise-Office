@@ -1,31 +1,11 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/engagements", "destination": "/advisory", "permanent": true },
+    { "source": "/engagements/:slug", "destination": "/advisory/:slug", "permanent": true },
+    { "source": "/perspective", "destination": "/about", "permanent": true }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://app.cal.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://cal.com https://app.cal.com; connect-src 'self' https://api.cal.com https://app.cal.com; base-uri 'self'; frame-ancestors 'self'"
-        }
-      ]
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

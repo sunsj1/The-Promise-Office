@@ -2,7 +2,13 @@
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
-/* Warm ink + amber. Charcoal carries the mark; amber closes it. */
+/*
+  Ink + Deep Plum + Amber. Ink is the dominant dark foundation (dark theme
+  background, dark section panels); Deep Plum is reintroduced deliberately as
+  a brand accent — glows, selective panels and brand moments — never a global
+  wash. Amber stays the only action/intervention/outcome accent. Lilac is a
+  sparing tonal tint, not a base color.
+*/
 @theme {
   --font-display: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
   --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
@@ -10,8 +16,11 @@
 
   --color-amber: #f0b43c;
   --color-amber-deep: #c98b1c;
-  --color-night: #12110e;
+  --color-night: #16132b;
   --color-cream: #f3f1ea;
+  --color-plum: #4b2e83;
+  --color-plum-deep: #372163;
+  --color-lilac: #b7a6d9;
 
   --color-rag-green: #2f8f5b;
   --color-rag-amber: #e0952a;
@@ -26,24 +35,24 @@
   [data-theme] switch repaints the whole site without duplicating utilities.
 */
 :root {
-  --paper: #f6f4ef;
+  --paper: #f5f4f8;
   --surface: #ffffff;
-  --sunk: #ebe7de;
+  --sunk: #ebe9f0;
   --ink: #1a1915;
   --muted: #6b675e;
-  --line: #e4e0d6;
+  --line: #e2e0e8;
   --ring: rgba(26, 25, 21, 0.22);
   --glow: rgba(240, 180, 60, 0.14);
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --paper: #12110e;
-  --surface: #1c1b18;
-  --sunk: #161512;
+  --paper: #16132b;
+  --surface: #1f1b3a;
+  --sunk: #1a1730;
   --ink: #f3f1ea;
   --muted: #a39e93;
-  --line: #2c2a25;
+  --line: #2e2a4a;
   --ring: rgba(240, 180, 60, 0.28);
   --glow: rgba(240, 180, 60, 0.14);
   color-scheme: dark;
@@ -135,10 +144,6 @@
     color: transparent;
   }
 
-  .marquee-track {
-    animation: marquee-x var(--marquee-duration, 40s) linear infinite;
-  }
-
   .column-track {
     animation: marquee-y var(--marquee-duration, 20s) linear infinite;
   }
@@ -162,12 +167,6 @@
   }
 }
 
-@keyframes marquee-x {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @keyframes marquee-y {
   to {
     transform: translateY(-50%);
@@ -185,7 +184,6 @@
     scroll-behavior: auto;
   }
 
-  .marquee-track,
   .column-track {
     animation: none;
   }

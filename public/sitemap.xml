@@ -1,80 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://thepromiseoffice.com/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.thepromiseoffice.com/gcc</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.thepromiseoffice.com/ai</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.thepromiseoffice.com/evidence</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/evidence</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/about</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/perspective</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/insights</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/insights</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/health-check</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/health-check</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/contact</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/contact</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/privacy</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/red-to-ready-turnaround</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/terms</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.thepromiseoffice.com/advisory/red-to-ready-turnaround</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/the-delivery-office</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory/the-delivery-office</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/managed-services-builder</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory/managed-services-builder</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/process-to-platform</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory/process-to-platform</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/commercial-command</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory/commercial-command</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thepromiseoffice.com/engagements/ai-that-works</loc>
-    <lastmod>2026-09-26</lastmod>
+    <loc>https://www.thepromiseoffice.com/advisory/ai-that-works</loc>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

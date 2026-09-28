@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main, v2]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: The-Promise-Office/package-lock.json
+
+      - name: Install dependencies
+        working-directory: The-Promise-Office
+        run: npm ci
+
+      - name: Lint
+        working-directory: The-Promise-Office
+        run: npm run lint
+
+      - name: Build
+        working-directory: The-Promise-Office
+        run: npm run build
+
+      - name: Smoke-test client-side routes
+        working-directory: The-Promise-Office
+        run: |
+          npx vite preview --port 4173 &
+          SERVER_PID=$!
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:4173/ > /dev/null && break
+            sleep 0.5
+          done
+
+          routes=(
+            "/"
+            "/advisory"
+            "/advisory/ai-that-works"
+            "/gcc"
+            "/ai"
+            "/evidence"
+            "/about"
+            "/insights"
+            "/health-check"
+            "/contact"
+            "/privacy"
+            "/terms"
+          )
+
+          fail=0
+          for route in "${routes[@]}"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:4173${route}")
+            if [ "$code" != "200" ]; then
+              echo "FAIL: $route returned $code (expected 200 — direct loads must not 404)"
+              fail=1
+            else
+              echo "OK: $route -> $code"
+            fi
+          done
+
+          kill "$SERVER_PID"
+          exit $fail

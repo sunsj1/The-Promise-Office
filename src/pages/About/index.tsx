@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Layers } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import {
   career,
   credentials,
@@ -8,13 +9,14 @@ import {
   testimonials,
 } from '@/data/perspective'
 import { engagementShapes } from '@/data/personas'
-import { disclaimers, site } from '@/data/site'
+import { disclaimers, organisations, site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { fadeUp } from '@/animations/variants'
 import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
@@ -22,24 +24,28 @@ import { Portrait } from '@/widgets/Portrait'
 import { Seo, personJsonLd } from '@/widgets/Seo'
 import { TestimonialColumn } from '@/widgets/TestimonialColumns'
 
-export function PerspectivePage() {
+export function AboutPage() {
   return (
     <>
       <Seo
-        title="Perspective"
+        title="About"
         description="Hrishikesh (Rishi) Salunkhe: 21+ years across process consulting, PMO/PGO leadership, service management, managed services, transformation and commercial roles."
-        path={paths.perspective}
+        path={paths.about}
         jsonLd={personJsonLd}
+        breadcrumb="About"
       />
 
       <PageHeader
-        breadcrumb="Perspective"
+        breadcrumb="About"
         eyebrow={site.person}
         title="Senior judgment. Practical ownership."
         copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
         aside={<Portrait size="page" />}
       >
-        <div className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+        <p className="mt-8 font-mono text-[0.7rem] tracking-[0.1em] text-muted uppercase">
+          {site.founderDescriptor}
+        </p>
+        <div className="mt-6 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
           {perspectiveHighlights.map((item) => (
             <div key={item.label}>
               <p className="font-display text-xl text-amber">{item.value}</p>
@@ -76,10 +82,19 @@ export function PerspectivePage() {
                 and sustainability, technology services and enterprise platforms.
               </p>
               <p>
-                I have led cross-functional programs through discovery, solution shaping, UAT,
-                rollout and steady state. I have also governed large managed services estates, helped
-                build a managed services practice, recovered a troubled transformation and delivered
-                AI-enabled and automation products in production.
+                The career arc moved from close to operations — service data, SLA and performance
+                reporting — into business analysis and process redesign, then into transition and
+                account governance across a large managed-services environment, then into program
+                leadership, commercial ownership and recovery, and most recently into practice
+                building and AI delivery. Each stage added a layer rather than replacing the one
+                before it, which is why a delivery problem rarely turns out to have just one cause.
+              </p>
+              <p>
+                <Link to={paths.evidence} className="text-amber hover:underline">
+                  Evidence
+                </Link>{' '}
+                sets out what that experience has taught, organised around the situations it
+                recurs in — not as a project list.
               </p>
               <p className="font-mono text-[0.72rem] leading-relaxed text-muted">
                 {disclaimers.practice}
@@ -217,6 +232,24 @@ export function PerspectivePage() {
         </Container>
       </section>
 
+      {/* Experience behind the practice */}
+      <section className="border-t border-line py-20 lg:py-24">
+        <Container size="wide">
+          <Eyebrow>Experience behind the practice</Eyebrow>
+          <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">
+            The Promise Office is informed by work across telecommunications, technology services,
+            enterprise operations and transformation environments in prior roles.
+          </p>
+          <div className="mt-8">
+            <ExperienceStrip items={organisations} />
+          </div>
+          <p className="mt-7 max-w-3xl font-mono text-[0.68rem] leading-relaxed text-muted">
+            Prior employers and client environments shown for experience context only; no
+            endorsement of this independent practice is implied.
+          </p>
+        </Container>
+      </section>
+
       {/* Recommendations */}
       <section className="border-t border-line bg-sunk py-20 lg:py-24">
         <Container size="wide">
@@ -224,15 +257,15 @@ export function PerspectivePage() {
             <Reveal className="lg:col-span-5">
               <Eyebrow>In their words</Eyebrow>
               <h2 className="mt-5 text-3xl sm:text-4xl">
-                How I show up when delivery gets difficult.
+                How Rishi shows up when delivery gets difficult.
               </h2>
               <p className="mt-5 text-[1.0625rem] text-muted">
-                Excerpts from public LinkedIn recommendations written by people who worked with me in
-                prior roles.
+                Excerpts from public LinkedIn recommendations written by people who worked with him
+                in prior roles.
               </p>
               <div className="mt-8">
                 <LinkButton to={site.linkedin} external variant="outline">
-                  View Rishi’s LinkedIn profile
+                  View the LinkedIn profile
                 </LinkButton>
               </div>
             </Reveal>

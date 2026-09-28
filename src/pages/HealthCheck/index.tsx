@@ -3,6 +3,7 @@ import { paths } from '@/routes/paths'
 import { HealthCheckTool } from '@/features/healthCheck/HealthCheckTool'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
+import { ErrorBoundary } from '@/widgets/ErrorBoundary'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
 import { Seo } from '@/widgets/Seo'
@@ -12,21 +13,24 @@ export function HealthCheckPage() {
     <>
       <Seo
         title="Delivery Health Check"
-        description="An eight-question interactive assessment of your program’s health, with a Red/Amber/Green reading and a recommended next step."
+        description="An adaptive advisory diagnostic: the questions change based on what you've already said, and the result names a primary constraint, not just a score."
         path={paths.healthCheck}
+        breadcrumb="Health check"
       />
 
       <PageHeader
         breadcrumb="Health check"
-        eyebrow="Two minutes, eight questions"
-        title="Is the plan still credible?"
-        copy="Answer eight questions and you will get a Red/Amber/Green reading of your program, the two signals that stand out, and the engagement that fits where it stands today. Nothing is stored or submitted by this site."
+        eyebrow="An adaptive advisory diagnostic"
+        title="What's actually limiting you right now?"
+        copy="Roughly 8–15 questions, adjusted as you answer — fewer if the pattern is clear early, more where it isn't. The result names a primary constraint and a strength to preserve, not a single score. Nothing is stored or submitted by this site; your answers stay in this browser tab."
       />
 
       <section className="py-14 lg:py-20">
         <Container size="wide">
           <Reveal>
-            <HealthCheckTool />
+            <ErrorBoundary titleAs="h2">
+              <HealthCheckTool />
+            </ErrorBoundary>
           </Reveal>
 
           <Reveal className="mt-12 rounded-2xl border border-line bg-sunk p-7 lg:p-9">
@@ -54,7 +58,7 @@ export function HealthCheckPage() {
         title="Prefer to talk it through?"
         copy="In about 30 minutes we can discuss the decision you face, timing, the people involved and what evidence exists. I will say whether I can help and what a useful first step would look like."
         secondaryLabel="See the engagements"
-        secondaryTo={paths.engagements}
+        secondaryTo={paths.advisory}
       />
     </>
   )

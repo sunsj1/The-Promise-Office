@@ -7,6 +7,7 @@ import { useTheme } from '@/lib/theme'
 import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { ErrorBoundary } from '@/widgets/ErrorBoundary'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
 import { Seo } from '@/widgets/Seo'
@@ -38,6 +39,7 @@ export function ContactPage() {
             address: { '@type': 'PostalAddress', addressLocality: 'Pune', addressCountry: 'IN' },
           },
         }}
+        breadcrumb="Contact"
       />
 
       <PageHeader
@@ -53,12 +55,17 @@ export function ContactPage() {
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="min-h-[45rem] overflow-hidden rounded-2xl border border-line bg-surface">
-                  <Cal
-                    namespace="contact"
-                    calLink={site.cal.link}
-                    config={embedBookingConfig(theme)}
-                    style={{ width: '100%', height: '45rem', overflow: 'auto' }}
-                  />
+                  <ErrorBoundary
+                    titleAs="h2"
+                    className="grid min-h-[45rem] place-items-center py-16"
+                  >
+                    <Cal
+                      namespace="contact"
+                      calLink={site.cal.link}
+                      config={embedBookingConfig(theme)}
+                      style={{ width: '100%', height: '45rem', overflow: 'auto' }}
+                    />
+                  </ErrorBoundary>
                 </div>
                 <p className="mt-4 font-mono text-[0.68rem] leading-relaxed text-muted">
                   Booking is handled by Cal.com. If the calendar does not load,{' '}

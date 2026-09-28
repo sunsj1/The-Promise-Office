@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getCalApi, type EmbedEvent } from '@calcom/embed-react'
+import { trackEvent } from '@/lib/analytics'
 import { site } from '@/data/site'
 import { useTheme, type Theme } from '@/lib/theme'
 import { paths } from '@/routes/paths'
@@ -89,6 +90,7 @@ export function CalBoot() {
 
         const callback = (event: EmbedEvent<'bookingSuccessfulV2'>) => {
           const search = bookedSearch(event.detail.data)
+          trackEvent('booking_completed', { namespace })
           navigate({ pathname: paths.booked, search: search ? `?${search}` : '' })
         }
 

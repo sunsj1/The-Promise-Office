@@ -1,83 +1,73 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, Check, ClipboardCopy, Mail, RotateCcw } from 'lucide-react'
+import { ArrowLeft, Check, ChevronDown, ClipboardCopy, Mail, RotateCcw } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  questions,
-  recommendations,
-  riskLines,
-  verdictFor,
-  verdicts,
-  type Category,
-} from '@/data/healthCheck'
+import { orientationQuestions } from '@/data/diagnostic'
 import { site } from '@/data/site'
-import { paths } from '@/routes/paths'
+import {
+  applyAnswer,
+  computeResult,
+  createInitialState,
+  getNextQuestion,
+  getPhaseLabel,
+  progressCount,
+  simpleReadingLabel,
+  type DiagnosticResult,
+  type EngineState,
+} from '@/lib/diagnosticEngine'
 import { sealEase } from '@/animations/variants'
 import { ActionButton, LinkButton } from '@/widgets/Button'
-import { RagGauge } from '@/widgets/RagGauge'
 import { cn } from '@/lib/cn'
 
-type Answers = (0 | 1 | 2 | null)[]
+/** History of {state, question} so "Previous" can step back through an adaptive path. */
+type HistoryEntry = { state: EngineState; questionId: string }
 
-const MAX_PER_QUESTION = 2
+const confidenceCopy: Record<DiagnosticResult['promiseConfidence'], string> = {
+  Exposed:
+    'Several signals point the same way. An independent reading of what is true would be the fastest route to a plan.',
+  Developing: 'A real constraint has emerged, alongside areas that are working well enough to leave alone.',
+  Controlled: 'Nothing here looks urgent, though coverage of this assessment was limited — worth revisiting with more context.',
+  'Confidence Zone':
+    'Enough clarity, control and ownership to make and keep an important commitment without disproportionate risk.',
+}
 
 export function HealthCheckTool() {
-  const [answers, setAnswers] = useState<Answers>(() => questions.map(() => null))
-  const [index, setIndex] = useState(0)
-  const [finished, setFinished] = useState(false)
+  const [state, setState] = useState<EngineState>(() => createInitialState())
+  const [history, setHistory] = useState<HistoryEntry[]>([])
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [copied, setCopied] = useState(false)
+  const [detailOpen, setDetailOpen] = useState(false)
 
-  const answered = answers.filter((value) => value !== null) as number[]
-  const runningSum = answered.reduce((total, value) => total + value, 0)
-  const runningMax = answered.length * MAX_PER_QUESTION
-  const runningVerdict = answered.length ? verdictFor(runningSum, runningMax) : null
+  const currentQuestion = getNextQuestion(state)
+  const finished = !currentQuestion && state.askedIds.length > orientationQuestions.length
+  const { answered } = progressCount(state)
+  const inOrientation = !!currentQuestion && currentQuestion.track === 'orientation'
+  const phase = getPhaseLabel(state, currentQuestion)
 
-  const result = useMemo(() => {
-    if (!finished) return null
+  const result = useMemo(() => (finished ? computeResult(state) : null), [finished, state])
 
-    const values = answers as number[]
-    const sum = values.reduce((total, value) => total + value, 0)
-    const max = questions.length * MAX_PER_QUESTION
-    const verdict = verdictFor(sum, max)
+  const choose = (optionIndex: number) => {
+    if (!currentQuestion) return
+    if (state.askedIds.includes(currentQuestion.id)) return
+    setHistory((h) => [...h, { state, questionId: currentQuestion.id }])
+    setState((prev) => applyAnswer(prev, currentQuestion, optionIndex))
+  }
 
-    // Average each category so a two-question category is not double weighted.
-    const byCategory = new Map<Category, { sum: number; count: number }>()
-    questions.forEach((question, position) => {
-      const entry = byCategory.get(question.category) ?? { sum: 0, count: 0 }
-      entry.sum += values[position]
-      entry.count += 1
-      byCategory.set(question.category, entry)
+  const goBack = () => {
+    setHistory((h) => {
+      if (h.length === 0) return h
+      const last = h[h.length - 1]
+      setState(last.state)
+      return h.slice(0, -1)
     })
-
-    const ranked = [...byCategory.entries()]
-      .map(([category, entry]) => ({ category, average: entry.sum / entry.count }))
-      .sort((a, b) => b.average - a.average)
-
-    const signals = ranked.filter((entry) => entry.average > 0).slice(0, 2)
-    const top = signals.length ? signals : [ranked[0]]
-
-    return { sum, max, verdict, top, recommendation: recommendations[top[0].category] }
-  }, [finished, answers])
-
-  const choose = (weight: 0 | 1 | 2) => {
-    const next = [...answers]
-    next[index] = weight
-    setAnswers(next)
-
-    if (index + 1 < questions.length) {
-      window.setTimeout(() => setIndex(index + 1), 180)
-    } else {
-      window.setTimeout(() => setFinished(true), 240)
-    }
   }
 
   const restart = () => {
-    setAnswers(questions.map(() => null))
-    setIndex(0)
-    setFinished(false)
+    setState(createInitialState())
+    setHistory([])
     setCopied(false)
+    setDetailOpen(false)
   }
 
   const briefText = useMemo(() => {
@@ -89,9 +79,9 @@ export function HealthCheckTool() {
       '',
       `Name: ${name.trim() || '—'}`,
       `Email: ${email.trim() || '—'}`,
-      `Overall reading: ${verdicts[result.verdict].label}`,
-      `Top signals: ${result.top.map((entry) => entry.category).join(', ')}`,
-      `Suggested starting point: ${result.recommendation.name}`,
+      `Main issue: ${result.heroStatement}`,
+      `Primary constraint: ${result.primaryConstraint?.label ?? 'Not clearly separated yet'}`,
+      `Promise Confidence: ${result.promiseConfidence}`,
       '',
       'Happy to walk through the context on a call.',
     ].join('\n')
@@ -109,193 +99,371 @@ export function HealthCheckTool() {
 
   const mailtoHref = result
     ? `mailto:${site.email}?subject=${encodeURIComponent(
-        `My Delivery Health Check results — ${verdicts[result.verdict].label.split(' — ')[0]}`,
+        `My Delivery Health Check results — ${result.heroStatement}`,
       )}&body=${encodeURIComponent(briefText)}`
     : '#'
 
   return (
     <div className="rounded-3xl border border-line bg-surface p-6 sm:p-9 lg:p-11">
-      {/* Progress */}
-      <div className="flex items-center justify-between gap-6">
-        <ol className="flex flex-1 gap-1.5" aria-label="Question progress">
-          {questions.map((question, position) => (
-            <li
-              key={question.text}
-              aria-current={!finished && position === index ? 'step' : undefined}
-              className={cn(
-                'h-1 flex-1 rounded-full transition-colors duration-300',
-                answers[position] !== null
-                  ? 'bg-amber'
-                  : !finished && position === index
-                    ? 'bg-ink'
-                    : 'bg-line',
-              )}
-            />
-          ))}
-        </ol>
-        <p className="shrink-0 font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase">
-          {finished ? 'Result' : `${index + 1} / ${questions.length}`}
-        </p>
-      </div>
-
-      <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-12">
-        <div className="lg:col-span-4">
-          <RagGauge
-            ratio={runningMax ? runningSum / runningMax : 0}
-            verdict={finished && result ? result.verdict : runningVerdict}
-            label={
-              answered.length
-                ? `Reading so far: ${
-                    verdicts[(finished && result ? result.verdict : runningVerdict) ?? 'green'].label.split(' — ')[0]
-                  } · ${answered.length} of ${questions.length} answered`
-                : 'Answer the first question to see your reading build.'
-            }
-          />
-        </div>
-
-        <div className="lg:col-span-8">
-          <AnimatePresence mode="wait">
-            {!finished ? (
+      {!finished ? (
+        <div>
+          <div className="flex items-center justify-between gap-6">
+            <div className="h-1 flex-1 overflow-hidden rounded-full bg-line">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 18 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -18 }}
+                className="h-full rounded-full bg-amber"
+                animate={{ width: `${Math.min((answered / 12) * 100, 96)}%` }}
                 transition={{ duration: 0.3, ease: sealEase }}
-              >
-                <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
-                  {questions[index].category}
-                </p>
-                <h3 className="mt-3 text-2xl sm:text-[1.75rem]">{questions[index].text}</h3>
+              />
+            </div>
+            <p className="shrink-0 font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase">
+              {inOrientation ? 'Orientation' : `Question ${answered + 1}`}
+            </p>
+          </div>
+          <p className="mt-3 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase">
+            {phase} · Usually 8–15 questions · about 5 minutes
+          </p>
+        </div>
+      ) : null}
 
-                <ul className="mt-7 space-y-2.5">
-                  {questions[index].answers.map((answer) => (
-                    <li key={answer.label}>
-                      <button
-                        type="button"
-                        onClick={() => choose(answer.weight)}
-                        className={cn(
-                          'w-full rounded-xl border border-line bg-sunk px-5 py-4 text-left text-[0.97rem] transition-all duration-200',
-                          'hover:border-amber hover:bg-surface',
-                          answers[index] === answer.weight && 'border-amber bg-surface',
-                        )}
-                      >
-                        {answer.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+      <div className="mt-8">
+        <AnimatePresence mode="wait">
+          {!finished && currentQuestion ? (
+            <motion.div
+              key={currentQuestion.id}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.3, ease: sealEase }}
+              className="mx-auto max-w-xl"
+            >
+              <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
+                {inOrientation ? 'Getting oriented' : 'Diagnostic'}
+              </p>
+              <h3 className="mt-3 text-2xl sm:text-[1.75rem]">{currentQuestion.text}</h3>
 
-                {index > 0 ? (
-                  <button
-                    type="button"
-                    onClick={() => setIndex(index - 1)}
-                    className="mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
-                  >
-                    <ArrowLeft size={13} aria-hidden /> Previous
-                  </button>
-                ) : null}
-              </motion.div>
-            ) : result ? (
-              <motion.div
-                key="result"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: sealEase }}
-              >
-                <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
-                  Your reading
-                </p>
-                <h3 className="mt-3 text-2xl sm:text-[1.9rem]">{verdicts[result.verdict].label}</h3>
-                <p className="mt-3 max-w-xl text-[0.97rem] text-muted">
-                  {verdicts[result.verdict].sub}
-                </p>
+              <ul className="mt-7 space-y-2.5">
+                {currentQuestion.options.map((option, optionIndex) => (
+                  <li key={option.label}>
+                    <button
+                      type="button"
+                      onClick={() => choose(optionIndex)}
+                      className="w-full rounded-xl border border-line bg-sunk px-5 py-4 text-left text-[0.97rem] transition-all duration-200 hover:border-amber hover:bg-surface"
+                    >
+                      {option.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
 
-                <ul className="mt-7 space-y-3">
-                  {result.top.map((entry, position) => (
-                    <li key={entry.category} className="flex gap-4 rounded-xl bg-sunk px-5 py-4">
-                      <span className="pt-0.5 font-mono text-[0.72rem] text-amber">
-                        0{position + 1}
-                      </span>
-                      <div>
-                        <p className="font-display text-base font-semibold">{entry.category}</p>
-                        <p className="mt-0.5 text-[0.93rem] text-muted">
-                          {riskLines[entry.category]}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+              {history.length > 0 ? (
+                <button
+                  type="button"
+                  onClick={goBack}
+                  className="mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                >
+                  <ArrowLeft size={13} aria-hidden /> Previous
+                </button>
+              ) : null}
+            </motion.div>
+          ) : result ? (
+            <motion.div
+              key="result"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: sealEase }}
+              className="mx-auto max-w-2xl"
+            >
+              {/* YOUR ASSESSMENT */}
+              <p className="font-mono text-[0.7rem] tracking-[0.16em] text-amber uppercase">
+                Your assessment
+              </p>
+              <h3 className="mt-3 text-2xl sm:text-[1.9rem] leading-snug">{result.heroStatement}</h3>
+              <p className="mt-3 text-[0.95rem] text-muted italic">“{result.pattern}”</p>
 
-                <div className="mt-8 rounded-2xl border border-line p-6">
-                  <p className="font-mono text-[0.7rem] tracking-[0.16em] text-muted uppercase">
-                    Suggested starting point · {result.recommendation.need}
+              {/* AT A GLANCE */}
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-xl border border-amber/30 bg-amber/5 p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-amber uppercase">
+                    Primary issue
                   </p>
-                  <h4 className="mt-3 font-display text-xl">{result.recommendation.name}</h4>
-                  <p className="mt-2 text-[0.95rem] text-muted">{result.recommendation.blurb}</p>
-                  <ul className="mt-4 space-y-2">
-                    {result.recommendation.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-3 text-[0.93rem]">
-                        <Check size={15} className="mt-1 shrink-0 text-amber" aria-hidden />
-                        {bullet}
+                  <p className="mt-1.5 font-display text-lg">
+                    {result.primaryConstraint?.label ?? 'No single dominant issue'}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    What is working
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">
+                    {result.strengthToPreserve?.label ?? 'Not yet clearly established'}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    Diagnostic confidence
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">{result.diagnosticConfidence.band}</p>
+                </div>
+                <div className="rounded-xl border border-line bg-sunk p-5">
+                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                    Current position
+                  </p>
+                  <p className="mt-1.5 font-display text-lg">{result.promiseConfidence}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-[0.88rem] text-muted">{confidenceCopy[result.promiseConfidence]}</p>
+
+              {/* WHY WE THINK THIS */}
+              {result.whyWeThinkThis.length ? (
+                <div className="mt-9 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    Why we think this
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {result.whyWeThinkThis.map((note) => (
+                      <li key={note} className="flex gap-3 text-[0.97rem]">
+                        <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber" />
+                        {note}
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    to={paths.engagementDetail(result.recommendation.slug)}
-                    className="mt-5 inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[0.12em] text-amber uppercase hover:underline"
-                  >
-                    Read the mandate →
-                  </Link>
                 </div>
+              ) : null}
 
-                {/* Hand-off: prepares an email, stores nothing. */}
-                <div className="mt-8 rounded-2xl bg-sunk p-6">
-                  <p className="font-display text-lg">Send this reading to Rishi</p>
-                  <p className="mt-1.5 text-[0.93rem] text-muted">
-                    Add your details and we will prepare an email for you to review and send. Nothing
-                    is stored or submitted by this site.
+              {/* WHERE THE PRESSURE SITS */}
+              {result.materialReadings.length ? (
+                <div className="mt-7 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    Where the pressure sits
                   </p>
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                    <input
-                      value={name}
-                      onChange={(event) => setName(event.target.value)}
-                      placeholder="Your name"
-                      aria-label="Your name"
-                      className="rounded-xl border border-line bg-surface px-4 py-3 text-[0.95rem] outline-none transition-colors focus:border-amber"
-                    />
-                    <input
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                      type="email"
-                      placeholder="Your email"
-                      aria-label="Your email"
-                      className="rounded-xl border border-line bg-surface px-4 py-3 text-[0.95rem] outline-none transition-colors focus:border-amber"
-                    />
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2.5">
-                    <LinkButton to={mailtoHref} external variant="amber" arrow={false}>
-                      <span className="inline-flex items-center gap-2">
-                        <Mail size={15} aria-hidden /> Open email app
-                      </span>
-                    </LinkButton>
-                    <ActionButton onClick={copyBrief} variant="outline">
-                      <span className="inline-flex items-center gap-2">
-                        {copied ? <Check size={15} aria-hidden /> : <ClipboardCopy size={15} aria-hidden />}
-                        {copied ? 'Copied' : 'Copy brief'}
-                      </span>
-                    </ActionButton>
-                    <ActionButton onClick={restart} variant="ghost">
-                      <span className="inline-flex items-center gap-2">
-                        <RotateCcw size={14} aria-hidden /> Start again
-                      </span>
-                    </ActionButton>
+                  <dl className="mt-4 space-y-3">
+                    {result.materialReadings.map((reading) => {
+                      const band = simpleReadingLabel(reading)
+                      return (
+                        <div key={reading.track} className="flex items-center justify-between gap-4">
+                          <dt className="text-[0.93rem]">{reading.label}</dt>
+                          <dd
+                            className={cn(
+                              'shrink-0 rounded-full px-2.5 py-0.5 font-mono text-[0.64rem] tracking-[0.08em] uppercase',
+                              band.tone === 'exposure' && 'bg-amber/10 text-amber',
+                              band.tone === 'solid' && 'bg-plum/10 text-plum',
+                            )}
+                          >
+                            {band.text}
+                          </dd>
+                        </div>
+                      )
+                    })}
+                  </dl>
+                </div>
+              ) : null}
+
+              {/* WHAT THIS CAN LEAD TO */}
+              {result.consequences.length ? (
+                <div className="mt-7 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    What this can lead to
+                  </p>
+                  <div className="mt-4 space-y-4">
+                    {result.consequences.map((c) => (
+                      <div key={c.title}>
+                        <p className="font-display text-base">{c.title}</p>
+                        <p className="mt-1 text-[0.9rem] text-muted">{c.body}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-        </div>
+              ) : null}
+
+              {/* PATH TO THE CONFIDENCE ZONE */}
+              {result.pathToConfidenceZone ? (
+                <div className="mt-7 rounded-2xl border border-line bg-sunk p-6">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    Path to the Confidence Zone
+                  </p>
+                  <div className="mt-4 space-y-4">
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-muted uppercase">
+                        Current position
+                      </p>
+                      <p className="mt-1 text-[0.93rem]">{result.pathToConfidenceZone.currentPosition}</p>
+                    </div>
+                    <div className="text-amber" aria-hidden>
+                      ↓
+                    </div>
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-muted uppercase">
+                        Priority interventions
+                      </p>
+                      <ul className="mt-1.5 space-y-1.5">
+                        {result.pathToConfidenceZone.interventions.map((item) => (
+                          <li key={item} className="flex gap-2.5 text-[0.93rem]">
+                            <Check size={14} className="mt-1 shrink-0 text-amber" aria-hidden />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="text-amber" aria-hidden>
+                      ↓
+                    </div>
+                    <div>
+                      <p className="font-mono text-[0.6rem] tracking-[0.12em] text-amber uppercase">
+                        Confidence Zone
+                      </p>
+                      <p className="mt-1 text-[0.93rem]">{result.pathToConfidenceZone.confidenceZone}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
+              {/* ONE QUESTION */}
+              <div className="mt-8 rounded-2xl border border-amber/30 bg-amber/5 p-6">
+                <p className="font-mono text-[0.68rem] tracking-[0.16em] text-amber uppercase">
+                  One question worth taking back to your team
+                </p>
+                <p className="mt-2.5 font-display text-xl leading-snug">{result.oneQuestionBack}</p>
+              </div>
+
+              {/* WHAT WE WOULD EXAMINE NEXT + SUPPORT */}
+              {result.examineNext.length ? (
+                <div className="mt-7 border-t border-line pt-7">
+                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
+                    What we would examine next
+                  </p>
+                  <ul className="mt-2.5 space-y-1.5">
+                    {result.examineNext.map((item) => (
+                      <li key={item} className="flex gap-2.5 text-[0.93rem]">
+                        <Check size={14} className="mt-1 shrink-0 text-amber" aria-hidden />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  {result.relevantSupport.length ? (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      <p className="w-full font-mono text-[0.64rem] tracking-[0.12em] text-muted uppercase">
+                        Relevant Promise Office support
+                      </p>
+                      {result.relevantSupport.map((s) => (
+                        <Link
+                          key={s.to}
+                          to={s.to}
+                          className="rounded-full border border-line bg-surface px-3.5 py-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase transition-colors hover:border-amber hover:text-amber"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* EXPLORE THE DETAILED DIAGNOSTIC */}
+              <div className="mt-7 border-t border-line pt-5">
+                <button
+                  type="button"
+                  onClick={() => setDetailOpen((v) => !v)}
+                  aria-expanded={detailOpen}
+                  className="flex w-full items-center justify-between gap-2 font-mono text-[0.68rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                >
+                  Explore the detailed diagnostic
+                  <ChevronDown
+                    size={14}
+                    aria-hidden
+                    className={cn('transition-transform duration-300', detailOpen && 'rotate-180')}
+                  />
+                </button>
+                {detailOpen ? (
+                  <div className="mt-6 space-y-6">
+                    <div>
+                      <p className="font-mono text-[0.62rem] tracking-[0.14em] text-muted uppercase">
+                        Core diagnostic readings
+                      </p>
+                      <dl className="mt-3 space-y-2.5">
+                        {result.coreReadings.map((reading) => {
+                          const band = simpleReadingLabel(reading)
+                          return (
+                            <div key={reading.track} className="flex items-center justify-between gap-4">
+                              <dt className="text-[0.88rem] text-muted">{reading.label}</dt>
+                              <dd className="shrink-0 font-mono text-[0.62rem] tracking-[0.08em] text-muted uppercase">
+                                {band.text}
+                              </dd>
+                            </div>
+                          )
+                        })}
+                      </dl>
+                    </div>
+                    {[...result.crossCutting, ...result.domainSignals].length ? (
+                      <div>
+                        <p className="font-mono text-[0.62rem] tracking-[0.14em] text-muted uppercase">
+                          Cross-cutting & domain signals
+                        </p>
+                        <dl className="mt-3 space-y-2.5">
+                          {[...result.crossCutting, ...result.domainSignals].map((reading) => {
+                            const band = simpleReadingLabel(reading)
+                            return (
+                              <div key={reading.track} className="flex items-center justify-between gap-4">
+                                <dt className="text-[0.88rem] text-muted">{reading.label}</dt>
+                                <dd className="shrink-0 font-mono text-[0.62rem] tracking-[0.08em] text-muted uppercase">
+                                  {band.text}
+                                </dd>
+                              </div>
+                            )
+                          })}
+                        </dl>
+                      </div>
+                    ) : null}
+                    <p className="text-[0.85rem] text-muted">{result.diagnosticConfidence.note}</p>
+                  </div>
+                ) : null}
+              </div>
+
+              {/* Hand-off: prepares an email, stores nothing. */}
+              <div className="mt-8 rounded-2xl bg-sunk p-6">
+                <p className="font-display text-lg">Send this reading to Rishi</p>
+                <p className="mt-1.5 text-[0.93rem] text-muted">
+                  Add your details and we will prepare an email for you to review and send. Nothing is
+                  stored or submitted by this site — your answers stay in this browser tab only.
+                </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <input
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="Your name"
+                    aria-label="Your name"
+                    className="rounded-xl border border-line bg-surface px-4 py-3 text-[0.95rem] outline-none transition-colors focus:border-amber"
+                  />
+                  <input
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    type="email"
+                    placeholder="Your email"
+                    aria-label="Your email"
+                    className="rounded-xl border border-line bg-surface px-4 py-3 text-[0.95rem] outline-none transition-colors focus:border-amber"
+                  />
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  <LinkButton to={mailtoHref} external variant="amber" arrow={false}>
+                    <span className="inline-flex items-center gap-2">
+                      <Mail size={15} aria-hidden /> Open email app
+                    </span>
+                  </LinkButton>
+                  <ActionButton onClick={copyBrief} variant="outline">
+                    <span className="inline-flex items-center gap-2">
+                      {copied ? <Check size={15} aria-hidden /> : <ClipboardCopy size={15} aria-hidden />}
+                      {copied ? 'Copied' : 'Copy brief'}
+                    </span>
+                  </ActionButton>
+                  <ActionButton onClick={restart} variant="ghost">
+                    <span className="inline-flex items-center gap-2">
+                      <RotateCcw size={14} aria-hidden /> Start again
+                    </span>
+                  </ActionButton>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </div>
   )

@@ -1,19 +1,28 @@
 export const paths = {
   home: '/',
-  engagements: '/engagements',
-  engagementDetail: (slug: string) => `/engagements/${slug}`,
+  advisory: '/advisory',
+  advisoryDetail: (slug: string) => `/advisory/${slug}`,
+  gcc: '/gcc',
+  ai: '/ai',
   evidence: '/evidence',
-  perspective: '/perspective',
+  about: '/about',
   insights: '/insights',
   healthCheck: '/health-check',
   contact: '/contact',
   booked: '/booked',
+  privacy: '/privacy',
+  terms: '/terms',
+  // Legacy paths — kept only as redirect targets (see routes/index.tsx and vercel.json).
+  legacyEngagements: '/engagements',
+  legacyEngagementDetail: (slug: string) => `/engagements/${slug}`,
+  legacyPerspective: '/perspective',
 } as const
 
 export const navLinks = [
-  { label: 'Engagements', href: paths.engagements },
+  { label: 'Advisory', href: paths.advisory },
+  { label: 'GCC', href: paths.gcc },
+  { label: 'AI', href: paths.ai },
   { label: 'Evidence', href: paths.evidence },
-  { label: 'Perspective', href: paths.perspective },
   { label: 'Insights', href: paths.insights },
-  { label: 'Contact', href: paths.contact },
+  { label: 'About', href: paths.about },
 ] as const
