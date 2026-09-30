@@ -35,10 +35,10 @@ export function InsightsPage() {
         breadcrumb="Insights"
         eyebrow="Notes on delivery"
         title="Short pieces on the decisions that actually move programs."
-        copy="No thought-leadership theatre. These are the arguments I make in steering committees, written down so you can decide whether my thinking is useful to you before we ever speak."
+        copy="No thought-leadership theatre. These are the arguments we make in steering committees, written down so you can decide whether our thinking is useful to you before we ever speak."
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-12 lg:py-16">
         <Container>
           <div className="space-y-20 lg:space-y-28">
             {insights.map((article) => (
@@ -90,7 +90,7 @@ export function InsightsPage() {
       </section>
 
       {/* The guide */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-24">
+      <section className="border-t border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <Reveal>
             <div className="relative grid items-center gap-10 overflow-hidden rounded-3xl border border-line bg-surface p-8 lg:grid-cols-12 lg:gap-14 lg:p-12">
@@ -124,7 +124,7 @@ export function InsightsPage() {
       <CtaBand
         eyebrow="Discuss the thinking"
         title="Disagree with something here?"
-        copy="That is usually the most productive way to start. Tell me about your program and I will tell you what I would test first."
+        copy="That is usually the most productive way to start. Tell us about your program and we will tell you what we would test first."
         secondaryLabel="Run the health check"
         secondaryTo={paths.healthCheck}
       />

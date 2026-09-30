@@ -49,7 +49,7 @@ export function BookedPage() {
         noindex
       />
 
-      <section className="grid min-h-[80vh] place-items-center py-32">
+      <section className="grid min-h-[80vh] place-items-center py-24">
         <Container>
           <div className="max-w-2xl">
             <Seal className="h-16 w-16" animate />
@@ -59,7 +59,7 @@ export function BookedPage() {
             </h1>
             <p className="mt-6 text-[1.0625rem] text-muted">
               You should receive a calendar invitation shortly. We will use the 30 minutes to
-              understand the decision in front of you and whether I can help.
+              understand the decision in front of you and whether we can help.
             </p>
 
             <dl className="mt-10 space-y-4 rounded-2xl border border-line bg-surface p-6 sm:p-7">

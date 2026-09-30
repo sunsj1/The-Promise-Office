@@ -16,6 +16,7 @@ import { LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { ExperienceGlance } from '@/widgets/ExperienceGlance'
 import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
@@ -35,9 +36,30 @@ export function AboutPage() {
         breadcrumb="About"
       />
 
+      {/* The practice, introduced before the founder bio */}
+      <section className="border-b border-line pt-32 pb-14 lg:pt-40 lg:pb-16">
+        <Container size="wide">
+          <Reveal className="max-w-3xl">
+            <Eyebrow>The Promise Office</Eyebrow>
+            <h1 className="mt-5 text-[clamp(2rem,4.6vw,3.2rem)] leading-[1.05]">
+              An independent practice, built on one person's judgment.
+            </h1>
+            <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">
+              The Promise Office helps organisations recover critical programs, build delivery and GCC
+              capability, and move AI into governed, measurable operations. The practice is
+              founder-led, so its record is inseparable from its founder's — the sections below set
+              out that experience directly, so you can see exactly what the practice is built on.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Founder */}
       <PageHeader
         breadcrumb="About"
-        eyebrow={site.person}
+        leading={false}
+        headingLevel="h2"
+        eyebrow={`Founder · ${site.person}`}
         title="Senior judgment. Practical ownership."
         copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
         aside={<Portrait size="page" />}
@@ -58,7 +80,7 @@ export function AboutPage() {
       </PageHeader>
 
       {/* The perspective */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
@@ -104,8 +126,10 @@ export function AboutPage() {
         </Container>
       </section>
 
+      <ExperienceGlance />
+
       {/* Career timeline */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="Career"
@@ -135,7 +159,7 @@ export function AboutPage() {
       </section>
 
       {/* How I work */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader eyebrow="How I work" title="What you can expect from me." />
           <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
@@ -153,7 +177,7 @@ export function AboutPage() {
       </section>
 
       {/* Ways to engage */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="Ways to engage"
@@ -187,7 +211,7 @@ export function AboutPage() {
       </section>
 
       {/* Credentials */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="Qualifications and domains"
@@ -233,7 +257,7 @@ export function AboutPage() {
       </section>
 
       {/* Experience behind the practice */}
-      <section className="border-t border-line py-20 lg:py-24">
+      <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
           <Eyebrow>Experience behind the practice</Eyebrow>
           <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">
@@ -251,7 +275,7 @@ export function AboutPage() {
       </section>
 
       {/* Recommendations */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-24">
+      <section className="border-t border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">

@@ -32,7 +32,7 @@ export function EvidencePage() {
       />
 
       {/* Primary situations — full editorial treatment */}
-      <section className="py-16 lg:py-20">
+      <section className="py-12 lg:py-14">
         <Container size="prose">
           <div className="space-y-20 lg:space-y-24">
             {primarySituations.map((s) => (
@@ -106,7 +106,7 @@ export function EvidencePage() {
       </section>
 
       {/* Supporting situations — lighter field notes */}
-      <section className="border-t border-line bg-sunk py-16 lg:py-20">
+      <section className="border-t border-line bg-sunk py-12 lg:py-14">
         <Container size="prose">
           <Eyebrow>Field notes</Eyebrow>
           <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">

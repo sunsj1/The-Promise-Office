@@ -1,14 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { problems } from '@/data/problems'
 import { site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { lineRise, sealEase, stagger } from '@/animations/variants'
 import { BackgroundPaths } from '@/widgets/BackgroundPaths'
 import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
-import { Portrait } from '@/widgets/Portrait'
 import { Seal } from '@/widgets/Seal'
 
 const headline = ['Make the promise', 'deliverable.']
@@ -17,7 +14,7 @@ export function HomeHero() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-14 lg:pt-40 lg:pb-20">
+    <section className="relative overflow-hidden pt-24 pb-10 lg:pt-40 lg:pb-14">
       <BackgroundPaths className="pointer-events-none absolute inset-0 -z-10 opacity-80 dark:opacity-50" />
       <div
         aria-hidden
@@ -64,19 +61,10 @@ export function HomeHero() {
               }}
               className="mt-6 max-w-xl text-[1.05rem] text-muted sm:text-lg"
             >
-              The Promise Office helps leaders recover critical programs, build high-performing GCC
-              and service capabilities, redesign the operating models behind delivery, and move AI
-              from pilot to governed, measurable operations.
-            </motion.p>
-
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: sealEase, delay: 0.05 } },
-              }}
-              className="mt-4 max-w-xl font-mono text-[0.72rem] tracking-[0.06em] text-muted"
-            >
-              {site.founderDescriptor}
+              The programme that must recover. The GCC or service model that must scale. The AI
+              investment that must prove its worth. The Promise Office brings the independent
+              judgment, operating design and hands-on leadership to turn those commitments into
+              measurable performance.
             </motion.p>
           </div>
 
@@ -87,7 +75,20 @@ export function HomeHero() {
             }}
             className="mx-auto w-[min(72%,18rem)] lg:col-span-5 lg:row-span-2 lg:mx-0 lg:w-full lg:max-w-[26rem] lg:justify-self-end"
           >
-            <Portrait />
+            <div className="relative mx-auto aspect-square w-full">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_42%,rgba(240,180,60,0.32),rgba(240,180,60,0.08)_42%,transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_42%,rgba(240,180,60,0.22),rgba(240,180,60,0.05)_48%,transparent_72%)]"
+              />
+              <div aria-hidden className="absolute inset-[9%] rounded-full border border-line" />
+              <div aria-hidden className="absolute inset-[19%] rounded-full border border-line/60" />
+              <div className="absolute inset-0 grid place-items-center">
+                <Seal animate delay={0.5} className="h-[30%] w-[30%] text-ink" />
+              </div>
+            </div>
+            <p className="mt-6 text-center font-mono text-[0.7rem] tracking-[0.2em] text-muted uppercase">
+              Advisory · GCC · AI
+            </p>
           </motion.div>
 
           <div className="lg:col-span-7">
@@ -117,34 +118,6 @@ export function HomeHero() {
               Independent advisory · {site.base} · working across India and international delivery
               environments
             </motion.p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, ease: sealEase }}
-          className="mt-12 grid gap-3 border-t border-line pt-8 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-10"
-        >
-          <div className="hidden lg:block">
-            <Seal animate delay={0.4} className="h-20 w-20" />
-          </div>
-          <div>
-            <p className="font-mono text-[0.68rem] tracking-[0.16em] text-muted uppercase">
-              What’s already in the room?
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {problems.map((problem) => (
-                <li key={problem.id}>
-                  <Link
-                    to={problem.href}
-                    className="inline-flex rounded-full border border-line bg-surface px-3.5 py-2 text-[0.86rem] transition-colors hover:border-amber hover:text-amber"
-                  >
-                    {problem.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </motion.div>
       </Container>

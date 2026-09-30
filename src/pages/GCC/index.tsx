@@ -101,7 +101,7 @@ export function GCCPage() {
       </section>
 
       {/* Who this is for */}
-      <section className="py-16 lg:py-20">
+      <section className="py-12 lg:py-14">
         <Container size="wide">
           <Eyebrow>Who this is for</Eyebrow>
           <RevealGroup className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -116,7 +116,7 @@ export function GCCPage() {
       </section>
 
       {/* Lifecycle */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="The GCC lifecycle"
@@ -138,7 +138,7 @@ export function GCCPage() {
       </section>
 
       {/* Capability areas */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader eyebrow="Capability areas" title="Where the work concentrates." />
           <RevealGroup className="mt-10 flex flex-wrap gap-3">
@@ -155,7 +155,7 @@ export function GCCPage() {
       </section>
 
       {/* Evidence behind the proposition */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="Experience behind the proposition"
@@ -192,7 +192,7 @@ export function GCCPage() {
       </section>
 
       {/* AI-enabled GCC */}
-      <section className="relative isolate overflow-hidden bg-night py-20 text-cream lg:py-28">
+      <section className="relative isolate overflow-hidden bg-night py-14 text-cream lg:py-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"

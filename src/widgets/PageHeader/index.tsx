@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import type { ReactNode } from 'react'
+import type { ElementType, ReactNode } from 'react'
 import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { Reveal } from '@/widgets/Reveal'
+import { cn } from '@/lib/cn'
 
 /** Shared inner-page masthead with breadcrumb and optional trailing slot. */
 export function PageHeader({
@@ -13,6 +14,8 @@ export function PageHeader({
   breadcrumb,
   aside,
   children,
+  leading = true,
+  headingLevel = 'h1',
 }: {
   eyebrow: string
   title: string
@@ -21,9 +24,19 @@ export function PageHeader({
   /** Optional right-hand visual, used for the founder portrait. */
   aside?: ReactNode
   children?: ReactNode
+  /** False when another section already precedes this one on the page — drops the top padding reserved for clearing the fixed navbar. */
+  leading?: boolean
+  /** Use 'h2' when the page's single <h1> lives in an earlier section. */
+  headingLevel?: 'h1' | 'h2'
 }) {
+  const Heading: ElementType = headingLevel
   return (
-    <section className="relative overflow-hidden border-b border-line pt-32 pb-16 lg:pt-40 lg:pb-20">
+    <section
+      className={cn(
+        'relative overflow-hidden border-b border-line pb-12 lg:pb-14',
+        leading ? 'pt-24 lg:pt-40' : 'pt-14 lg:pt-16',
+      )}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -54,9 +67,9 @@ export function PageHeader({
           >
             <div className={aside ? 'lg:col-span-7' : undefined}>
               <Eyebrow className={aside ? undefined : 'mt-8'}>{eyebrow}</Eyebrow>
-              <h1 className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
+              <Heading className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
                 {title}
-              </h1>
+              </Heading>
               {copy ? <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">{copy}</p> : null}
             </div>
             {aside ? (

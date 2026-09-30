@@ -9,12 +9,12 @@ import { SectionHeader } from '@/widgets/SectionHeader'
 
 export function HomeCapabilities() {
   return (
-    <section className="border-y border-line bg-sunk py-20 lg:py-28">
+    <section className="border-y border-line bg-sunk py-14 lg:py-20">
       <Container size="wide">
         <SectionHeader
           eyebrow="Capabilities behind the outcome"
           title="More than advice. Capability that stays."
-          copy="Six capabilities cut across all four practices. Each is covered in full — problem, what we do, what you receive and the experience behind it — on the Advisory page."
+          copy="Six capabilities cut across all four practices — Advisory (which covers Delivery Recovery and Managed Services), GCC and AI. Each is covered in full — problem, what we do, what you receive and the experience behind it — on the Advisory page."
         />
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability) => (

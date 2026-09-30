@@ -21,7 +21,7 @@ export function TermsPage() {
         title="Website terms & disclaimer."
       />
 
-      <section className="py-16 lg:py-20">
+      <section className="py-12 lg:py-14">
         <Container size="prose">
           <Reveal className="space-y-8 text-[1.0125rem] leading-relaxed">
             <div>

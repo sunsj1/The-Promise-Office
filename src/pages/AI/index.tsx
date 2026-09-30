@@ -78,7 +78,7 @@ export function AIPage() {
       />
 
       {/* Capabilities */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((cap) => (
@@ -94,7 +94,7 @@ export function AIPage() {
 
       {/* Signature offer */}
       {aiThatWorks ? (
-        <section className="border-y border-line bg-sunk py-20 lg:py-24">
+        <section className="border-y border-line bg-sunk py-14 lg:py-16">
           <Container size="wide">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
               <Reveal className="lg:col-span-5">
@@ -141,7 +141,7 @@ export function AIPage() {
 
       {/* Evidence */}
       {knowledgeAssistant ? (
-        <section className="py-20 lg:py-24">
+        <section className="py-14 lg:py-16">
           <Container size="wide">
             <SectionHeader
               eyebrow="Experience behind it"

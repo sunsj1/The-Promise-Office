@@ -175,7 +175,11 @@ export function getEngagement(slug: string) {
 
 export type PracticeKey = 'delivery-recovery' | 'gcc' | 'managed-services' | 'ai'
 
-/** The four practices clients engage The Promise Office to solve. GCC has no signature engagement of its own — see /gcc. */
+/**
+ * The four practices clients engage The Promise Office to solve. Nav only shows three
+ * top-level links (Advisory, GCC, AI) because delivery-recovery and managed-services both
+ * live under /advisory as anchors; GCC has no signature engagement of its own — see /gcc.
+ */
 export const practices: {
   key: PracticeKey
   index: string
@@ -366,7 +370,7 @@ export const engagementAreas = [
     index: '01',
     label: 'Delivery & recovery',
     question: 'Is the plan still credible?',
-    copy: 'Start with the Delivery Health Check, then decide whether recovery leadership or a stronger delivery office is needed.',
+    copy: 'Start with the Delivery Diagnostic, then decide whether recovery leadership or a stronger delivery office is needed.',
     cta: 'Start here',
     area: 'delivery' as const,
   },
@@ -388,8 +392,12 @@ export const engagementAreas = [
   },
 ]
 
-export const healthCheckOffer = {
-  title: 'The Delivery Health Check',
+/**
+ * The paid, fixed-scope engagement — distinct from the free online Health Check
+ * self-assessment tool at /health-check (src/features/healthCheck).
+ */
+export const deliveryDiagnostic = {
+  title: 'The Delivery Diagnostic',
   lead: 'A fixed-scope, two-week independent review of one program, account or delivery unit. You get a clear reading of where it stands, what puts it at risk, and which decisions will restore control.',
   facts: [
     { label: 'Length', value: 'Two weeks, remote or on site as agreed' },
@@ -487,11 +495,11 @@ export const adjacentMandates = [
 export const faqs = [
   {
     q: 'How long does an engagement take?',
-    a: 'The Delivery Health Check is designed around two weeks when documents and stakeholders are available. A practice build, transition or interim leadership mandate is scoped against the work and decision cycle.',
+    a: 'The Delivery Diagnostic is designed around two weeks when documents and stakeholders are available. A practice build, transition or interim leadership mandate is scoped against the work and decision cycle.',
   },
   {
     q: 'Remote or on-site?',
-    a: 'Both. I am based in Pune and have worked with distributed teams and customers across markets. Workshops, critical reviews and transitions may benefit from time on site; we agree the model and travel in the scope.',
+    a: 'Both. The practice is based in Pune and has worked with distributed teams and customers across markets. Workshops, critical reviews and transitions may benefit from time on site; we agree the model and travel in the scope.',
   },
   {
     q: 'How is confidential information handled?',
@@ -507,6 +515,6 @@ export const faqs = [
   },
   {
     q: 'What happens in the first call?',
-    a: 'In about 30 minutes, we discuss the decision you face, timing, the people involved and what evidence exists. I will say whether I can help and what a useful first step would look like.',
+    a: 'In about 30 minutes, we discuss the decision you face, timing, the people involved and what evidence exists. We will say whether we can help and what a useful first step would look like.',
   },
 ] as const

@@ -3,7 +3,7 @@ import { ProcessTimeline } from '@/widgets/ProcessTimeline'
 
 export function HomeFramework() {
   return (
-    <section className="border-t border-line py-20 lg:py-28">
+    <section className="border-t border-line py-14 lg:py-20">
       <Container size="wide">
         <ProcessTimeline />
       </Container>

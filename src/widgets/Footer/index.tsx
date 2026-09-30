@@ -2,7 +2,7 @@ import { ArrowUpRight, Mail, MapPin, SquarePlay } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { bookCallAttrs } from '@/lib/cal'
 import { useTheme } from '@/lib/theme'
-import { disclaimers, site } from '@/data/site'
+import { site } from '@/data/site'
 import { navLinks, paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Logo } from '@/widgets/Logo'
@@ -12,12 +12,12 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line bg-sunk">
-      <Container size="wide" className="py-16 lg:py-20">
+      <Container size="wide" className="py-12 lg:py-14">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Logo />
             <p className="mt-6 max-w-sm text-[0.97rem] text-muted">
-              {site.person} · {site.role}. Independent practice working with IT services firms, GCCs
+              {site.brand} · {site.role}. Independent practice working with IT services firms, GCCs
               and enterprise leaders.
             </p>
             <a
@@ -113,12 +113,9 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-line pt-7">
-          <p className="max-w-4xl font-mono text-[0.68rem] leading-relaxed text-muted">
-            {disclaimers.practice}
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[0.68rem] tracking-[0.1em] text-muted uppercase">
             <span>
-              © {new Date().getFullYear()} {site.brand} · Founded by {site.person} · {site.base}
+              © {new Date().getFullYear()} {site.brand} · Founded by Hrishikesh Salunkhe · {site.base}
             </span>
             <Link to={paths.privacy} className="normal-case tracking-normal hover:text-amber">
               Privacy

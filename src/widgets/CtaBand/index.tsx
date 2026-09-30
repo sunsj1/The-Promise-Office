@@ -22,7 +22,7 @@ export function CtaBand({
   secondaryTo,
 }: CtaBandProps) {
   return (
-    <section className="relative overflow-hidden border-t border-line bg-sunk py-20 lg:py-28">
+    <section className="relative overflow-hidden border-t border-line bg-sunk py-14 lg:py-20">
       <Seal
         aria-hidden
         className="pointer-events-none absolute -right-24 -bottom-24 h-80 w-80 opacity-[0.045]"

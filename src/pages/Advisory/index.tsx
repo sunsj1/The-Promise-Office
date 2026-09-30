@@ -8,7 +8,7 @@ import {
   engagementAreas,
   engagements,
   faqs,
-  healthCheckOffer,
+  deliveryDiagnostic,
   practices,
 } from '@/data/engagements'
 import { engagementShapes } from '@/data/personas'
@@ -40,13 +40,17 @@ export function AdvisoryPage() {
         breadcrumb="Advisory"
         eyebrow="The advisory practice"
         title="Bring the difficult brief."
-        copy="Some mandates need a sharp independent diagnosis. Others need a capability built, a transition led or a delivery leader in the room. Four practices, and the capabilities that cut across them, connect strategy, operating design, commercials and execution around the outcome at stake."
+        copy="Some mandates need a sharp independent diagnosis. Others need a capability built, a transition led or a delivery leader in the room. Four practices — two of them, Delivery Recovery and Managed Services, covered here on Advisory, plus dedicated GCC and AI pages — connect strategy, operating design, commercials and execution around the outcome at stake."
       />
 
       {/* Four problems we're brought in to solve */}
-      <section className="py-20 lg:py-24">
+      <section className="py-14 lg:py-16">
         <Container size="wide">
           <Eyebrow>The four problems we're brought in to solve</Eyebrow>
+          <p className="mt-3 max-w-2xl text-[0.9rem] text-muted">
+            Delivery Recovery and Managed Services are covered here on Advisory. GCC and AI each have
+            their own dedicated page — linked from the cards below.
+          </p>
           <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {practices.map((practice) => (
               <motion.div key={practice.key} variants={fadeUp}>
@@ -80,20 +84,20 @@ export function AdvisoryPage() {
         </Container>
       </section>
 
-      {/* Health Check offer */}
-      <section className="border-y border-line bg-sunk py-20 lg:py-24">
+      {/* Delivery Diagnostic offer */}
+      <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
               <Eyebrow>Where most clients start</Eyebrow>
-              <h2 className="mt-5 text-3xl sm:text-4xl">{healthCheckOffer.title}</h2>
-              <p className="mt-5 text-[1.0625rem] text-muted">{healthCheckOffer.lead}</p>
+              <h2 className="mt-5 text-3xl sm:text-4xl">{deliveryDiagnostic.title}</h2>
+              <p className="mt-5 text-[1.0625rem] text-muted">{deliveryDiagnostic.lead}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <LinkButton to={paths.contact} size="lg">
-                  Request a Health Check
+                  Request the Delivery Diagnostic
                 </LinkButton>
                 <LinkButton to={paths.healthCheck} variant="outline" size="lg">
-                  Start the Health Check
+                  Try the free Health Check
                 </LinkButton>
               </div>
             </Reveal>
@@ -104,7 +108,7 @@ export function AdvisoryPage() {
                   You receive
                 </p>
                 <ul className="mt-5 space-y-3">
-                  {healthCheckOffer.receive.map((item) => (
+                  {deliveryDiagnostic.receive.map((item) => (
                     <li key={item} className="flex gap-3 text-[1.0625rem]">
                       <Check size={16} className="mt-1.5 shrink-0 text-amber" aria-hidden />
                       {item}
@@ -112,7 +116,7 @@ export function AdvisoryPage() {
                   ))}
                 </ul>
                 <dl className="mt-8 grid gap-5 border-t border-line pt-7 sm:grid-cols-2">
-                  {healthCheckOffer.facts.map((fact) => (
+                  {deliveryDiagnostic.facts.map((fact) => (
                     <div key={fact.label}>
                       <dt className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
                         {fact.label}
@@ -128,7 +132,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Six core mandates, tagged by practice */}
-      <section id="managed-services" className="py-20 lg:py-28">
+      <section id="managed-services" className="py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Core mandates"
@@ -202,12 +206,12 @@ export function AdvisoryPage() {
       </section>
 
       {/* Capabilities behind the outcome */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-28">
+      <section className="border-t border-line bg-sunk py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Capabilities behind the outcome"
             title="More than advice. Capability that stays."
-            copy="These six capabilities cut across all four practices. They do not each need a separate mandate — most engagements draw on two or three of them at once."
+            copy="These six capabilities cut across all four practices — the two covered on this page, plus GCC and AI. They do not each need a separate mandate — most engagements draw on two or three of them at once."
           />
 
           <div className="mt-14 space-y-14">
@@ -269,7 +273,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* AI enablement formats */}
-      <section className="border-b border-line py-20 lg:py-24">
+      <section className="border-b border-line py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
             eyebrow="AI enablement formats"
@@ -307,7 +311,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Adjacent mandates */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Adjacent mandates"
@@ -332,7 +336,7 @@ export function AdvisoryPage() {
       </section>
 
       {/* Ways to engage + FAQ */}
-      <section className="border-t border-line bg-sunk py-20 lg:py-28">
+      <section className="border-t border-line bg-sunk py-14 lg:py-20">
         <Container size="wide">
           <SectionHeader
             eyebrow="Ways to engage"

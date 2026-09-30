@@ -14,7 +14,7 @@ type ErrorStateProps = {
 /** Shown in place of a page, feature or section that failed to render. */
 export function ErrorState({ titleAs: Title = 'h2', onRetry, className }: ErrorStateProps) {
   return (
-    <section className={className ?? 'grid min-h-[60vh] place-items-center py-24'}>
+    <section className={className ?? 'grid min-h-[60vh] place-items-center py-16'}>
       <Container>
         <div className="max-w-xl">
           <Seal className="h-16 w-16" animate />

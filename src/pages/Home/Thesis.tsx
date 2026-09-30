@@ -9,7 +9,7 @@ import { Seal } from '@/widgets/Seal'
 */
 export function HomeThesis() {
   return (
-    <section className="relative isolate overflow-hidden bg-night py-24 text-cream lg:py-32">
+    <section className="relative isolate overflow-hidden bg-night py-16 text-cream lg:py-24">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -31,15 +31,17 @@ export function HomeThesis() {
           </h2>
           <div className="mt-8 grid gap-7 text-[1.0625rem] leading-relaxed text-[#a39e93] lg:grid-cols-2">
             <p>
-              Companies do not experience process, technology, service, finance and people as
-              separate workstreams. A customer experiences the whole system. I bring 21+ years across
-              those seams — from process redesign and commercial shaping to program recovery, managed
-              services, AI delivery and executive governance.
+              Delivery promises rarely break in one place. A commercial commitment outruns the
+              operating model built to support it; a process handoff nobody owns quietly drops
+              information; a technology rollout ships before the operations that depend on it are
+              ready. Each looks like a local problem until the pattern repeats across a portfolio.
             </p>
             <p>
-              I can enter for a specific problem, build a missing capability or take accountability
-              through a critical period. The work begins with evidence and ends with an operating
-              rhythm your team can sustain.
+              The Promise Office works across those seams — commercial, process, technology and
+              operations — drawing on 21+ years of delivery, transformation and commercial
+              leadership. The approach starts with evidence: what is actually true, not what the
+              status report says. It ends with clear ownership and an operating rhythm the client's
+              own team can sustain.
             </p>
           </div>
 

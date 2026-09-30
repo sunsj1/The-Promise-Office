@@ -2,7 +2,6 @@ import { CtaBand } from '@/widgets/CtaBand'
 import { paths } from '@/routes/paths'
 import { personJsonLd, Seo } from '@/widgets/Seo'
 import { HomeCapabilities } from '@/pages/Home/Capabilities'
-import { HomeCredibility } from '@/pages/Home/Credibility'
 import { HomeEngagements } from '@/pages/Home/Engagements'
 import { HomeFramework } from '@/pages/Home/Framework'
 import { HomeGccAiSpotlight } from '@/pages/Home/GccAiSpotlight'
@@ -18,18 +17,28 @@ export function HomePage() {
   return (
     <>
       <Seo path="/" jsonLd={personJsonLd} />
+      {/* 1. Client problems */}
       <HomeHero />
-      <HomeCredibility />
       <HomePractices />
       <HomePersonas />
       <HomeThesis />
-      <HomePromiseLens />
-      <HomeCapabilities />
-      <HomeFramework />
+
+      {/* 2. Advisory / GCC / AI offers */}
       <HomeEngagements />
       <HomeGccAiSpotlight />
+      <HomeCapabilities />
+
+      {/* 3. How engagements work */}
+      <HomePromiseLens />
+      <HomeFramework />
+
+      {/* 4. A clear starting offer */}
       <HomeHealthCheckTeaser />
+
+      {/* 5. Evidence */}
       <HomeProof />
+
+      {/* 6. Contact */}
       <CtaBand
         eyebrow="The first conversation"
         title="Tell us where the promise is at risk."
