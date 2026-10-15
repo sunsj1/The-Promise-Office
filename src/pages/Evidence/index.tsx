@@ -33,71 +33,94 @@ export function EvidencePage() {
 
       {/* Primary situations — full editorial treatment */}
       <section className="py-12 lg:py-14">
-        <Container size="prose">
+        <Container size="wide">
           <div className="space-y-20 lg:space-y-24">
             {primarySituations.map((s) => (
-              <Reveal key={s.slug} id={s.slug} className="scroll-mt-28 border-t border-line pt-12 first:border-t-0 first:pt-0">
-                <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">{s.index}</p>
-                <h2 className="mt-3 font-display text-3xl leading-snug sm:text-[2.1rem]">{s.title}</h2>
+              <Reveal
+                key={s.slug}
+                id={s.slug}
+                className="scroll-mt-28 border-t border-line pt-12 first:border-t-0 first:pt-0"
+              >
+                <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+                  <div className="lg:col-span-5">
+                    <div className="lg:sticky lg:top-28">
+                      <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
+                        {s.index}
+                      </p>
+                      <h2 className="mt-3 font-display text-3xl leading-snug sm:text-[2.1rem]">
+                        {s.title}
+                      </h2>
 
-                <p className="mt-6 text-[1.0625rem] leading-relaxed">{s.situation}</p>
-
-                <div className="mt-6">
-                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
-                    What often sits underneath
-                  </p>
-                  <p className="mt-2.5 text-[1.0125rem] leading-relaxed text-muted">{s.underneath}</p>
-                </div>
-
-                <div className="mt-6">
-                  <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
-                    The Promise Office view
-                  </p>
-                  <p className="mt-2.5 text-[1.0125rem] leading-relaxed">{s.view}</p>
-                </div>
-
-                <div className="mt-8 rounded-2xl border border-line bg-sunk p-6 lg:p-7">
-                  <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
-                    {s.evidence.context}
-                  </p>
-                  <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                      <p className="mt-6 text-[1.0625rem] leading-relaxed">{s.situation}</p>
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7">
                     <div>
-                      <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">Environment</dt>
-                      <dd className="mt-1 text-[0.93rem]">{s.evidence.environment}</dd>
+                      <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
+                        What often sits underneath
+                      </p>
+                      <p className="mt-2.5 text-[1.0125rem] leading-relaxed text-muted">
+                        {s.underneath}
+                      </p>
                     </div>
-                    <div>
-                      <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">Intervention</dt>
-                      <dd className="mt-1 text-[0.93rem]">{s.evidence.intervention}</dd>
-                    </div>
-                    <div className="sm:col-span-2">
-                      <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">Observed outcome</dt>
-                      <dd className="mt-1 text-[0.93rem]">{s.evidence.outcome}</dd>
-                    </div>
-                  </dl>
-                </div>
 
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-                  {s.relatedSlug ? (
-                    <Link
-                      to={paths.advisoryDetail(s.relatedSlug)}
-                      className="font-mono text-[0.68rem] tracking-[0.12em] text-amber uppercase hover:underline"
-                    >
-                      See the related mandate →
-                    </Link>
-                  ) : null}
-                  {s.crossLinks.map((slug) => {
-                    const linked = getSituation(slug)
-                    if (!linked) return null
-                    return (
-                      <a
-                        key={slug}
-                        href={`#${slug}`}
-                        className="font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase transition-colors hover:text-amber"
-                      >
-                        See also: {linked.title}
-                      </a>
-                    )
-                  })}
+                    <div className="mt-6">
+                      <p className="font-mono text-[0.66rem] tracking-[0.14em] text-amber uppercase">
+                        The Promise Office view
+                      </p>
+                      <p className="mt-2.5 text-[1.0125rem] leading-relaxed">{s.view}</p>
+                    </div>
+
+                    <div className="mt-8 rounded-2xl border border-line bg-sunk p-6 lg:p-7">
+                      <p className="font-mono text-[0.64rem] tracking-[0.14em] text-muted uppercase">
+                        {s.evidence.context}
+                      </p>
+                      <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                        <div>
+                          <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">
+                            Environment
+                          </dt>
+                          <dd className="mt-1 text-[0.93rem]">{s.evidence.environment}</dd>
+                        </div>
+                        <div>
+                          <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">
+                            Intervention
+                          </dt>
+                          <dd className="mt-1 text-[0.93rem]">{s.evidence.intervention}</dd>
+                        </div>
+                        <div className="sm:col-span-2">
+                          <dt className="font-mono text-[0.62rem] tracking-[0.12em] text-muted uppercase">
+                            Observed outcome
+                          </dt>
+                          <dd className="mt-1 text-[0.93rem]">{s.evidence.outcome}</dd>
+                        </div>
+                      </dl>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                      {s.relatedSlug ? (
+                        <Link
+                          to={paths.advisoryDetail(s.relatedSlug)}
+                          className="font-mono text-[0.68rem] tracking-[0.12em] text-amber uppercase hover:underline"
+                        >
+                          See the related mandate →
+                        </Link>
+                      ) : null}
+                      {s.crossLinks.map((slug) => {
+                        const linked = getSituation(slug)
+                        if (!linked) return null
+                        return (
+                          <a
+                            key={slug}
+                            href={`#${slug}`}
+                            className="font-mono text-[0.66rem] tracking-[0.1em] text-muted uppercase transition-colors hover:text-amber"
+                          >
+                            See also: {linked.title}
+                          </a>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -107,11 +130,11 @@ export function EvidencePage() {
 
       {/* Supporting situations — lighter field notes */}
       <section className="border-t border-line bg-sunk py-12 lg:py-14">
-        <Container size="prose">
+        <Container size="wide">
           <Eyebrow>Field notes</Eyebrow>
           <p className="mt-4 max-w-2xl text-[0.97rem] text-muted">
-            Related patterns that inform the primary situations above, told more briefly. Expand any of them
-            for the full view.
+            Related patterns that inform the primary situations above, told more briefly. Expand any
+            of them for the full view.
           </p>
 
           <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-surface">
@@ -134,14 +157,19 @@ export function EvidencePage() {
                     <ChevronDown
                       size={16}
                       aria-hidden
-                      className={cn('shrink-0 text-muted transition-transform duration-300', isOpen && 'rotate-180 text-amber')}
+                      className={cn(
+                        'shrink-0 text-muted transition-transform duration-300',
+                        isOpen && 'rotate-180 text-amber',
+                      )}
                     />
                   </button>
 
-                  {!isOpen ? <p className="mt-3 max-w-2xl text-[0.93rem] text-muted">{s.situation}</p> : null}
+                  {!isOpen ? (
+                    <p className="mt-3 max-w-2xl text-[0.93rem] text-muted">{s.situation}</p>
+                  ) : null}
 
                   {isOpen ? (
-                    <div className="mt-5 max-w-2xl space-y-5">
+                    <div className="mt-5 grid gap-6 lg:grid-cols-2">
                       <p className="text-[0.97rem]">{s.situation}</p>
                       <div>
                         <p className="font-mono text-[0.62rem] tracking-[0.14em] text-amber uppercase">
@@ -160,7 +188,8 @@ export function EvidencePage() {
                           {s.evidence.context}
                         </p>
                         <p className="mt-2 text-[0.88rem] text-muted">
-                          {s.evidence.environment} · {s.evidence.intervention} · {s.evidence.outcome}
+                          {s.evidence.environment} · {s.evidence.intervention} ·{' '}
+                          {s.evidence.outcome}
                         </p>
                       </div>
                       {s.relatedSlug ? (

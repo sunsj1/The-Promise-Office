@@ -67,7 +67,7 @@ export function AdvisoryDetailPage() {
 
             <aside className="lg:col-span-5">
               <Reveal delay={0.1}>
-                <div className="rounded-2xl border border-line bg-sunk p-7 lg:p-8">
+                <div className="rounded-2xl border border-line bg-sunk p-7 lg:sticky lg:top-28 lg:p-8">
                   <Eyebrow>What you receive</Eyebrow>
                   <p className="mt-5 text-[1.0625rem] leading-relaxed">
                     {engagement.whatYouReceive}
