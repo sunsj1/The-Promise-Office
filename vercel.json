@@ -23,6 +23,7 @@
     { "source": "/contact", "destination": "/index.html" },
     { "source": "/booked", "destination": "/index.html" },
     { "source": "/privacy", "destination": "/index.html" },
-    { "source": "/terms", "destination": "/index.html" }
+    { "source": "/terms", "destination": "/index.html" },
+    { "source": "/atlas", "destination": "/atlas/index.html" }
   ]
 }
