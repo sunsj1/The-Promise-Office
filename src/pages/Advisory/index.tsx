@@ -39,6 +39,7 @@ export function AdvisoryPage() {
       />
 
       <PageHeader
+        points={['Delivery recovery', 'Managed services', 'GCC', 'AI']}
         graphic={<PagePicker config={advisoryPicker} />}
         breadcrumb="Advisory"
         eyebrow="The advisory practice"

@@ -40,6 +40,7 @@ export function AboutPage() {
 
       {/* Introduction */}
       <PageHeader
+        points={['Independent', 'Senior-led', 'Delivery, GCC and AI']}
         graphic={<PagePicker config={aboutPicker} />}
         breadcrumb="About"
         eyebrow={aboutIntro.eyebrow}

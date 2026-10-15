@@ -21,6 +21,7 @@ export function HealthCheckPage() {
       />
 
       <PageHeader
+        points={['8–15 questions', 'Adaptive', 'Stays in your browser']}
         graphic={<PagePicker config={healthCheckPicker} />}
         breadcrumb="Health check"
         eyebrow="An adaptive advisory diagnostic"

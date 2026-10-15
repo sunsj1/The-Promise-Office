@@ -19,6 +19,7 @@ export function AtlasPage() {
       />
 
       <PageHeader
+        points={['328 technologies', 'Five stages', 'Journeys and roadmaps']}
         graphic={<PagePicker config={atlasPicker} />}
         breadcrumb="Atlas"
         eyebrow="Technology map"

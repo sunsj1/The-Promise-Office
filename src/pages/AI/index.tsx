@@ -73,6 +73,7 @@ export function AIPage() {
       />
 
       <PageHeader
+        points={['Trust', 'Integration', 'Operations', 'Measurement']}
         graphic={<PagePicker config={aiPicker} />}
         breadcrumb="AI"
         eyebrow="AI & Intelligent Operations"

@@ -84,6 +84,14 @@ export function GCCPage() {
       />
 
       <PageHeader
+        points={[
+          'Mandate',
+          'Decision rights',
+          'Governance',
+          'Service discipline',
+          'Leadership',
+          'Enterprise ownership',
+        ]}
         graphic={<PagePicker config={gccPicker} />}
         breadcrumb="GCC"
         eyebrow="GCC & Capability Centre Advisory"
