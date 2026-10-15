@@ -15,22 +15,18 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: The-Promise-Office/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: The-Promise-Office
         run: npm ci
 
       - name: Lint
-        working-directory: The-Promise-Office
         run: npm run lint
 
       - name: Build
-        working-directory: The-Promise-Office
         run: npm run build
 
       - name: Smoke-test client-side routes
-        working-directory: The-Promise-Office
         run: |
           npx vite preview --port 4173 &
           SERVER_PID=$!
