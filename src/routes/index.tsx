@@ -13,6 +13,7 @@ const AIPage = lazy(() => import('@/pages/AI').then((m) => ({ default: m.AIPage 
 const EvidencePage = lazy(() => import('@/pages/Evidence').then((m) => ({ default: m.EvidencePage })))
 const AboutPage = lazy(() => import('@/pages/About').then((m) => ({ default: m.AboutPage })))
 const InsightsPage = lazy(() => import('@/pages/Insights').then((m) => ({ default: m.InsightsPage })))
+const AtlasPage = lazy(() => import('@/pages/Atlas').then((m) => ({ default: m.AtlasPage })))
 const HealthCheckPage = lazy(() =>
   import('@/pages/HealthCheck').then((m) => ({ default: m.HealthCheckPage })),
 )
@@ -43,6 +44,7 @@ export function AppRoutes() {
           <Route path={paths.evidence} element={<EvidencePage />} />
           <Route path={paths.about} element={<AboutPage />} />
           <Route path={paths.insights} element={<InsightsPage />} />
+          <Route path={paths.atlas} element={<AtlasPage />} />
           <Route path={paths.healthCheck} element={<HealthCheckPage />} />
           <Route path={paths.contact} element={<ContactPage />} />
           <Route path={paths.booked} element={<BookedPage />} />

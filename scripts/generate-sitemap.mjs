@@ -17,6 +17,7 @@ const entries = [
   { loc: '/evidence', priority: '0.8' },
   { loc: '/about', priority: '0.8' },
   { loc: '/insights', priority: '0.8' },
+  { loc: '/atlas', priority: '0.7' },
   { loc: '/health-check', priority: '0.8' },
   { loc: '/contact', priority: '0.8' },
   { loc: '/privacy', priority: '0.3' },

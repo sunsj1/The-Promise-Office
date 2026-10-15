@@ -7,6 +7,7 @@ export const paths = {
   evidence: '/evidence',
   about: '/about',
   insights: '/insights',
+  atlas: '/atlas',
   healthCheck: '/health-check',
   contact: '/contact',
   booked: '/booked',
@@ -24,5 +25,6 @@ export const navLinks = [
   { label: 'AI', href: paths.ai },
   { label: 'Evidence', href: paths.evidence },
   { label: 'Insights', href: paths.insights },
+  { label: 'Atlas', href: paths.atlas },
   { label: 'About', href: paths.about },
 ] as const
