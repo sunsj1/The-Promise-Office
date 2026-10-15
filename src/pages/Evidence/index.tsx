@@ -187,7 +187,7 @@ export function EvidencePage() {
       <CtaBand
         eyebrow="Your situation"
         title="Which of these sounds like where you are?"
-        copy="Tell me where the program or service stands today. We can identify the evidence and decisions needed for the next step."
+        copy="Tell us where the program or service stands today. We can identify the evidence and decisions needed for the next step."
         secondaryLabel="See the advisory practice"
         secondaryTo={paths.advisory}
       />

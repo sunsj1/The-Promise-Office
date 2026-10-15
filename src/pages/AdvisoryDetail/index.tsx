@@ -51,9 +51,9 @@ export function AdvisoryDetailPage() {
               </Reveal>
 
               <Reveal className="mt-14" delay={0.05}>
-                <Eyebrow>What I do</Eyebrow>
+                <Eyebrow>What we do</Eyebrow>
                 <ol className="mt-6 space-y-px overflow-hidden rounded-2xl border border-line bg-line">
-                  {engagement.whatIDo.map((step, index) => (
+                  {engagement.whatWeDo.map((step, index) => (
                     <li key={step} className="flex gap-5 bg-surface px-6 py-5">
                       <span className="font-mono text-[0.7rem] text-amber">
                         {String(index + 1).padStart(2, '0')}
@@ -114,7 +114,7 @@ export function AdvisoryDetailPage() {
 
       <CtaBand
         eyebrow="A useful first step"
-        title="Tell me where this sits in your organisation."
+        title="Tell us where this sits in your organisation."
         copy="We can scope this as a diagnostic, a build-and-embed assignment or hands-on leadership — whichever fits the decision in front of you."
         secondaryLabel="Run the health check"
         secondaryTo={paths.healthCheck}

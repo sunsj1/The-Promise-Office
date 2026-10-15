@@ -117,7 +117,7 @@ export function AIPage() {
                     What we do
                   </p>
                   <ol className="mt-5 space-y-3">
-                    {aiThatWorks.whatIDo.map((step, index) => (
+                    {aiThatWorks.whatWeDo.map((step, index) => (
                       <li key={step} className="flex gap-4 text-[0.97rem]">
                         <span className="font-mono text-[0.68rem] text-amber">
                           {String(index + 1).padStart(2, '0')}
@@ -172,7 +172,7 @@ export function AIPage() {
       <CtaBand
         eyebrow="From demo to operation"
         title="Move your AI initiative from demo to operation."
-        copy="Tell me what the pilot is meant to change, who relies on it and what evidence would make you trust it. We can define a useful next step."
+        copy="Tell us what the pilot is meant to change, who relies on it and what evidence would make you trust it. We can define a useful next step."
         secondaryLabel="See the advisory practice"
         secondaryTo={paths.advisory}
       />

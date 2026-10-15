@@ -45,7 +45,7 @@ export const principles = [
     index: '01',
     title: 'Candour',
     heading: 'A clear view of the situation',
-    copy: 'I separate reported status from observable evidence and surface uncomfortable dependencies early enough to act.',
+    copy: 'We separate reported status from observable evidence and surface uncomfortable dependencies early enough to act.',
   },
   {
     index: '02',
@@ -114,7 +114,7 @@ export const insights = [
     title: 'When the status is green and the customer is worried.',
     standfirst: 'A green report can be true about activity and wrong about the outcome.',
     body: [
-      'In a troubled program, I start by asking for evidence of the next few decisions: which milestone depends on an unready system, where the acceptance criteria are ambiguous, who can resolve a cross-team blocker, and whether the schedule has room for what testing is finding. The plan is only credible if those answers connect.',
+      'In a troubled program, we start by asking for evidence of the next few decisions: which milestone depends on an unready system, where the acceptance criteria are ambiguous, who can resolve a cross-team blocker, and whether the schedule has room for what testing is finding. The plan is only credible if those answers connect.',
       'Three views are useful. First, the critical path as the delivery teams actually see it. Second, the customer’s experience of progress, including promises made outside the formal plan. Third, the commercial position: scope changes, staffing and the cost of delay. When these views disagree, a better dashboard alone will not restore trust.',
       'A recovery starts with a short, candid diagnosis. Make the unresolved decisions visible, name owners, set a near-term control rhythm and distinguish a new forecast from an aspiration. Sponsors can then decide what to protect, change or stop. That is how a red program earns a believable route back to control.',
     ],
