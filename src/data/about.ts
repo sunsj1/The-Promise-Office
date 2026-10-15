@@ -71,7 +71,7 @@ export const aboutPrinciples = [
 export const aboutLeadership = {
   eyebrow: 'Leadership',
   title: 'Senior-led, from first conversation to final handover.',
-  copy: 'The practice is led by its founder and principal advisor, Rishi Salunkhe, whose career spans Infosys, Tech Mahindra and Cleverex Technology, and who holds an Executive General Management Program from IIM Bangalore.',
+  copy: 'The practice is led by its founder and principal advisor, Hrishikesh Salunkhe, whose career spans Infosys, Tech Mahindra and Cleverex Technology, and who holds an Executive General Management Program from IIM Bangalore.',
 } as const
 
 export const aboutCta = {
