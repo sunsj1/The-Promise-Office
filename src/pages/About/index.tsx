@@ -69,7 +69,10 @@ export function AboutPage() {
               <Eyebrow>{aboutWho.eyebrow}</Eyebrow>
               <h2 className="mt-5 text-3xl sm:text-4xl">{aboutWho.title}</h2>
             </Reveal>
-            <Reveal className="space-y-6 text-[1.0625rem] leading-relaxed lg:col-span-7" delay={0.08}>
+            <Reveal
+              className="space-y-6 text-[1.0625rem] leading-relaxed lg:col-span-7"
+              delay={0.08}
+            >
               {aboutWho.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -155,7 +158,9 @@ export function AboutPage() {
                 variants={fadeUp}
                 className="rounded-2xl border border-line bg-surface p-7"
               >
-                <p className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">{shape.index}</p>
+                <p className="font-mono text-[0.7rem] tracking-[0.14em] text-muted">
+                  {shape.index}
+                </p>
                 <h3 className="mt-4 font-display text-xl">{shape.title}</h3>
                 <p className="mt-1.5 font-mono text-[0.66rem] tracking-[0.1em] text-amber uppercase">
                   {shape.meta}
@@ -195,14 +200,32 @@ export function AboutPage() {
       {/* Leadership */}
       <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>{aboutLeadership.eyebrow}</Eyebrow>
-            <h2 className="mt-5 text-3xl sm:text-4xl">{aboutLeadership.title}</h2>
-            <p className="mt-5 text-[1.0625rem] text-muted">{aboutLeadership.copy}</p>
-            <div className="mt-8">
-              <LinkButton to={site.linkedin} external variant="outline">
-                View the LinkedIn profile
-              </LinkButton>
+          <Reveal className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-7">
+              <Eyebrow>{aboutLeadership.eyebrow}</Eyebrow>
+              <h2 className="mt-5 text-3xl sm:text-4xl">{aboutLeadership.title}</h2>
+              <p className="mt-5 text-[1.0625rem] text-muted">{aboutLeadership.copy}</p>
+              <div className="mt-8">
+                <LinkButton to={site.linkedin} external variant="outline">
+                  View the LinkedIn profile
+                </LinkButton>
+              </div>
+            </div>
+            <div className="lg:col-span-5">
+              <p className="font-mono text-[0.66rem] tracking-[0.18em] text-muted uppercase">
+                Where we work
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {site.markets.map((market) => (
+                  <li
+                    key={market}
+                    className="rounded-full border border-line bg-surface px-4 py-1.5 text-[0.9rem] transition-colors hover:border-amber hover:text-amber"
+                  >
+                    {market}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 max-w-sm text-[0.93rem] text-muted">{site.reach}</p>
             </div>
           </Reveal>
         </Container>

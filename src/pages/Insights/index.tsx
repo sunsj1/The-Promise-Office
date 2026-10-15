@@ -39,7 +39,7 @@ export function InsightsPage() {
       />
 
       <section className="py-12 lg:py-16">
-        <Container>
+        <Container size="wide">
           <div className="space-y-20 lg:space-y-28">
             {insights.map((article) => (
               <Reveal key={article.slug}>
@@ -56,32 +56,39 @@ export function InsightsPage() {
                   <h2 className="mt-5 max-w-3xl text-3xl sm:text-[2.5rem] sm:leading-[1.12]">
                     {article.title}
                   </h2>
-                  <p className="mt-5 max-w-2xl font-display text-xl leading-relaxed text-muted italic">
-                    {article.standfirst}
-                  </p>
-
-                  <div className="mt-10 max-w-[65ch] space-y-6 text-[1.0625rem] leading-[1.75]">
-                    {article.body.map((paragraph, index) => (
-                      <p
-                        key={paragraph.slice(0, 24)}
-                        className={
-                          index === 0
-                            ? 'first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-[3.4rem] first-letter:leading-[0.82] first-letter:text-amber'
-                            : undefined
-                        }
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
+                  <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div className="max-w-[65ch] space-y-6 text-[1.0625rem] leading-[1.75] lg:col-span-7">
+                      {article.body.map((paragraph, index) => (
+                        <p
+                          key={paragraph.slice(0, 24)}
+                          className={
+                            index === 0
+                              ? 'first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-[3.4rem] first-letter:leading-[0.82] first-letter:text-amber'
+                              : undefined
+                          }
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    <aside className="lg:col-span-5">
+                      <div className="rounded-2xl border border-line bg-sunk p-7 lg:sticky lg:top-28">
+                        <p className="font-mono text-[0.66rem] tracking-[0.18em] text-amber uppercase">
+                          The argument in brief
+                        </p>
+                        <p className="mt-4 font-display text-xl leading-relaxed italic">
+                          {article.standfirst}
+                        </p>
+                        <Link
+                          to={article.cta.to}
+                          className="mt-6 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.72rem] tracking-[0.12em] text-amber uppercase transition-colors hover:border-amber"
+                        >
+                          {article.cta.label}
+                          <ArrowRight size={14} aria-hidden />
+                        </Link>
+                      </div>
+                    </aside>
                   </div>
-
-                  <Link
-                    to={article.cta.to}
-                    className="mt-10 inline-flex items-center gap-2 border-b border-amber/40 pb-1 font-mono text-[0.72rem] tracking-[0.12em] text-amber uppercase transition-colors hover:border-amber"
-                  >
-                    {article.cta.label}
-                    <ArrowRight size={14} aria-hidden />
-                  </Link>
                 </article>
               </Reveal>
             ))}

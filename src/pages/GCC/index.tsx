@@ -1,3 +1,4 @@
+import { OperatingStack } from '@/widgets/Graphics/OperatingStack'
 import { Check } from 'lucide-react'
 import { adjacentMandates } from '@/data/engagements'
 import { caseStudies } from '@/data/evidence'
@@ -126,7 +127,9 @@ export function GCCPage() {
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {lifecycle.map((stage) => (
               <div key={stage.index} className="rounded-2xl border border-line bg-surface p-6">
-                <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted">{stage.index}</p>
+                <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted">
+                  {stage.index}
+                </p>
                 <h3 className="mt-3 font-display text-lg text-amber uppercase tracking-wide">
                   {stage.title}
                 </h3>
@@ -201,16 +204,21 @@ export function GCCPage() {
               'radial-gradient(55% 45% at 90% 10%, rgba(240,180,60,0.14), transparent 62%), radial-gradient(50% 45% at 5% 95%, rgba(75,46,131,0.4), transparent 60%)',
           }}
         />
-        <Container size="wide">
-          <Eyebrow className="text-lilac">The AI-enabled GCC</Eyebrow>
-          <h2 className="mt-5 max-w-2xl text-3xl sm:text-4xl">
-            GCCs should not simply consume AI tools. They can industrialise it.
-          </h2>
-          <p className="mt-6 max-w-2xl text-[1.0625rem] text-cream/80">
-            The Promise Office works at the operating layer: use-case portfolio, workflow redesign,
-            AI operating model, governance, enablement and adoption, human/AI decision rights and
-            benefits measurement — not a claim to run a full AI engineering factory.
-          </p>
+        <Container size="wide" className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <Eyebrow className="text-lilac">The AI-enabled GCC</Eyebrow>
+            <h2 className="mt-5 max-w-2xl text-3xl sm:text-4xl">
+              GCCs should not simply consume AI tools. They can industrialise it.
+            </h2>
+            <p className="mt-6 max-w-2xl text-[1.0625rem] text-cream/80">
+              The Promise Office works at the operating layer: use-case portfolio, workflow
+              redesign, AI operating model, governance, enablement and adoption, human/AI decision
+              rights and benefits measurement — not a claim to run a full AI engineering factory.
+            </p>
+          </div>
+          <div className="lg:col-span-5">
+            <OperatingStack />
+          </div>
         </Container>
       </section>
 

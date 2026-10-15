@@ -1,6 +1,7 @@
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { Reveal } from '@/widgets/Reveal'
+import { PromiseDrift } from '@/widgets/Graphics/PromiseDrift'
 import { Seal } from '@/widgets/Seal'
 
 /*
@@ -24,33 +25,38 @@ export function HomeThesis() {
       />
 
       <Container size="wide">
-        <Reveal className="max-w-4xl">
-          <Eyebrow className="text-[#a39e93]">Why this practice exists</Eyebrow>
-          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3.2rem]">
-            The gap between a sound idea and a working operation is a leadership problem.
-          </h2>
-          <div className="mt-8 grid gap-7 text-[1.0625rem] leading-relaxed text-[#a39e93] lg:grid-cols-2">
-            <p>
-              Delivery promises rarely break in one place. A commercial commitment outruns the
-              operating model built to support it; a process handoff nobody owns quietly drops
-              information; a technology rollout ships before the operations that depend on it are
-              ready. Each looks like a local problem until the pattern repeats across a portfolio.
-            </p>
-            <p>
-              The Promise Office works across those seams — commercial, process, technology and
-              operations — drawing on 21+ years of delivery, transformation and commercial
-              leadership. The approach starts with evidence: what is actually true, not what the
-              status report says. It ends with clear ownership and an operating rhythm the client's
-              own team can sustain.
-            </p>
-          </div>
+        <Reveal className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <Eyebrow className="text-[#a39e93]">Why this practice exists</Eyebrow>
+            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3.2rem]">
+              The gap between a sound idea and a working operation is a leadership problem.
+            </h2>
+            <div className="mt-8 space-y-6 text-[1.0625rem] leading-relaxed text-[#a39e93]">
+              <p>
+                Delivery promises rarely break in one place. A commercial commitment outruns the
+                operating model built to support it; a process handoff nobody owns quietly drops
+                information; a technology rollout ships before the operations that depend on it are
+                ready. Each looks like a local problem until the pattern repeats across a portfolio.
+              </p>
+              <p>
+                The Promise Office works across those seams — commercial, process, technology and
+                operations — drawing on 21+ years of delivery, transformation and commercial
+                leadership. The approach starts with evidence: what is actually true, not what the
+                status report says. It ends with clear ownership and an operating rhythm the
+                client's own team can sustain.
+              </p>
+            </div>
 
-          <blockquote className="mt-12 max-w-3xl border-l-2 border-amber pl-6">
-            <p className="font-display text-2xl leading-snug sm:text-3xl">
-              “If the plan, the service promise and the commercial model disagree, the status report
-              will eventually tell you.”
-            </p>
-          </blockquote>
+            <blockquote className="mt-10 max-w-3xl border-l-2 border-amber pl-6">
+              <p className="font-display text-2xl leading-snug sm:text-3xl">
+                “If the plan, the service promise and the commercial model disagree, the status
+                report will eventually tell you.”
+              </p>
+            </blockquote>
+          </div>
+          <div className="lg:col-span-5 lg:self-center">
+            <PromiseDrift />
+          </div>
         </Reveal>
       </Container>
     </section>

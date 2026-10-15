@@ -27,17 +27,30 @@ export function SectionHeader({
   return (
     <Reveal className={cn(centered && 'flex flex-col items-center text-center', className)}>
       <Eyebrow rule={!centered}>{eyebrow}</Eyebrow>
-      <Heading
+      <div
         className={cn(
-          'mt-5 text-3xl sm:text-4xl lg:text-[3.1rem]',
-          centered ? 'max-w-3xl' : 'max-w-4xl',
+          !centered && copy && 'lg:mt-5 lg:grid lg:grid-cols-12 lg:items-end lg:gap-12',
         )}
       >
-        {title}
-      </Heading>
-      {copy ? (
-        <p className={cn('mt-5 max-w-2xl text-base text-muted sm:text-[1.0625rem]')}>{copy}</p>
-      ) : null}
+        <Heading
+          className={cn(
+            'mt-5 text-3xl sm:text-4xl lg:text-[3.1rem]',
+            centered ? 'max-w-3xl' : copy ? 'max-w-4xl lg:col-span-7 lg:mt-0' : 'max-w-4xl',
+          )}
+        >
+          {title}
+        </Heading>
+        {copy ? (
+          <p
+            className={cn(
+              'mt-5 max-w-2xl text-base text-muted sm:text-[1.0625rem]',
+              !centered && 'lg:col-span-5 lg:mt-0 lg:border-l lg:border-line lg:pl-8',
+            )}
+          >
+            {copy}
+          </p>
+        ) : null}
+      </div>
       {children}
     </Reveal>
   )

@@ -12,39 +12,50 @@ export function NotFoundPage() {
       <Seo title="Page not found" description="This page does not exist." path="/404" noindex />
 
       <section className="grid min-h-[80vh] place-items-center py-24">
-        <Container>
-          <div className="max-w-2xl">
-            <Seal className="h-16 w-16" animate />
-            <Eyebrow className="mt-9">Error 404</Eyebrow>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[4rem]">
-              This one didn’t make it to delivery.
-            </h1>
-            <p className="mt-6 text-[1.0625rem] text-muted">
-              The page you asked for isn’t here. Nothing is hidden — the link is simply out of date.
-              Here is where the actual work lives.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <LinkButton to={paths.home} size="lg">
-                Back to home
-              </LinkButton>
-              <BookCallButton variant="outline" size="lg">
-                Request a call
-              </BookCallButton>
+        <Container size="wide">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="max-w-2xl lg:col-span-7">
+              <Seal className="h-16 w-16" animate />
+              <Eyebrow className="mt-9">Error 404</Eyebrow>
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[4rem]">
+                This one didn’t make it to delivery.
+              </h1>
+              <p className="mt-6 text-[1.0625rem] text-muted">
+                The page you asked for isn’t here. Nothing is hidden — the link is simply out of
+                date. Here is where the actual work lives.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <LinkButton to={paths.home} size="lg">
+                  Back to home
+                </LinkButton>
+                <BookCallButton variant="outline" size="lg">
+                  Request a call
+                </BookCallButton>
+              </div>
+              <nav aria-label="Site sections" className="mt-12 border-t border-line pt-7">
+                <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        to={link.href}
+                        className="font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
-            <nav aria-label="Site sections" className="mt-12 border-t border-line pt-7">
-              <ul className="flex flex-wrap gap-x-6 gap-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      to={link.href}
-                      className="font-mono text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-amber"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div aria-hidden className="relative hidden place-items-center lg:col-span-5 lg:grid">
+              <div
+                className="absolute inset-0 -z-10"
+                style={{
+                  background: 'radial-gradient(closest-side, var(--glow), transparent 75%)',
+                }}
+              />
+              <Seal className="h-72 w-72 opacity-90" animate />
+            </div>
           </div>
         </Container>
       </section>

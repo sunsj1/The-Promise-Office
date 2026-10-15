@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
+import { OperatingStack } from '@/widgets/Graphics/OperatingStack'
 import { Reveal } from '@/widgets/Reveal'
 
 export function HomeGccAiSpotlight() {
@@ -17,32 +18,37 @@ export function HomeGccAiSpotlight() {
         }}
       />
       <Container size="wide">
-        <Reveal className="max-w-2xl">
-          <Eyebrow className="text-lilac">The AI-enabled GCC</Eyebrow>
-          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3rem]">
-            GCCs should not simply consume AI tools. They can become the enterprise engine that
-            industrialises AI.
-          </h2>
-          <p className="mt-6 text-[1.0625rem] text-cream/80">
-            The Promise Office works at the operating layer: use-case portfolio, workflow redesign,
-            AI operating model, governance, enablement and adoption, human/AI decision rights and
-            benefits measurement.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-            <Link
-              to={paths.gcc}
-              className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] tracking-[0.14em] text-amber uppercase hover:underline"
-            >
-              Explore the GCC practice
-              <ArrowRight size={13} aria-hidden />
-            </Link>
-            <Link
-              to={paths.ai}
-              className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] tracking-[0.14em] text-cream uppercase hover:underline"
-            >
-              Explore the AI practice
-              <ArrowRight size={13} aria-hidden />
-            </Link>
+        <Reveal className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <Eyebrow className="text-lilac">The AI-enabled GCC</Eyebrow>
+            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3rem]">
+              GCCs should not simply consume AI tools. They can become the enterprise engine that
+              industrialises AI.
+            </h2>
+            <p className="mt-6 text-[1.0625rem] text-cream/80">
+              The Promise Office works at the operating layer: use-case portfolio, workflow
+              redesign, AI operating model, governance, enablement and adoption, human/AI decision
+              rights and benefits measurement.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+              <Link
+                to={paths.gcc}
+                className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] tracking-[0.14em] text-amber uppercase hover:underline"
+              >
+                Explore the GCC practice
+                <ArrowRight size={13} aria-hidden />
+              </Link>
+              <Link
+                to={paths.ai}
+                className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] tracking-[0.14em] text-cream uppercase hover:underline"
+              >
+                Explore the AI practice
+                <ArrowRight size={13} aria-hidden />
+              </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <OperatingStack />
           </div>
         </Reveal>
       </Container>
