@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, GraduationCap, Layers } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import {
   aboutCta,
@@ -7,12 +7,9 @@ import {
   aboutIntro,
   aboutLeadership,
   aboutPrinciples,
-  aboutRecommendations,
-  aboutStandards,
   aboutWho,
 } from '@/data/about'
 import { practices } from '@/data/engagements'
-import { testimonials } from '@/data/perspective'
 import { engagementShapes } from '@/data/personas'
 import { disclaimers, organisations, site } from '@/data/site'
 import { paths } from '@/routes/paths'
@@ -21,14 +18,12 @@ import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
-import { ExperienceGlance } from '@/widgets/ExperienceGlance'
 import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
 import { Seo, serviceJsonLd } from '@/widgets/Seo'
 import { SpotlightCard } from '@/widgets/SpotlightCard'
-import { TestimonialColumn } from '@/widgets/TestimonialColumns'
 
 export function AboutPage() {
   return (
@@ -127,8 +122,6 @@ export function AboutPage() {
         </Container>
       </section>
 
-      <ExperienceGlance />
-
       {/* How we work */}
       <section className="py-14 lg:py-20">
         <Container size="wide">
@@ -181,55 +174,6 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Standards and domains */}
-      <section className="py-14 lg:py-16">
-        <Container size="wide">
-          <SectionHeader
-            eyebrow="Frameworks and domains"
-            title="A broad foundation, applied with care."
-          />
-          <div className="mt-12 grid gap-10 lg:grid-cols-2">
-            <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8">
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
-                <GraduationCap size={15} className="text-amber" aria-hidden />
-                Frameworks and certifications
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {aboutStandards.frameworks.map((item) => (
-                  <li key={item} className="flex gap-3 text-[0.97rem]">
-                    <span aria-hidden className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 font-mono text-[0.68rem] leading-relaxed text-muted">
-                {aboutStandards.note}
-              </p>
-            </Reveal>
-            <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8" delay={0.08}>
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
-                <Layers size={15} className="text-amber" aria-hidden />
-                Domain and technology exposure
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {aboutStandards.domains.map((item) => (
-                  <li key={item} className="flex gap-3 text-[0.97rem]">
-                    <span aria-hidden className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal className="mt-10">
-            <p className="font-mono text-[0.72rem] text-muted">
-              Available for selected mandates, with scope, timing and delivery model agreed for each
-              enquiry.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
       {/* Experience behind the practice */}
       <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
@@ -248,34 +192,19 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Leadership and recommendations */}
-      <section className="border-t border-line bg-sunk py-14 lg:py-16">
+      {/* Leadership */}
+      <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-            <Reveal className="lg:col-span-5">
-              <Eyebrow>{aboutLeadership.eyebrow}</Eyebrow>
-              <h2 className="mt-5 text-3xl sm:text-4xl">{aboutLeadership.title}</h2>
-              <p className="mt-5 text-[1.0625rem] text-muted">{aboutLeadership.copy}</p>
-              <div className="mt-8">
-                <LinkButton to={site.linkedin} external variant="outline">
-                  View the LinkedIn profile
-                </LinkButton>
-              </div>
-            </Reveal>
-            <Reveal className="lg:col-span-7" delay={0.08}>
-              <Eyebrow>{aboutRecommendations.eyebrow}</Eyebrow>
-              <h3 className="mt-5 font-display text-2xl sm:text-3xl">
-                {aboutRecommendations.title}
-              </h3>
-              <p className="mt-4 mb-8 max-w-xl text-[0.97rem] text-muted">
-                {aboutRecommendations.copy}
-              </p>
-              <TestimonialColumn
-                testimonials={testimonials}
-                className="max-h-[26rem] [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]"
-              />
-            </Reveal>
-          </div>
+          <Reveal className="max-w-3xl">
+            <Eyebrow>{aboutLeadership.eyebrow}</Eyebrow>
+            <h2 className="mt-5 text-3xl sm:text-4xl">{aboutLeadership.title}</h2>
+            <p className="mt-5 text-[1.0625rem] text-muted">{aboutLeadership.copy}</p>
+            <div className="mt-8">
+              <LinkButton to={site.linkedin} external variant="outline">
+                View the LinkedIn profile
+              </LinkButton>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

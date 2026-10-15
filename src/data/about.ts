@@ -68,35 +68,10 @@ export const aboutPrinciples = [
   },
 ] as const
 
-export const aboutStandards = {
-  frameworks: [
-    'ITIL V3 Foundation',
-    'eTOM',
-    'Six Sigma Yellow Belt',
-    'Certified Scrum Product Owner (CSPO)',
-    'UiPath (RPA)',
-  ],
-  domains: [
-    'Telecom OSS/BSS, fulfilment, assurance and billing',
-    'Energy, sustainability and field service operations',
-    'Enterprise platforms and system integration',
-    'ITSM, managed services and service governance',
-    'AI/GenAI knowledge assistants, workflow automation and RPA',
-    'Agile, Waterfall and hybrid delivery environments',
-  ],
-  note: 'Certifications listed are held by the practice’s principal.',
-} as const
-
 export const aboutLeadership = {
   eyebrow: 'Leadership',
   title: 'Senior-led, from first conversation to final handover.',
   copy: 'The practice is led by its founder and principal advisor, Rishi Salunkhe, whose career spans Infosys, Tech Mahindra and Cleverex Technology, and who holds an Executive General Management Program from IIM Bangalore.',
-} as const
-
-export const aboutRecommendations = {
-  eyebrow: 'In their words',
-  title: 'Trusted when delivery gets difficult.',
-  copy: 'Excerpts from public LinkedIn recommendations written by colleagues and managers about the practice’s principal, from prior roles.',
 } as const
 
 export const aboutCta = {
