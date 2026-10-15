@@ -63,7 +63,7 @@ export function PageHeader({
           </nav>
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-7">
+            <div className={graphic !== undefined ? 'lg:col-span-12' : 'lg:col-span-7'}>
               <Eyebrow>{eyebrow}</Eyebrow>
               <Heading className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
                 {title}
@@ -74,16 +74,13 @@ export function PageHeader({
               <div className="mx-auto w-[min(70%,16.5rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[20rem] lg:justify-self-end">
                 {aside}
               </div>
-            ) : graphic === null ? null : graphic ? (
-              <div className="w-full max-w-[27rem] lg:col-span-5 lg:justify-self-end">
-                {graphic}
-              </div>
-            ) : (
+            ) : graphic !== undefined ? null : (
               <div className="hidden lg:col-span-5 lg:block lg:justify-self-end">
                 <AutoConstellation className="w-full max-w-[22rem]" />
               </div>
             )}
           </div>
+          {graphic ? <div className="mt-10 lg:mt-12">{graphic}</div> : null}
           {children}
         </Reveal>
       </Container>
