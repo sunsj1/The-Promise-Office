@@ -4,6 +4,7 @@ import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { Reveal } from '@/widgets/Reveal'
+import { AutoConstellation } from '@/widgets/Graphics/PromiseConstellation'
 import { cn } from '@/lib/cn'
 
 /** Shared inner-page masthead with breadcrumb and optional trailing slot. */
@@ -58,15 +59,9 @@ export function PageHeader({
             </ol>
           </nav>
 
-          <div
-            className={
-              aside
-                ? 'mt-8 grid items-center gap-10 lg:grid-cols-12 lg:gap-8'
-                : undefined
-            }
-          >
-            <div className={aside ? 'lg:col-span-7' : undefined}>
-              <Eyebrow className={aside ? undefined : 'mt-8'}>{eyebrow}</Eyebrow>
+          <div className="mt-8 grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-7">
+              <Eyebrow>{eyebrow}</Eyebrow>
               <Heading className="mt-5 max-w-4xl text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.03]">
                 {title}
               </Heading>
@@ -76,7 +71,11 @@ export function PageHeader({
               <div className="mx-auto w-[min(70%,16.5rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[20rem] lg:justify-self-end">
                 {aside}
               </div>
-            ) : null}
+            ) : (
+              <div className="hidden lg:col-span-5 lg:block lg:justify-self-end">
+                <AutoConstellation className="w-full max-w-[22rem]" />
+              </div>
+            )}
           </div>
           {children}
         </Reveal>
