@@ -1,74 +1,56 @@
 import { motion } from 'framer-motion'
-import { GraduationCap, Layers } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import {
-  career,
-  credentials,
-  perspectiveHighlights,
-  principles,
-  testimonials,
-} from '@/data/perspective'
+  aboutCta,
+  aboutHighlights,
+  aboutIntro,
+  aboutLeadership,
+  aboutPrinciples,
+  aboutWho,
+} from '@/data/about'
+import { practices } from '@/data/engagements'
 import { engagementShapes } from '@/data/personas'
 import { disclaimers, organisations, site } from '@/data/site'
 import { paths } from '@/routes/paths'
 import { fadeUp } from '@/animations/variants'
-import { LinkButton } from '@/widgets/Button'
+import { BookCallButton, LinkButton } from '@/widgets/Button'
 import { Container } from '@/widgets/Container'
 import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
-import { ExperienceGlance } from '@/widgets/ExperienceGlance'
 import { ExperienceStrip } from '@/widgets/ExperienceStrip'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
-import { Portrait } from '@/widgets/Portrait'
-import { Seo, personJsonLd } from '@/widgets/Seo'
-import { TestimonialColumn } from '@/widgets/TestimonialColumns'
+import { Seo, serviceJsonLd } from '@/widgets/Seo'
+import { SpotlightCard } from '@/widgets/SpotlightCard'
 
 export function AboutPage() {
   return (
     <>
       <Seo
         title="About"
-        description="Hrishikesh (Rishi) Salunkhe: 21+ years across process consulting, PMO/PGO leadership, service management, managed services, transformation and commercial roles."
+        description="The Promise Office is a delivery, GCC and AI advisory practice. We help IT services firms, GCCs and enterprise leaders recover critical programs, build delivery capability and move AI into governed operations."
         path={paths.about}
-        jsonLd={personJsonLd}
+        jsonLd={serviceJsonLd}
         breadcrumb="About"
       />
 
-      {/* The practice, introduced before the founder bio */}
-      <section className="border-b border-line pt-32 pb-14 lg:pt-40 lg:pb-16">
-        <Container size="wide">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>The Promise Office</Eyebrow>
-            <h1 className="mt-5 text-[clamp(2rem,4.6vw,3.2rem)] leading-[1.05]">
-              An independent practice, built on one person's judgment.
-            </h1>
-            <p className="mt-6 max-w-2xl text-[1.0625rem] text-muted">
-              The Promise Office helps organisations recover critical programs, build delivery and GCC
-              capability, and move AI into governed, measurable operations. The practice is
-              founder-led, so its record is inseparable from its founder's — the sections below set
-              out that experience directly, so you can see exactly what the practice is built on.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Founder */}
+      {/* Introduction */}
       <PageHeader
         breadcrumb="About"
-        leading={false}
-        headingLevel="h2"
-        eyebrow={`Founder · ${site.person}`}
-        title="Senior judgment. Practical ownership."
-        copy="I work at the intersection of business process, technology delivery, service operations and commercial accountability. My approach is to make ambiguity discussable, decisions explicit and execution visible."
-        aside={<Portrait size="page" />}
+        eyebrow={aboutIntro.eyebrow}
+        title={aboutIntro.title}
+        copy={aboutIntro.copy}
       >
-        <p className="mt-8 font-mono text-[0.7rem] tracking-[0.1em] text-muted uppercase">
-          {site.founderDescriptor}
-        </p>
-        <div className="mt-6 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
-          {perspectiveHighlights.map((item) => (
+        <div className="mt-9 flex flex-wrap items-center gap-3">
+          <BookCallButton size="lg">Request a 30-minute call</BookCallButton>
+          <LinkButton to={paths.advisory} variant="outline" size="lg">
+            Explore our advisory
+          </LinkButton>
+        </div>
+        <div className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+          {aboutHighlights.map((item) => (
             <div key={item.label}>
               <p className="font-display text-xl text-amber">{item.value}</p>
               <p className="mt-1.5 font-mono text-[0.66rem] tracking-[0.12em] text-muted uppercase">
@@ -79,44 +61,24 @@ export function AboutPage() {
         </div>
       </PageHeader>
 
-      {/* The perspective */}
+      {/* Who we are */}
       <section className="py-14 lg:py-16">
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
-              <Eyebrow>The perspective</Eyebrow>
-              <h2 className="mt-5 text-3xl sm:text-4xl">
-                Experience across the full promise-to-delivery chain.
-              </h2>
+              <Eyebrow>{aboutWho.eyebrow}</Eyebrow>
+              <h2 className="mt-5 text-3xl sm:text-4xl">{aboutWho.title}</h2>
             </Reveal>
             <Reveal className="space-y-6 text-[1.0625rem] leading-relaxed lg:col-span-7" delay={0.08}>
-              <p>
-                Over 21 years, I have worked in process consulting, PMO and PGO leadership, service
-                management, managed services, large transformations, customer delivery and commercial
-                roles. That combination matters because the root cause of a delivery problem is often
-                outside the project plan: a process handoff, a service promise, a resource assumption
-                or a decision nobody owns.
-              </p>
-              <p>
-                My career has included Infosys, Tech Mahindra and Cleverex Technology, with long-term
-                assignments in Australia, New Zealand and the Philippines, as well as UK exposure. I
-                have worked with operational teams and senior customer leaders across telecom, energy
-                and sustainability, technology services and enterprise platforms.
-              </p>
-              <p>
-                The career arc moved from close to operations — service data, SLA and performance
-                reporting — into business analysis and process redesign, then into transition and
-                account governance across a large managed-services environment, then into program
-                leadership, commercial ownership and recovery, and most recently into practice
-                building and AI delivery. Each stage added a layer rather than replacing the one
-                before it, which is why a delivery problem rarely turns out to have just one cause.
-              </p>
+              {aboutWho.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
               <p>
                 <Link to={paths.evidence} className="text-amber hover:underline">
                   Evidence
                 </Link>{' '}
-                sets out what that experience has taught, organised around the situations it
-                recurs in — not as a project list.
+                sets out what that experience has taught, organised around the situations it recurs
+                in — not as a project list.
               </p>
               <p className="font-mono text-[0.72rem] leading-relaxed text-muted">
                 {disclaimers.practice}
@@ -126,44 +88,46 @@ export function AboutPage() {
         </Container>
       </section>
 
-      <ExperienceGlance />
-
-      {/* Career timeline */}
+      {/* Practices */}
       <section className="border-y border-line bg-sunk py-14 lg:py-16">
         <Container size="wide">
           <SectionHeader
-            eyebrow="Career"
-            title="21 years, three firms, one thread."
-            copy="Each role added a layer: service data, then process and governance, then programs and P&L, then AI delivery and practice building."
+            eyebrow="What we do"
+            title="Four practices, one idea: make the promise deliverable."
+            copy="Each practice is worked through the Advisory, GCC and AI pages, and each draws on the same delivery, service and commercial discipline."
           />
-
-          <RevealGroup className="mt-14">
-            <ol className="relative border-l border-line pl-8 sm:pl-10">
-              {career.map((role) => (
-                <motion.li key={role.company} variants={fadeUp} className="relative pb-12 last:pb-0">
-                  <span
-                    aria-hidden
-                    className="absolute top-2 -left-[2.3rem] grid h-4 w-4 place-items-center rounded-full border-2 border-amber bg-paper sm:-left-[2.8rem]"
-                  />
-                  <p className="font-mono text-[0.7rem] tracking-[0.14em] text-amber uppercase">
-                    {role.period}
-                  </p>
-                  <h3 className="mt-3 font-display text-2xl">{role.company}</h3>
-                  <p className="mt-1 text-[0.95rem] text-muted italic">{role.role}</p>
-                  <p className="mt-4 max-w-2xl text-[1.0rem]">{role.copy}</p>
-                </motion.li>
-              ))}
-            </ol>
+          <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {practices.map((practice) => (
+              <motion.div key={practice.key} variants={fadeUp}>
+                <SpotlightCard as="article" className="h-full">
+                  <Link to={practice.to} className="flex h-full flex-col p-6 lg:p-7">
+                    <span className="font-mono text-[0.68rem] tracking-[0.16em] text-muted">
+                      {practice.index}
+                    </span>
+                    <h3 className="mt-4 font-display text-xl leading-snug">{practice.title}</h3>
+                    <p className="mt-3 flex-1 text-[0.93rem] text-muted">{practice.outcome}</p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 font-mono text-[0.68rem] tracking-[0.14em] text-amber uppercase">
+                      {practice.cta}
+                      <ArrowRight
+                        size={13}
+                        aria-hidden
+                        className="transition-transform duration-300 group-hover/spot:translate-x-0.5"
+                      />
+                    </span>
+                  </Link>
+                </SpotlightCard>
+              </motion.div>
+            ))}
           </RevealGroup>
         </Container>
       </section>
 
-      {/* How I work */}
+      {/* How we work */}
       <section className="py-14 lg:py-20">
         <Container size="wide">
-          <SectionHeader eyebrow="How I work" title="What you can expect from me." />
+          <SectionHeader eyebrow="How we work" title="What you can expect from us." />
           <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {principles.map((principle) => (
+            {aboutPrinciples.map((principle) => (
               <motion.article key={principle.index} variants={fadeUp} className="bg-surface p-7">
                 <p className="font-mono text-[0.68rem] tracking-[0.14em] text-muted">
                   {principle.index} / {principle.title}
@@ -210,52 +174,6 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Credentials */}
-      <section className="py-14 lg:py-16">
-        <Container size="wide">
-          <SectionHeader
-            eyebrow="Qualifications and domains"
-            title="A broad foundation, applied with care."
-          />
-          <div className="mt-12 grid gap-10 lg:grid-cols-2">
-            <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8">
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
-                <GraduationCap size={15} className="text-amber" aria-hidden />
-                Education and certifications
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {credentials.education.map((item) => (
-                  <li key={item} className="flex gap-3 text-[0.97rem]">
-                    <span aria-hidden className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal className="rounded-2xl border border-line bg-surface p-7 lg:p-8" delay={0.08}>
-              <p className="inline-flex items-center gap-2.5 font-mono text-[0.68rem] tracking-[0.14em] text-muted uppercase">
-                <Layers size={15} className="text-amber" aria-hidden />
-                Domain and technology exposure
-              </p>
-              <ul className="mt-5 space-y-2.5">
-                {credentials.domains.map((item) => (
-                  <li key={item} className="flex gap-3 text-[0.97rem]">
-                    <span aria-hidden className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-amber" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal className="mt-10">
-            <p className="font-mono text-[0.72rem] text-muted">
-              Available for selected mandates, with scope, timing and delivery model agreed for each
-              enquiry.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
       {/* Experience behind the practice */}
       <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
@@ -274,39 +192,26 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Recommendations */}
-      <section className="border-t border-line bg-sunk py-14 lg:py-16">
+      {/* Leadership */}
+      <section className="border-t border-line py-14 lg:py-16">
         <Container size="wide">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-            <Reveal className="lg:col-span-5">
-              <Eyebrow>In their words</Eyebrow>
-              <h2 className="mt-5 text-3xl sm:text-4xl">
-                How Rishi shows up when delivery gets difficult.
-              </h2>
-              <p className="mt-5 text-[1.0625rem] text-muted">
-                Excerpts from public LinkedIn recommendations written by people who worked with him
-                in prior roles.
-              </p>
-              <div className="mt-8">
-                <LinkButton to={site.linkedin} external variant="outline">
-                  View the LinkedIn profile
-                </LinkButton>
-              </div>
-            </Reveal>
-            <div className="lg:col-span-7">
-              <TestimonialColumn
-                testimonials={testimonials}
-                className="max-h-[26rem] [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]"
-              />
+          <Reveal className="max-w-3xl">
+            <Eyebrow>{aboutLeadership.eyebrow}</Eyebrow>
+            <h2 className="mt-5 text-3xl sm:text-4xl">{aboutLeadership.title}</h2>
+            <p className="mt-5 text-[1.0625rem] text-muted">{aboutLeadership.copy}</p>
+            <div className="mt-8">
+              <LinkButton to={site.linkedin} external variant="outline">
+                View the LinkedIn profile
+              </LinkButton>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       <CtaBand
-        eyebrow="Work together"
-        title="Bring the difficult brief."
-        copy="Tell me the challenge, where it sits in the organisation and what decision you need to make. I’ll respond with a practical next step."
+        eyebrow={aboutCta.eyebrow}
+        title={aboutCta.title}
+        copy={aboutCta.copy}
         secondaryLabel="See the evidence"
         secondaryTo={paths.evidence}
       />
