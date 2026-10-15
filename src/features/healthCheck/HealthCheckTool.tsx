@@ -73,7 +73,7 @@ export function HealthCheckTool() {
   const briefText = useMemo(() => {
     if (!result) return ''
     return [
-      'Hi Rishi,',
+      'Hi Hrishikesh,',
       '',
       'I ran the Delivery Health Check.',
       '',
@@ -420,7 +420,7 @@ export function HealthCheckTool() {
 
               {/* Hand-off: prepares an email, stores nothing. */}
               <div className="mt-8 rounded-2xl bg-sunk p-6">
-                <p className="font-display text-lg">Send this reading to Rishi</p>
+                <p className="font-display text-lg">Send this reading to Hrishikesh</p>
                 <p className="mt-1.5 text-[0.93rem] text-muted">
                   Add your details and we will prepare an email for you to review and send. Nothing is
                   stored or submitted by this site — your answers stay in this browser tab only.

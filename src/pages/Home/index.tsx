@@ -1,6 +1,6 @@
 import { CtaBand } from '@/widgets/CtaBand'
 import { paths } from '@/routes/paths'
-import { personJsonLd, Seo } from '@/widgets/Seo'
+import { Seo, serviceJsonLd } from '@/widgets/Seo'
 import { HomeCapabilities } from '@/pages/Home/Capabilities'
 import { HomeEngagements } from '@/pages/Home/Engagements'
 import { HomeFramework } from '@/pages/Home/Framework'
@@ -16,7 +16,7 @@ import { HomeThesis } from '@/pages/Home/Thesis'
 export function HomePage() {
   return (
     <>
-      <Seo path="/" jsonLd={personJsonLd} />
+      <Seo path="/" jsonLd={serviceJsonLd} />
       {/* 1. Client problems */}
       <HomeHero />
       <HomePractices />

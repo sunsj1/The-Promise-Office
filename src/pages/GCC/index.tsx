@@ -9,7 +9,7 @@ import { Eyebrow } from '@/widgets/Eyebrow'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
-import { Seo } from '@/widgets/Seo'
+import { organisationRef, Seo } from '@/widgets/Seo'
 import { SpotlightCard } from '@/widgets/SpotlightCard'
 
 const lifecycle = [
@@ -76,7 +76,7 @@ export function GCCPage() {
           name: 'GCC & Capability Centre Advisory',
           description:
             'Advisory on the operating, delivery, governance and capability layer of Global Capability Centre creation and transformation.',
-          provider: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
+          provider: organisationRef,
         }}
       />
 

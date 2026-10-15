@@ -8,13 +8,13 @@ export const testimonials = [
   {
     text: 'As a PGO Lead, he was really good at making sure that things do not fall through the cracks.',
     name: 'Harish Sriramagiri',
-    relation: 'Managed Rishi directly',
+    relation: 'Managed Hrishikesh directly',
     year: '2020',
   },
   {
     text: 'His focus is not only to solve the problem at hand, but also to design and implement right processes to fix it permanently.',
     name: 'Ankur Jain',
-    relation: 'Managed Rishi directly',
+    relation: 'Managed Hrishikesh directly',
     year: '2020',
   },
 ] as const
@@ -136,7 +136,7 @@ export const insights = [
 ] as const
 
 export const guide = {
-  kicker: 'A Rishi guide',
+  kicker: 'A Hrishikesh guide',
   title: 'AI Without the Jargon',
   copy: 'A plain-language guide for people starting their careers and professionals who want to understand AI, LLMs and agents without needing to write code. It builds the judgment to ask better questions of AI tools and their outputs.',
   strap: 'Understand the ideas. Make better decisions.',

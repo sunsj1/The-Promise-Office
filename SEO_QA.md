@@ -14,9 +14,9 @@
 - Every page renders through the shared `<Seo>` component: unique `<title>`, meta description,
   canonical link, OG tags, Twitter card, and — new this round — a `BreadcrumbList` JSON-LD for
   every subpage (added via the `breadcrumb` prop).
-- `personJsonLd` (Person) and `serviceJsonLd` (ProfessionalService) already existed and are
-  wired into Home/About and Advisory/Engagements respectively; GCC and AI pages get their own
-  `Service` JSON-LD.
+- `serviceJsonLd` (ProfessionalService) is the organisation-level identity on Home and About.
+  No `Person` structured data is used anywhere; Service, Blog and Contact schema name the
+  practice (`organisationRef`, `contactEntity`) rather than an individual.
 - No fake ratings, reviews, certifications or locations were added to any schema.
 
 ## Routing / redirects

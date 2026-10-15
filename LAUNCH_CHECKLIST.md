@@ -6,8 +6,7 @@ silently worked around.
 - [ ] **Logo asset**: not applicable — the exact approved Threshold Seal kit is already in
       use (`examples/logos/ThresholdSeal-kit`, mirrored into `src/assets/brand` and
       `public/brand`). No placeholder logo exists anywhere. Nothing to confirm here.
-- [ ] **Professional portrait**: not applicable — a real, optimized portrait is already live
-      (`src/widgets/Portrait`). Nothing to confirm here.
+- [x] **Personal pictures**: none — no portrait or personal photo is used anywhere on the portal.
 - [ ] **Mountain banner asset** — referenced in the brief as "an approved asset exists and
       will be supplied." Not yet received. Nothing was added in its place.
 - [ ] **Domain email** (`rishi@` or `hello@thepromiseoffice.com`) — not changed; site still
@@ -27,7 +26,7 @@ silently worked around.
       the live Vercel deployment, not locally. Run `curl -I` against production after deploy.
 - [ ] **Additional LinkedIn recommendations** for About, if you have more than the 3 already
       used on Home.
-- [ ] **Legal entity name**, if any — footer currently reads "Founded by Hrishikesh (Rishi)
+- [ ] **Legal entity name**, if any — footer currently reads "Founded by Hrishikesh
       Salunkhe," no suffix, per your instruction not to add one unless confirmed.
 - [ ] **Palette sign-off** — Ink/Plum/Amber/Paper/Lilac applied per your five clarifications;
       worth a visual look before this goes live, since it's a real (if deliberately restrained)

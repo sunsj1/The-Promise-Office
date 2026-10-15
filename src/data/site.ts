@@ -3,12 +3,12 @@ import { orgLogos } from '@/assets/orgs'
 export const site = {
   brand: 'The Promise Office',
   tagline: 'Make the promise deliverable',
-  person: 'Hrishikesh (Rishi) Salunkhe',
-  shortName: 'Rishi Salunkhe',
+  person: 'Hrishikesh Salunkhe',
+  shortName: 'Hrishikesh Salunkhe',
   role: 'Delivery & Transformation Advisory',
   /** Locked founder descriptor — use verbatim wherever an expanded founder line is appropriate. */
   founderDescriptor:
-    'Hrishikesh (Rishi) Salunkhe · Delivery & Transformation Advisor to IT Services, GCCs & Enterprise Leaders',
+    'Hrishikesh Salunkhe · Delivery & Transformation Advisor to IT Services, GCCs & Enterprise Leaders',
   discipline: 'Independent advisory · delivery, transformation & service performance',
   email: 'hrishikesh.salunkhe@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hrishikesh-v-salunkhe/',
@@ -23,7 +23,7 @@ export const site = {
   reach: 'Working with distributed teams across India, APAC and the UK. On-site work can be agreed for the mandate.',
   url: 'https://www.thepromiseoffice.com',
   description:
-    'Delivery, transformation and managed services advisor for IT services firms, GCCs and enterprise leaders. 21+ years connecting decisions, numbers, teams and operating rhythm.',
+    'Delivery, GCC, transformation and AI advisory for IT services firms, global capability centres and enterprise leaders. Experience that connects decisions, numbers, teams and operating rhythm.',
   experienceYears: 21,
   markets: ['India', 'Australia', 'New Zealand', 'UK', 'Philippines'],
 } as const

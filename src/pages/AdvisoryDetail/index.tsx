@@ -7,7 +7,7 @@ import { CtaBand } from '@/widgets/CtaBand'
 import { Eyebrow } from '@/widgets/Eyebrow'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
-import { Seo } from '@/widgets/Seo'
+import { organisationRef, Seo } from '@/widgets/Seo'
 
 export function AdvisoryDetailPage() {
   const { slug } = useParams()
@@ -29,7 +29,7 @@ export function AdvisoryDetailPage() {
           '@type': 'Service',
           name: engagement.title,
           description: engagement.lead,
-          provider: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
+          provider: organisationRef,
         }}
         breadcrumb={engagement.title}
       />

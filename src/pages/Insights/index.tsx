@@ -8,7 +8,7 @@ import { Eyebrow } from '@/widgets/Eyebrow'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
 import { Seal } from '@/widgets/Seal'
-import { Seo } from '@/widgets/Seo'
+import { organisationRef, Seo } from '@/widgets/Seo'
 
 export function InsightsPage() {
   return (
@@ -25,7 +25,7 @@ export function InsightsPage() {
             '@type': 'BlogPosting',
             headline: article.title,
             abstract: article.standfirst,
-            author: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
+            author: organisationRef,
           })),
         }}
         breadcrumb="Insights"

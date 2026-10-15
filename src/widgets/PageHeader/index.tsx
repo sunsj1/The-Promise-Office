@@ -21,7 +21,7 @@ export function PageHeader({
   title: string
   copy?: string
   breadcrumb: string
-  /** Optional right-hand visual, used for the founder portrait. */
+  /** Optional right-hand visual. */
   aside?: ReactNode
   children?: ReactNode
   /** False when another section already precedes this one on the page — drops the top padding reserved for clearing the fixed navbar. */

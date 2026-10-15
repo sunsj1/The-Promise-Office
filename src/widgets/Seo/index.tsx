@@ -69,16 +69,29 @@ export function Seo({
   )
 }
 
-export const personJsonLd = {
+const postalAddress = { '@type': 'PostalAddress', addressLocality: 'Pune', addressCountry: 'IN' } as const
+
+/** Organisation-level identity, used on Home and About. No individual is described here. */
+export const serviceJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Hrishikesh Salunkhe',
-  alternateName: 'Rishi Salunkhe',
-  jobTitle: 'Delivery & Transformation Advisor',
-  email: `mailto:${site.email}`,
+  '@type': 'ProfessionalService',
+  '@id': `${site.url}/#organization`,
+  name: site.brand,
+  slogan: site.tagline,
   url: site.url,
-  address: { '@type': 'PostalAddress', addressLocality: 'Pune', addressCountry: 'IN' },
+  logo: `${site.url}/brand/favicon-512.png`,
+  image: `${site.url}/brand/social-preview-1200x630.png`,
   description: site.description,
+  email: `mailto:${site.email}`,
+  address: postalAddress,
+  areaServed: ['India', 'Australia', 'New Zealand', 'United Kingdom', 'Philippines'],
+  serviceType: [
+    'Delivery advisory',
+    'Transformation advisory',
+    'Managed services consulting',
+    'GCC advisory',
+    'AI delivery consulting',
+  ],
   knowsAbout: [
     'Program recovery',
     'PMO and PGO governance',
@@ -86,28 +99,30 @@ export const personJsonLd = {
     'ITSM and ITIL',
     'Process re-engineering',
     'Commercial and P&L governance',
+    'Global capability centres',
     'AI delivery and enablement',
-  ],
-  image: `${site.url}/brand/rishi.png`,
-  alumniOf: [
-    { '@type': 'Organization', name: 'Infosys' },
-    { '@type': 'Organization', name: 'Tech Mahindra' },
-    { '@type': 'Organization', name: 'Cleverex Technology' },
   ],
 }
 
-export const serviceJsonLd = {
-  '@context': 'https://schema.org',
+/** The practice as the provider or author of a Service, Blog or article. */
+export const organisationRef = {
   '@type': 'ProfessionalService',
   name: site.brand,
-  slogan: site.tagline,
   url: site.url,
-  email: `mailto:${site.email}`,
-  areaServed: ['India', 'Australia', 'New Zealand', 'United Kingdom', 'Philippines'],
-  serviceType: [
-    'Delivery advisory',
-    'Transformation advisory',
-    'Managed services consulting',
-    'AI delivery consulting',
-  ],
-}
+} as const
+
+/** Contact details for the Contact page, expressed for the practice rather than a person. */
+export const contactEntity = {
+  '@type': 'ProfessionalService',
+  name: site.brand,
+  url: site.url,
+  email: site.email,
+  address: postalAddress,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Enquiries',
+    email: site.email,
+    url: site.cal.url,
+    availableLanguage: 'English',
+  },
+} as const

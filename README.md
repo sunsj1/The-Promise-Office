@@ -1,6 +1,6 @@
 # The Promise Office
 
-Rishi Salunkhe's delivery & transformation advisory site. React, Vite, TypeScript, Tailwind CSS, React Router, and Motion. Deployed on Vercel as a client-rendered SPA (`vercel.json` carries the routing fallback).
+The Promise Office's delivery, GCC & AI advisory site. React, Vite, TypeScript, Tailwind CSS, React Router, and Motion. Deployed on Vercel as a client-rendered SPA (`vercel.json` carries the routing fallback).
 
 ## Scripts
 
@@ -19,7 +19,7 @@ npm run lint
 
 ```
 src/
-  assets/        Logo, org marks, and the hero portrait (webp + png)
+  assets/        Logo and org marks
   animations/    Motion variants and easing
   data/          Site, project, and studio content
   pages/         One folder per route
