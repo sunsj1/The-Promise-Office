@@ -34,6 +34,7 @@ export function InsightsPage() {
       />
 
       <PageHeader
+        points={['Steering-committee arguments', 'Written down', 'No theatre']}
         graphic={<PagePicker config={insightsPicker} />}
         breadcrumb="Insights"
         eyebrow="Notes on delivery"

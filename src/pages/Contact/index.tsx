@@ -39,6 +39,7 @@ export function ContactPage() {
       />
 
       <PageHeader
+        points={['30 minutes', 'Decision in front of you', 'Next step']}
         graphic={<PagePicker config={contactPicker} />}
         breadcrumb="Contact"
         eyebrow="Start a conversation"

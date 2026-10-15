@@ -27,6 +27,7 @@ export function EvidencePage() {
       />
 
       <PageHeader
+        points={['Recurring situations', 'Not a project list', 'Real engagements']}
         graphic={<PagePicker config={evidencePicker} />}
         breadcrumb="Evidence"
         eyebrow="What experience has taught us"
