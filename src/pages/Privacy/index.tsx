@@ -15,6 +15,7 @@ export function PrivacyPage() {
       />
 
       <PageHeader
+        graphic={null}
         breadcrumb="Privacy"
         eyebrow="Legal"
         title="Privacy notice."

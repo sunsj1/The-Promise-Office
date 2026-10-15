@@ -1,3 +1,5 @@
+import { aiPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { getEngagement } from '@/data/engagements'
 import { caseStudies } from '@/data/evidence'
 import { paths } from '@/routes/paths'
@@ -71,6 +73,7 @@ export function AIPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={aiPicker} />}
         breadcrumb="AI"
         eyebrow="AI & Intelligent Operations"
         title="Move AI from pilot to operating reality."

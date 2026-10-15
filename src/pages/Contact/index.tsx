@@ -1,3 +1,5 @@
+import { contactPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import Cal from '@calcom/embed-react'
 import { ArrowUpRight, Check, Clock, Mail, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -37,6 +39,7 @@ export function ContactPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={contactPicker} />}
         breadcrumb="Contact"
         eyebrow="Start a conversation"
         title="Book a 30-minute call."
@@ -63,7 +66,12 @@ export function ContactPage() {
                 </div>
                 <p className="mt-4 font-mono text-[0.68rem] leading-relaxed text-muted">
                   Booking is handled by Cal.com. If the calendar does not load,{' '}
-                  <a href={site.cal.url} target="_blank" rel="noreferrer" className="text-amber hover:underline">
+                  <a
+                    href={site.cal.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-amber hover:underline"
+                  >
                     open it in a new tab
                   </a>
                   .

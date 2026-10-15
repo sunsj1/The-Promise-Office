@@ -1,3 +1,5 @@
+import { atlasPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { AtlasEmbed } from '@/features/atlas/AtlasEmbed'
 import { paths } from '@/routes/paths'
 import { Container } from '@/widgets/Container'
@@ -17,6 +19,7 @@ export function AtlasPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={atlasPicker} />}
         breadcrumb="Atlas"
         eyebrow="Technology map"
         title="The Living IT Atlas: how an idea becomes a running service."
@@ -30,8 +33,8 @@ export function AtlasPage() {
               <AtlasEmbed />
             </div>
             <p className="mt-5 max-w-2xl font-mono text-[0.68rem] leading-relaxed tracking-[0.08em] text-muted">
-              A classification for exploring the landscape, not a ranking or a recommendation. Product
-              names belong to their respective owners.
+              A classification for exploring the landscape, not a ranking or a recommendation.
+              Product names belong to their respective owners.
             </p>
           </Reveal>
         </Container>

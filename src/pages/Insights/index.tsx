@@ -1,3 +1,5 @@
+import { insightsPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { ArrowRight, BookOpen } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { guide, insights } from '@/data/perspective'
@@ -32,6 +34,7 @@ export function InsightsPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={insightsPicker} />}
         breadcrumb="Insights"
         eyebrow="Notes on delivery"
         title="Short pieces on the decisions that actually move programs."

@@ -1,3 +1,5 @@
+import { advisoryPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { motion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -37,6 +39,7 @@ export function AdvisoryPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={advisoryPicker} />}
         breadcrumb="Advisory"
         eyebrow="The advisory practice"
         title="Bring the difficult brief."
@@ -48,8 +51,8 @@ export function AdvisoryPage() {
         <Container size="wide">
           <Eyebrow>The four problems we're brought in to solve</Eyebrow>
           <p className="mt-3 max-w-2xl text-[0.9rem] text-muted">
-            Delivery Recovery and Managed Services are covered here on Advisory. GCC and AI each have
-            their own dedicated page — linked from the cards below.
+            Delivery Recovery and Managed Services are covered here on Advisory. GCC and AI each
+            have their own dedicated page — linked from the cards below.
           </p>
           <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {practices.map((practice) => (
@@ -216,7 +219,11 @@ export function AdvisoryPage() {
 
           <div className="mt-14 space-y-14">
             {capabilities.map((capability) => (
-              <Reveal key={capability.key} id={capability.key} className="scroll-mt-28 border-t border-line pt-10 first:border-t-0 first:pt-0">
+              <Reveal
+                key={capability.key}
+                id={capability.key}
+                className="scroll-mt-28 border-t border-line pt-10 first:border-t-0 first:pt-0"
+              >
                 <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
                   <div className="lg:col-span-4">
                     <p className="font-mono text-[0.66rem] tracking-[0.14em] text-muted uppercase">
@@ -246,7 +253,10 @@ export function AdvisoryPage() {
                       <ul className="mt-3 space-y-2.5">
                         {capability.whatWeDo.map((item) => (
                           <li key={item} className="flex gap-2.5 text-[0.95rem]">
-                            <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber" />
+                            <span
+                              aria-hidden
+                              className="mt-2 h-1 w-1 shrink-0 rounded-full bg-amber"
+                            />
                             {item}
                           </li>
                         ))}

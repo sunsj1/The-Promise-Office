@@ -1,3 +1,5 @@
+import { gccPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { OperatingStack } from '@/widgets/Graphics/OperatingStack'
 import { Check } from 'lucide-react'
 import { adjacentMandates } from '@/data/engagements'
@@ -82,6 +84,7 @@ export function GCCPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={gccPicker} />}
         breadcrumb="GCC"
         eyebrow="GCC & Capability Centre Advisory"
         title="Build a GCC that owns outcomes, not just tasks."
