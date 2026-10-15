@@ -1,3 +1,5 @@
+import { evidencePicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -25,6 +27,7 @@ export function EvidencePage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={evidencePicker} />}
         breadcrumb="Evidence"
         eyebrow="What experience has taught us"
         title="Situations we recognise, not projects we finished."

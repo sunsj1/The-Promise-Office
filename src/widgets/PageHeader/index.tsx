@@ -14,6 +14,7 @@ export function PageHeader({
   copy,
   breadcrumb,
   aside,
+  graphic,
   children,
   leading = true,
   headingLevel = 'h1',
@@ -24,6 +25,8 @@ export function PageHeader({
   breadcrumb: string
   /** Optional right-hand visual. */
   aside?: ReactNode
+  /** Page-specific interactive graphic. Omit for the default; pass null for none. */
+  graphic?: ReactNode | null
   children?: ReactNode
   /** False when another section already precedes this one on the page — drops the top padding reserved for clearing the fixed navbar. */
   leading?: boolean
@@ -70,6 +73,10 @@ export function PageHeader({
             {aside ? (
               <div className="mx-auto w-[min(70%,16.5rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[20rem] lg:justify-self-end">
                 {aside}
+              </div>
+            ) : graphic === null ? null : graphic ? (
+              <div className="w-full max-w-[27rem] lg:col-span-5 lg:justify-self-end">
+                {graphic}
               </div>
             ) : (
               <div className="hidden lg:col-span-5 lg:block lg:justify-self-end">

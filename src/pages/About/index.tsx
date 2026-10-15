@@ -1,3 +1,5 @@
+import { aboutPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -38,6 +40,7 @@ export function AboutPage() {
 
       {/* Introduction */}
       <PageHeader
+        graphic={<PagePicker config={aboutPicker} />}
         breadcrumb="About"
         eyebrow={aboutIntro.eyebrow}
         title={aboutIntro.title}

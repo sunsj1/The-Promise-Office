@@ -14,7 +14,12 @@ export function TermsPage() {
         breadcrumb="Terms"
       />
 
-      <PageHeader breadcrumb="Terms" eyebrow="Legal" title="Website terms & disclaimer." />
+      <PageHeader
+        graphic={null}
+        breadcrumb="Terms"
+        eyebrow="Legal"
+        title="Website terms & disclaimer."
+      />
 
       <LegalLayout
         other="privacy"

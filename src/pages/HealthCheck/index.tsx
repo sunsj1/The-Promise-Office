@@ -1,3 +1,5 @@
+import { healthCheckPicker } from '@/data/pagePickers'
+import { PagePicker } from '@/widgets/Graphics/PagePicker'
 import { deliveryDiagnostic } from '@/data/engagements'
 import { paths } from '@/routes/paths'
 import { HealthCheckTool } from '@/features/healthCheck/HealthCheckTool'
@@ -19,6 +21,7 @@ export function HealthCheckPage() {
       />
 
       <PageHeader
+        graphic={<PagePicker config={healthCheckPicker} />}
         breadcrumb="Health check"
         eyebrow="An adaptive advisory diagnostic"
         title="What's actually limiting you right now?"
