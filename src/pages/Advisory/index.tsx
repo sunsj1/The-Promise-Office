@@ -374,9 +374,10 @@ export function AdvisoryPage() {
             <Reveal className="mt-10">
               <Accordion items={faqs} />
               <p className="mt-8 max-w-2xl text-[0.95rem] text-muted">
-                <strong className="font-normal text-ink">One accountable advisory lead.</strong> I
-                lead diagnosis, operating design and delivery governance; the responsibilities of
-                client teams and any specialist contributors are agreed in the mandate.
+                <strong className="font-normal text-ink">One accountable advisory lead.</strong> We
+                take responsibility for diagnosis, operating design and delivery governance; the
+                responsibilities of client teams and any specialist contributors are agreed in the
+                mandate.
               </p>
             </Reveal>
           </div>
@@ -386,7 +387,7 @@ export function AdvisoryPage() {
       <CtaBand
         eyebrow="A useful first step"
         title="Start with the problem, not a package."
-        copy="Tell me what is happening, what decision is stuck and what is at stake. We can define the smallest useful intervention."
+        copy="Tell us what is happening, what decision is stuck and what is at stake. We can define the smallest useful intervention."
         secondaryLabel="Run the health check"
         secondaryTo={paths.healthCheck}
       />

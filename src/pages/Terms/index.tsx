@@ -27,7 +27,7 @@ export function TermsPage() {
             <div>
               <h2 className="font-display text-xl">About this practice</h2>
               <p className="mt-3 text-muted">
-                {site.brand} is the independent advisory practice of {site.person}. Nothing on this
+                {site.brand} is an independent advisory practice founded by {site.person}. Nothing on this
                 site should be read as implying a specific legal entity, partnership or corporate
                 structure beyond what is stated here.
               </p>
@@ -61,7 +61,7 @@ export function TermsPage() {
             <div>
               <h2 className="font-display text-xl">Intellectual property</h2>
               <p className="mt-3 text-muted">
-                The Promise Office name, mark and site content belong to {site.person}. Organisation
+                The Promise Office name, mark and site content belong to {site.brand}, founded by {site.person}. Organisation
                 names and marks referenced elsewhere on this site belong to their respective owners.
               </p>
             </div>

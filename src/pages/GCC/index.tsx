@@ -217,7 +217,7 @@ export function GCCPage() {
       <CtaBand
         eyebrow="A GCC mandate"
         title="Talk to us about your GCC mandate."
-        copy="Tell me where the centre stands today — task execution, mid-transition, or ready to move toward outcome ownership. We can identify a useful first step."
+        copy="Tell us where the centre stands today — task execution, mid-transition, or ready to move toward outcome ownership. We can identify a useful first step."
         secondaryLabel="See the advisory practice"
         secondaryTo={paths.advisory}
       />

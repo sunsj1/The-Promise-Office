@@ -8,7 +8,7 @@ export type Engagement = {
   featured: boolean
   lead: string
   whenToCall: string
-  whatIDo: string[]
+  whatWeDo: string[]
   whatYouReceive: string
   basis: string
   area: 'delivery' | 'managed-services' | 'commercial-ai'
@@ -30,7 +30,7 @@ export const engagements: Engagement[] = [
     lead: 'A program is slipping. The reported status and the lived reality no longer match. The first task is to establish the truth, then earn back control.',
     whenToCall:
       'Repeated date changes, unresolved dependencies, customer escalations, unclear success criteria or a program that everyone knows is red but nobody can reset.',
-    whatIDo: [
+    whatWeDo: [
       'Review plan, scope, contracts, dependencies, risks and evidence of progress.',
       'Interview sponsors, customers, delivery teams and critical suppliers.',
       'Separate immediate stabilisation from structural recovery.',
@@ -55,7 +55,7 @@ export const engagements: Engagement[] = [
     lead: 'Build a PMO or PGO that lets leaders see where outcomes are at risk and equips teams to act — across projects, services and commercial commitments.',
     whenToCall:
       'Portfolio reports disagree, escalation comes late, projects use different rules, resources are stretched or governance is viewed as overhead.',
-    whatIDo: [
+    whatWeDo: [
       'Assess delivery maturity, decision latency and current reporting quality.',
       'Set the charter, service catalogue, RACI and governance levels.',
       'Design assurance checkpoints, portfolio measures and risk triggers.',
@@ -80,7 +80,7 @@ export const engagements: Engagement[] = [
     lead: 'Turn “we should sell managed services” into a service business with a clear offer, transition path, performance promise and delivery economics.',
     whenToCall:
       'Sales has demand but operations lacks a repeatable model; SLAs are proposed before cost and capability are understood; every bid starts from scratch.',
-    whatIDo: [
+    whatWeDo: [
       'Define the service catalogue, scope boundaries and target customers.',
       'Build the operating model, roles, governance and ITIL-aligned practices.',
       'Design SLA/KPI measures, reporting and service reviews.',
@@ -105,7 +105,7 @@ export const engagements: Engagement[] = [
     lead: 'Fix the work before automating it. Connect the customer journey, operating process, system handoffs and measures into one transformation path.',
     whenToCall:
       'Manual effort keeps growing, teams blame one another for handoffs, a digital project reproduces old inefficiency or the platform is live without adoption.',
-    whatIDo: [
+    whatWeDo: [
       'Map current-state flows, ownership and customer friction.',
       'Identify rework, control gaps, automation points and data handoffs.',
       'Design future-state process, roles and service measures.',
@@ -130,7 +130,7 @@ export const engagements: Engagement[] = [
     lead: 'Bring delivery and P&L into the same conversation. Make the cost to serve, staffing model, service promise and account opportunity visible together.',
     whenToCall:
       'Revenue is growing but margin is unclear, utilization looks healthy while delivery struggles, scope changes go unpriced or a bid cannot be delivered at its proposed cost.',
-    whatIDo: [
+    whatWeDo: [
       'Review budget, actuals, forecast, effort and resource assumptions.',
       'Examine scope, SLA obligations and commercial leakage points.',
       'Model pricing and staffing options for pursuits or renewals.',
@@ -155,7 +155,7 @@ export const engagements: Engagement[] = [
     lead: 'Choose the right work for AI, deliver the pilot with real controls, then teach the teams who must use and judge its outputs.',
     whenToCall:
       'Ideas are plentiful but value is vague; a demo is impressive but untested; teams need practical AI fluency; leaders need an accountable pilot.',
-    whatIDo: [
+    whatWeDo: [
       'Discover and prioritise use cases by effort, value and risk.',
       'Map source data, workflow, human review and success measures.',
       'Lead delivery across product, technology, business and UAT.',

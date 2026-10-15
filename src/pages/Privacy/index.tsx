@@ -30,7 +30,7 @@ export function PrivacyPage() {
               <p className="mt-3 text-muted">
                 Booking a call uses Cal.com, a third-party scheduling service. When you book, Cal.com
                 collects your name, email address and any notes you add, and shares booking details
-                (time, name, email) with {site.person} to prepare for and hold the call. Cal.com’s own
+                (time, name, email) with {site.brand} (founded by {site.person}) to prepare for and hold the call. Cal.com’s own
                 privacy policy governs how it handles that data.
               </p>
             </div>
