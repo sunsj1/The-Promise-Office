@@ -44,7 +44,7 @@ export function BookedPage() {
     <>
       <Seo
         title="Call booked"
-        description="Your 30-minute call with Hrishikesh (Rishi) Salunkhe is confirmed."
+        description="Your 30-minute call with Hrishikesh Salunkhe is confirmed."
         path={paths.booked}
         noindex
       />

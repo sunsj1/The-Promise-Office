@@ -8,7 +8,7 @@ import { LinkButton } from '@/widgets/Button'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal, RevealGroup } from '@/widgets/Reveal'
 import { SectionHeader } from '@/widgets/SectionHeader'
-import { Seo } from '@/widgets/Seo'
+import { organisationRef, Seo } from '@/widgets/Seo'
 import { SpotlightCard } from '@/widgets/SpotlightCard'
 
 const capabilities = [
@@ -66,7 +66,7 @@ export function AIPage() {
           name: 'AI & Intelligent Operations',
           description:
             'Advisory on moving AI from pilot to governed, measurable business operations — operating model, governance and adoption, not model engineering.',
-          provider: { '@type': 'Person', name: 'Hrishikesh Salunkhe' },
+          provider: organisationRef,
         }}
       />
 

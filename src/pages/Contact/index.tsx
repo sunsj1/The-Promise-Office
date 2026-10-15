@@ -10,7 +10,7 @@ import { Eyebrow } from '@/widgets/Eyebrow'
 import { ErrorBoundary } from '@/widgets/ErrorBoundary'
 import { PageHeader } from '@/widgets/PageHeader'
 import { Reveal } from '@/widgets/Reveal'
-import { Seo } from '@/widgets/Seo'
+import { contactEntity, Seo } from '@/widgets/Seo'
 
 const expectations = [
   'A 30-minute call to understand the decision you face.',
@@ -25,19 +25,13 @@ export function ContactPage() {
     <>
       <Seo
         title="Contact"
-        description="Book a 30-minute call with Hrishikesh (Rishi) Salunkhe to discuss a delivery, transformation or managed services mandate."
+        description="Book a 30-minute call with The Promise Office to discuss a delivery, transformation or managed services mandate."
         path={paths.contact}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'ContactPage',
           name: 'Contact — The Promise Office',
-          mainEntity: {
-            '@type': 'Person',
-            name: site.person,
-            email: site.email,
-            url: site.cal.url,
-            address: { '@type': 'PostalAddress', addressLocality: 'Pune', addressCountry: 'IN' },
-          },
+          mainEntity: contactEntity,
         }}
         breadcrumb="Contact"
       />
